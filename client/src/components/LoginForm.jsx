@@ -2,26 +2,11 @@
 
 // Modules
 import { useState } from "react";
-import {
-    Box,
-    Button,
-    TextField,
-    useMediaQuery,
-    Typography,
-    useTheme,
-} from "@mui/material";
-import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import { Formik } from "formik";
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setLogin } from "state";
-import Dropzone from "react-dropzone";
-
-// Components
-import FlexBetween from "components/FlexBetween";
-import { CheckBox } from "@mui/icons-material";
-
 
 
 /* FORM VALIDATION SCHEMA */
@@ -75,10 +60,26 @@ const LoginForm = () => {
     const isLogin = pageType === "login";
     const isRegister = pageType === "register";
 
-    // theme
-    const { palette } = useTheme();
-    const isNonMobile = useMediaQuery("(min-width:600px)");
 
+    // Handle Login Form Submit
+    const handleLogin = (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const values = Object.fromEntries(formData);
+        login(values, {
+            resetForm: () => event.target.reset(),
+        });
+    };
+
+    // Handle Register Form Submit
+    const handleRegister = (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const values = Object.fromEntries(formData);
+        register(values, {
+            resetForm: () => event.target.reset(),
+        });
+    };
 
 
 
@@ -163,148 +164,83 @@ const LoginForm = () => {
     /* RENDER */
 
     return (
-        <Formik
-            onSubmit={handleFormSubmit}
-            initialValues={isLogin ? initialValuesLogin : initialValuesRegister}
-            validationSchema={isLogin ? loginSchema : registerSchema}
-        >
-            {({
-                values,
-                errors,
-                touched,
-                handleBlur,
-                handleChange,
-                handleSubmit,
-                setFieldValue,
-                resetForm,
-            }) => (
-                <form onSubmit={handleSubmit}>
-                    <Box
-                        display="grid"
-                        gap="30px"
-                        gridTemplateColumns="repeat(4, minmax(0, 1fr))"
-                        sx={{
-                        "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
-                        }}
-                    >
-                        <TextField
-                            label="Email"
-                            onBlur={handleBlur}
-                            onChange={handleChange}
-                            value={values.email}
-                            name="email"
-                            error={Boolean(touched.email) && Boolean(errors.email)}
-                            helperText={touched.email && errors.email}
-                            sx={{ gridColumn: "span 4" }}
-                        />
-                        <TextField
-                            label="Password"
-                            type="password"
-                            onBlur={handleBlur}
-                            onChange={handleChange}
-                            value={values.password}
-                            name="password"
-                            error={Boolean(touched.password) && Boolean(errors.password)}
-                            helperText={touched.password && errors.password}
-                            sx={{ gridColumn: "span 4" }}
-                        />
-
-                        {/* {isLogin && (
-                            <>
-
-                            </>
-                        )} */}
-
-                        {isRegister && (
-                        <>
-                            <TextField
-                                label="Username"
-                                onBlur={handleBlur}
-                                onChange={handleChange}
-                                value={values.username}
-                                name="username"
-                                error={
-                                    Boolean(touched.username) && Boolean(errors.username)
-                                }
-                                helperText={touched.username && errors.username}
-                                sx={{ gridColumn: "span 4" }}
-                            />
-                            <Box
-                                gridColumn="span 4"
-                                border={`1px solid ${palette.neutral.medium}`}
-                                borderRadius="5px"
-                                p="1rem"
-                            >
-                                <Dropzone
-                                    acceptedFiles=".jpg,.jpeg,.png"
-                                    multiple={false}
-                                    onDrop={(acceptedFiles) =>
-                                    setFieldValue("picture", acceptedFiles[0])
-                                    }
-                                >
-                                    {({ getRootProps, getInputProps }) => (
-                                        <Box
-                                            {...getRootProps()}
-                                            border={`2px dashed ${palette.primary.main}`}
-                                            p="1rem"
-                                            sx={{ "&:hover": { cursor: "pointer" } }}
-                                        >
-                                            <input {...getInputProps()} />
-                                            {!values.picture ? (
-                                                <p>Add Picture Here</p>
-                                                ) : (
-                                                <FlexBetween>
-                                                    <Typography>{values.picture.name}</Typography>
-                                                    <EditOutlinedIcon />
-                                                </FlexBetween>
-                                            )}
-                                        </Box>
-                                    )}
-                                </Dropzone>
-                            </Box>
-                        </>
-                        )}
-                    </Box>
-
-                    {/* BUTTONS */}
-                    <Box>
-                        <Button
-                            fullWidth
-                            type="submit"
-                            sx={{
-                                m: "2rem 0",
-                                p: "1rem",
-                                backgroundColor: palette.primary.main,
-                                color: palette.background.alt,
-                                "&:hover": { color: palette.primary.main },
-                            }}
-                        >
-                        {isLogin ? "LOGIN" : "REGISTER"}
-                        </Button>
-                        <Typography
-                            onClick={() => {
-                                setPageType(isLogin ? "register" : "login");
-                                resetForm();
-                            }}
-                            sx={{
-                                textDecoration: "underline",
-                                color: palette.primary.main,
-                                "&:hover": {
-                                cursor: "pointer",
-                                color: palette.primary.light,
-                                },
-                            }}
-                        >
-                        {isLogin
-                            ? "Don't have an account? Sign Up here."
-                            : "Already have an account? Login here."}
-                        </Typography>
-                    </Box>
-                </form>
+        <div className="account-background">
+          <div className="form-container">
+            <div className="welcome">Welcome to The Pokéhub!</div>
+            <div className="button-container">
+              <div id="button"></div>
+              <button
+                type="button"
+                className="toggle-button"
+                onClick={() => setPageType("login")}
+              >
+                <b>Login</b>
+              </button>
+              <button
+                type="button"
+                className="toggle-button"
+                onClick={() => setPageType("register")}
+              >
+                <b>Register</b>
+              </button>
+            </div>
+    
+            {pageType === "login" && (
+              <form className="input-group" onSubmit={handleLogin}>
+                <input
+                  type="text"
+                  className="input-field"
+                  placeholder="Username"
+                  name="username"
+                  required
+                />
+                <input
+                  type="password"
+                  className="input-field"
+                  placeholder="Password"
+                  name="password"
+                  required
+                />
+                <div className="passwordError" hidden>
+                  Invalid Username or Password
+                </div>
+                <input type="checkbox" className="check-box" id="rememberMe" />
+                <button type="submit" className="submit-button">
+                  <b>Login</b>
+                </button>
+              </form>
             )}
-        </Formik>
-    );
-};
+    
+            {pageType === "register" && (
+              <form className="input-group" onSubmit={handleRegister}>
+                <input
+                  type="text"
+                  className="input-field"
+                  placeholder="Username"
+                  required
+                />
+                <input
+                  type="email"
+                  className="input-field"
+                  placeholder="Email"
+                  required
+                />
+                <input
+                  type="password"
+                  className="input-field"
+                  placeholder="Enter Password"
+                  required
+                />
+                <button type="submit" className="submit-button">
+                  <b>Register</b>
+                </button>
+              </form>
+            )}
+          </div>
+        </div>
+      );
+    };
+    
 
 
 
