@@ -82,8 +82,8 @@ export const login = async (req, res) => {
             return res.status(400).json({ msg: "Invalid credentials. " })
 
         // Create signed token with user id
-        // let expiresIn = rememberMe ? '7d' : '10s';
-        // const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {expiresIn: expiresIn,})
+        //let expiresIn = rememberMe ? '7d' : '10s';
+        //const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {expiresIn: expiresIn,})
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET)
 
         // Delete password from user and respond with token and user
@@ -91,8 +91,7 @@ export const login = async (req, res) => {
         res.status(200).json({ token, user })
     } 
     catch (err) {
-        
-        // Respond with error
-        res.status(500).json({ error: err.message })
+        // Respond with error message 
+        res.status(500).json({ error: err.message });
     }
 }

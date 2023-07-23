@@ -2,26 +2,19 @@
 
 // Modules
 import { useState } from "react";
-import {
-    Box,
-    Button,
-    TextField,
-    useMediaQuery,
-    Typography,
-    useTheme,
-} from "@mui/material";
-import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
-import { Formik } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setLogin } from "state";
+import "../styles/components/LoginForm.css";
 import Dropzone from "react-dropzone";
-
-// Components
-import FlexBetween from "components/FlexBetween";
-import { CheckBox } from "@mui/icons-material";
-
+import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
+import {
+  Box,
+  Typography,
+  useTheme,
+} from "@mui/material";
 
 
 /* FORM VALIDATION SCHEMA */
@@ -36,8 +29,8 @@ const registerSchema = yup.object().shape({
 
 // Login
 const loginSchema = yup.object().shape({
-    email: yup.string().email("invalid email").required("required"),
-    password: yup.string().required("required")
+    email: yup.string().email("invalid username").required("required"),
+    password: yup.string().required("required"),
 });
 
 
@@ -51,13 +44,14 @@ const initialValuesRegister = {
     email: "",
     password: "",
     username: "",
-    picture: ""
+    picture: null,
 };
 
 // Login
 const initialValuesLogin = {
     email: "",
-    password: ""
+    password: "",
+    rememberMe: false, // Set a default value for the checkbox
 };
 
 
@@ -74,43 +68,38 @@ const LoginForm = () => {
     const [pageType, setPageType] = useState("login");
     const isLogin = pageType === "login";
     const isRegister = pageType === "register";
-
-    // theme
     const { palette } = useTheme();
-    const isNonMobile = useMediaQuery("(min-width:600px)");
 
-
-
-
-
+    const handleFormSwitch = (type) => {
+        setPageType(type);
+      };
+   
     /* CONTROLLERS */
 
     // Register
     const register = async (values, onSubmitProps) => {
-        
-        // Get form data
-        const formData = new FormData();
-        for (let value in values)
-            formData.append(value, values[value]);
-        formData.append("picturePath", values.picture.name);
 
-        // Send request to server
-        const savedUserResponse = await fetch(
-            "http://localhost:4000/auth/register",
-            {
-                method: "POST",
-                body: formData,
-            }
-        );
-        const savedUser = await savedUserResponse.json();
-        
-        // If user saved, set login state
-        onSubmitProps.resetForm();
-        if (savedUser) {
-            setPageType("login");
-        }
+      // Get form data
+      const formData = new FormData();
+      for (let value in values)
+      formData.append(value, values[value]);
+      formData.append("picturePath", values.picture.name);
 
-        console.log(savedUser)
+
+      // Send request to server
+      const savedUserResponse = await fetch("http://localhost:4000/auth/register", {
+          method: "POST",
+          body: formData,
+      });
+      const savedUser = await savedUserResponse.json();
+
+      // If user saved, set login state
+      onSubmitProps.resetForm();
+      if (savedUser) {
+          setPageType("login");
+      }
+
+      console.log(savedUser);
     };
 
 
@@ -156,160 +145,173 @@ const LoginForm = () => {
             await register(values, onSubmitProps);
     };
 
-
-
-
-
     /* RENDER */
 
     return (
-        <Formik
-            onSubmit={handleFormSubmit}
-            initialValues={isLogin ? initialValuesLogin : initialValuesRegister}
-            validationSchema={isLogin ? loginSchema : registerSchema}
-        >
-            {({
-                values,
-                errors,
-                touched,
-                handleBlur,
-                handleChange,
-                handleSubmit,
-                setFieldValue,
-                resetForm,
-            }) => (
-                <form onSubmit={handleSubmit}>
-                    <Box
-                        display="grid"
-                        gap="30px"
-                        gridTemplateColumns="repeat(4, minmax(0, 1fr))"
-                        sx={{
-                        "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
-                        }}
-                    >
-                        <TextField
-                            label="Email"
-                            onBlur={handleBlur}
-                            onChange={handleChange}
-                            value={values.email}
-                            name="email"
-                            error={Boolean(touched.email) && Boolean(errors.email)}
-                            helperText={touched.email && errors.email}
-                            sx={{ gridColumn: "span 4" }}
-                        />
-                        <TextField
-                            label="Password"
-                            type="password"
-                            onBlur={handleBlur}
-                            onChange={handleChange}
-                            value={values.password}
-                            name="password"
-                            error={Boolean(touched.password) && Boolean(errors.password)}
-                            helperText={touched.password && errors.password}
-                            sx={{ gridColumn: "span 4" }}
-                        />
-
-                        {/* {isLogin && (
-                            <>
-
-                            </>
-                        )} */}
-
-                        {isRegister && (
-                        <>
-                            <TextField
-                                label="Username"
-                                onBlur={handleBlur}
-                                onChange={handleChange}
-                                value={values.username}
-                                name="username"
-                                error={
-                                    Boolean(touched.username) && Boolean(errors.username)
-                                }
-                                helperText={touched.username && errors.username}
-                                sx={{ gridColumn: "span 4" }}
+      <div className="account-background">
+        <p style={{fontFamily: "VT323", fontSize: "20px", color: "white", textAlign: "center"}}>
+        <div className="form-container">
+        <div className="welcome">Welcome to The Pokéhub!</div>
+        <div className="button-container">
+          <div id="button" style={{ left: pageType === "login" ? "0px" : "100px" }}></div>
+          <button
+            type="button"
+            className={`toggle-button ${pageType === "login" ? "active" : ""}`}
+            onClick={() => handleFormSwitch("login")}
+          >
+            <b>Login</b> 
+          </button>
+          <button
+            type="button"
+            className={`toggle-button ${pageType === "register" ? "active" : ""}`}
+            onClick={() => handleFormSwitch("register")}
+          >
+            
+            <b>Register</b>
+          </button>
+        </div>
+  
+        {pageType === "login" && (
+                <Formik
+                    initialValues={initialValuesLogin}
+                    validationSchema={loginSchema}
+                    onSubmit={handleFormSubmit}
+                > 
+                    {({ values, handleChange, handleSubmit}) => (
+                        <Form className="input-group">
+                            <Field
+                                type="text"
+                                className="input-field"
+                                placeholder="Email"
+                                name="email"
+                                required
                             />
-                            <Box
-                                gridColumn="span 4"
-                                border={`1px solid ${palette.neutral.medium}`}
-                                borderRadius="5px"
-                                p="1rem"
+                            <Field
+                                type="password"
+                                className="input-field"
+                                placeholder="Password"
+                                name="password"
+                                required
+                            />
+                            <div className="passwordError" hidden>
+                                Invalid Username or Password
+                            </div>
+                            <Field
+                                type="checkbox"
+                                className="check-box"
+                                id="rememberMe"
+                                name="rememberMe"
+                                checked= {values.rememberMe}
+                                onChange={handleChange}
+                            />
+                            <label htmlFor="rememberMe">Keep Me Logged In</label>
+                            <button
+                                type="submit"
+                                className="submit-button"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    handleSubmit();
+                                }}
                             >
-                                <Dropzone
-                                    acceptedFiles=".jpg,.jpeg,.png"
-                                    multiple={false}
-                                    onDrop={(acceptedFiles) =>
-                                    setFieldValue("picture", acceptedFiles[0])
-                                    }
-                                >
-                                    {({ getRootProps, getInputProps }) => (
-                                        <Box
-                                            {...getRootProps()}
-                                            border={`2px dashed ${palette.primary.main}`}
-                                            p="1rem"
-                                            sx={{ "&:hover": { cursor: "pointer" } }}
-                                        >
-                                            <input {...getInputProps()} />
-                                            {!values.picture ? (
-                                                <p>Add Picture Here</p>
-                                                ) : (
-                                                <FlexBetween>
-                                                    <Typography>{values.picture.name}</Typography>
-                                                    <EditOutlinedIcon />
-                                                </FlexBetween>
-                                            )}
-                                        </Box>
-                                    )}
-                                </Dropzone>
-                            </Box>
-                        </>
-                        )}
-                    </Box>
-
-                    {/* BUTTONS */}
-                    <Box>
-                        <Button
-                            fullWidth
-                            type="submit"
-                            sx={{
-                                m: "2rem 0",
-                                p: "1rem",
-                                backgroundColor: palette.primary.main,
-                                color: palette.background.alt,
-                                "&:hover": { color: palette.primary.main },
-                            }}
-                        >
-                        {isLogin ? "LOGIN" : "REGISTER"}
-                        </Button>
-                        <Typography
-                            onClick={() => {
-                                setPageType(isLogin ? "register" : "login");
-                                resetForm();
-                            }}
-                            sx={{
-                                textDecoration: "underline",
-                                color: palette.primary.main,
-                                "&:hover": {
-                                cursor: "pointer",
-                                color: palette.primary.light,
-                                },
-                            }}
-                        >
-                        {isLogin
-                            ? "Don't have an account? Sign Up here."
-                            : "Already have an account? Login here."}
-                        </Typography>
-                    </Box>
-                </form>
+                                <b>Login</b>
+                            </button>
+                        </Form>
+                    )}
+                </Formik>
             )}
-        </Formik>
-    );
-};
 
-
-
-
-
+            {pageType === "register" && (
+                <Formik
+                    initialValues={initialValuesRegister}
+                    validationSchema={registerSchema}
+                    onSubmit={handleFormSubmit}
+                >
+                    {({ values, handleChange, handleSubmit, setFieldValue}) => (
+                        <Form className="input-group">
+                            <Field
+                                type="text"
+                                className="input-field"
+                                placeholder="Username"
+                                name="username"
+                                required
+                            />
+                            <Field
+                                type="email"
+                                className="input-field"
+                                placeholder="Email"
+                                name="email"
+                                required
+                            />
+                            <Field
+                                type="password"
+                                className="input-field"
+                                placeholder="Enter Password"
+                                name="password"
+                                required
+                            />
+                             <Dropzone
+                                acceptedFiles=".jpg,.jpeg,.png"
+                                multiple={false}
+                                onDrop={(acceptedFiles) => {
+                                    // Set the selected file to formik values
+                                    setFieldValue("picture", acceptedFiles[0]);
+                                }}
+                            >
+                                {({ getRootProps, getInputProps }) => (
+                                    <Box
+                                        {...getRootProps()}
+                                        border={`2px dashed ${palette.primary.main}`}
+                                        margin={"20px -50px 5px 50px"}
+                                        p=" 1rem 3rem"
+                                        sx={{ "&:hover": { cursor: "pointer" } }}
+                                    >
+                                        <input {...getInputProps()} />
+                                        {!values.picture ? (
+                                             <Typography
+                                             sx={{
+                                                 display: "flex",
+                                                 alignItems: "center",
+                                                 justifyContent: "center",
+                                                 height: "100%",
+                                                 color: "white",
+                                                 fontSize: "14px",
+                                                 font: "VT323"
+                                                
+                                             }}
+                                         >
+                                             Insert Profile Picture Here
+                                         </Typography>
+                                        ) : (
+                                            <Box margin="50px 50px 50px 50px" alignItems="center">
+                                                <Typography>{values.picture.name}</Typography>
+                                                <EditOutlinedIcon />
+                                            </Box>
+                                        )}
+                                    </Box>
+                                )}
+                              </Dropzone>
+                            <br></br>
+                            <button
+                                type="submit"
+                                className="submit-button"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    handleSubmit();
+                                }}
+                            >
+                                <b>Register</b>
+                            </button>
+                        </Form>
+                    )}
+                </Formik>
+            )}
+        </div>
+        </p>
+        </div>
+      );
+    };
+    
 /* EXPORT */
 
 export default LoginForm;
+
