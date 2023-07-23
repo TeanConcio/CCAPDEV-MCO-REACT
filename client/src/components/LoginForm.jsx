@@ -218,7 +218,7 @@ const LoginForm = () => {
                         </Form>
                     )}
                 </Formik>
-            )};
+            )}
 
             {pageType === "register" && (
                 <Formik
@@ -261,7 +261,8 @@ const LoginForm = () => {
                                     <Box
                                         {...getRootProps()}
                                         border={`2px dashed ${palette.primary.main}`}
-                                        p="1rem"
+                                        margin={"20px -50px 5px 50px"}
+                                        p=" 1rem 3rem"
                                         sx={{ "&:hover": { cursor: "pointer" } }}
                                     >
                                         <input {...getInputProps()} />
@@ -281,7 +282,7 @@ const LoginForm = () => {
                                              Insert Profile Picture Here
                                          </Typography>
                                         ) : (
-                                            <Box display="flex" alignItems="center">
+                                            <Box margin="50px 50px 50px 50px" alignItems="center">
                                                 <Typography>{values.picture.name}</Typography>
                                                 <EditOutlinedIcon />
                                             </Box>
