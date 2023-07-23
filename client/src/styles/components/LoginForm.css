@@ -1,9 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap'); /*Imports VT323 font*/
-
+@font-face {
+    font-family: VT323;
+    src: url(https://chuanfawu.com/wp-content/uploads/2023/06/VT323-Regular.ttf);
+}
 *{
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
+    font-family: VT323;
 }
 
 :root { /*Variables for the switching of login to register (technically there are 2 forms in one page)*/
@@ -15,9 +18,10 @@
     height: 100%;
     width: 100%;
     background-image:  linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url("https://chuanfawu.com/wp-content/uploads/2023/06/PokemonCenter.jpg"); /*can replace with: https://chuanfawu.com/wp-content/uploads/2023/06/PokemonCenter.jpg*/
-    background-position: center;
+    /*background-position: center;*/
     background-size: cover;
-    position: absolute;
+    position: relative;
+    background-repeat: no-repeat;
 }
 
 .form-container{
@@ -25,10 +29,12 @@
     height: 400px;
     position: relative;
     margin: 6% auto;
-    background: #ffffff;
+    background: #252525;
     padding:  5px;
     overflow: hidden; /*Prevents the overflow (either login or register forms) from being seen*/
     border-radius: 30px;
+    align-items: center;
+    box-shadow: #ff105f;
 }
 
 .welcome {
@@ -40,13 +46,14 @@
     text-align: center;
     padding-top: 10px;
     font-family: VT323;
+    color: #ff105f;
 }
 
 .button-container{
-    width: 220px;
+    width: 205px;
     margin: 35px auto;
     position: relative;
-    box-shadow: 0 0 20px 9px #ff61241f;
+    box-shadow: 0 0 20px 9px #fc5e201f;
     border-radius: 30px;
 }
 
@@ -59,6 +66,8 @@
     position: relative;
     justify-content: center;
     text-align: center;
+    border-radius: 50px;
+    transition: all 0.1s ease-in-out;
 }
 
 #button{
@@ -75,6 +84,8 @@
     top: 120px;
     position: absolute;
     width: 280px;
+    justify-content: center;
+    align-self: center;
 }
 
 .input-field{
@@ -123,7 +134,7 @@ span{
     bottom: 68px;
     position: absolute;
 }
-
+/*
 #login{
     left: var(--login-left);
 }
@@ -131,11 +142,11 @@ span{
 #register{
     left: var(--register-left);
 }
-
+*/
 .input-group .input-field {
-    color: black;
+    color: #FFF;
   }
 
   label {
-    color: black;
+    color: #FFF;
   }

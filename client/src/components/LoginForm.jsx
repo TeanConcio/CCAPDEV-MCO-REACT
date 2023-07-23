@@ -148,22 +148,25 @@ const LoginForm = () => {
     /* RENDER */
 
     return (
+      <div className="account-background">
+        <p style={{fontFamily: "VT323", fontSize: "20px", color: "white", textAlign: "center"}}>
         <div className="form-container">
         <div className="welcome">Welcome to The Pokéhub!</div>
         <div className="button-container">
-          <div id="button" style={{ left: pageType === "login" ? "0px" : "110px" }}></div>
+          <div id="button" style={{ left: pageType === "login" ? "0px" : "100px" }}></div>
           <button
             type="button"
             className={`toggle-button ${pageType === "login" ? "active" : ""}`}
             onClick={() => handleFormSwitch("login")}
           >
-            <b>Login</b>
+            <b>Login</b> 
           </button>
           <button
             type="button"
             className={`toggle-button ${pageType === "register" ? "active" : ""}`}
             onClick={() => handleFormSwitch("register")}
           >
+            
             <b>Register</b>
           </button>
         </div>
@@ -269,9 +272,10 @@ const LoginForm = () => {
                                                  alignItems: "center",
                                                  justifyContent: "center",
                                                  height: "100%",
-                                                 color: palette.text.secondary,
+                                                 color: "white",
                                                  fontSize: "14px",
-                                                 fontWeight: "bold",
+                                                 font: "VT323"
+                                                
                                              }}
                                          >
                                              Insert Profile Picture Here
@@ -300,6 +304,8 @@ const LoginForm = () => {
                     )}
                 </Formik>
             )}
+        </div>
+        </p>
         </div>
       );
     };
