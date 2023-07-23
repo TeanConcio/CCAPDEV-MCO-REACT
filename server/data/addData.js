@@ -271,8 +271,11 @@ export const addData = async () => {
     try {
         await User.deleteMany({});
         await Post.deleteMany({});
+        console.log("Deleted all users and posts");
+
         await User.insertMany(users);
         await Post.insertMany(posts);
+        console.log("Added all users and posts");
     } catch (err) {
         console.log(err);
     }

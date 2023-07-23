@@ -6,6 +6,7 @@ import express from "express";
 // Controllers
 import { 
     validatePostId,
+    getPost,
     getFeedPosts,
     getUserPosts,
     upvotePost,
@@ -31,6 +32,7 @@ const router = express.Router();
 /* ROUTES */
 
 // Read
+router.get("/view/:postId", verifyToken, validatePostId, getPost);
 router.get("/", verifyToken, getFeedPosts);
 router.get("/:userId/posts", verifyToken, getUserPosts);
 

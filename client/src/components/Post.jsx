@@ -50,6 +50,9 @@ const Post = ({
     const isDownvoted = Boolean(downvotes[loggedInUserId]);
     const downvoteCount = Object.keys(downvotes).length;
 
+    // Style variables
+    const width = ViewPost ? "100%" : "auto"
+    const margin = ViewPost ? "0px 20px" : "20px"
 
 
 
@@ -145,7 +148,7 @@ const Post = ({
 
     return (
 
-        <div className="post">
+        <div className="post" style={{width: width, margin: margin}}>
 
             { ViewPost ? (
                 <h2 className="title"> {title} </h2>
@@ -163,11 +166,14 @@ const Post = ({
             <p className="body">{body}</p>
 
             {picturePath && (
-                <img
-                    className='image'
-                    alt="post"
-                    src={`http://localhost:4000/assets/${picturePath}`}
-                />
+                <div
+                    className='image-container'>
+                    <img
+                        className='image'
+                        alt="post"
+                        src={`http://localhost:4000/assets/${picturePath}`}
+                    />
+                </div>
             )}
 
             <div className="actions">

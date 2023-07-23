@@ -74,6 +74,31 @@ export const createPost = async (req, res) => {
 
 
 
+/* GET SPECIFIC POST */
+
+export const getPost = async (req, res) => {
+
+    try {
+
+        // Get post id from request parameters and find in database
+        const { postId } = req.params;
+        const post = await Post.findById(postId);
+
+        // Respond with post
+        res.status(200).json(post);
+    } 
+    catch (err) {
+
+        // Respond with error
+        res.status(404).json({ message: err.message });
+        console.log(err)
+    }
+};
+
+
+
+
+
 /* GET ALL POSTS */
 
 export const getFeedPosts = async (req, res) => {
@@ -81,7 +106,7 @@ export const getFeedPosts = async (req, res) => {
     try {
 
         // Respond with all posts from database
-        const post = await Post.find();
+        const post = await Post.find().sort({createdAt: -1});
         res.status(200).json(post);
     } 
     catch (err) {
@@ -103,7 +128,7 @@ export const getUserPosts = async (req, res) => {
 
         // Get user id from request parameters and find their posts in database
         const { userId } = req.params;
-        const post = await Post.find({ userId });
+        const post = await Post.find({ userId }).sort({createdAt: -1});
 
         // Respond with all of user's posts
         res.status(200).json(post);

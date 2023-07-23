@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setPosts } from "state";
 
 // Components
-import Post from "../../components/Post";
+import Post from "./Post";
 
 
 
@@ -86,8 +86,8 @@ const PostFeed = ({ userId, isProfile = false }) => {
                         _id,
                         userId,
                         username,
-                        title,
                         createdAt,
+                        title,
                         body,
                         picturePath,
                         userPicturePath,
@@ -100,8 +100,8 @@ const PostFeed = ({ userId, isProfile = false }) => {
                             postId={_id}
                             postUserId={userId}
                             username={username}
-                            title={title}
                             createdAt={createdAt}
+                            title={title}
                             body={body}
                             picturePath={picturePath}
                             userPicturePath={userPicturePath}

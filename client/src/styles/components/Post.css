@@ -1,8 +1,8 @@
 .post {
     border-radius: 5px;
     padding: 15px;
-    margin-bottom: 20px;
-    border: var(--color-2) solid 1px
+    border: var(--color-2) solid 1px;
+    margin: 20px;
 }
 
 .post .title {
@@ -25,6 +25,13 @@
 .post .body {
     font-size: 1.5rem;
     margin-bottom: 10px;
+}
+
+.post .image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 
 .post .image {

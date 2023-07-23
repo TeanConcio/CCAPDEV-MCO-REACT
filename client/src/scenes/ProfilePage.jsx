@@ -10,7 +10,7 @@ import { useParams } from "react-router-dom";
 import Navbar from "components/Navbar";
 import FriendListWidget from "scenes/widgets/FriendListWidget";
 import MyPostWidget from "scenes/widgets/MyPostWidget";
-import PostsWidget from "scenes/widgets/PostFeed";
+import PostsWidget from "components/PostFeed";
 import UserWidget from "scenes/widgets/UserWidget";
 
 
