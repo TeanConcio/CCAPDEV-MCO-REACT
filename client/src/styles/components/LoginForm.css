@@ -135,3 +135,7 @@ span{
 .input-group .input-field {
     color: black;
   }
+
+  label {
+    color: black;
+  }

@@ -2,7 +2,6 @@
 
 // Modules
 import { useState } from "react";
-import { Formik } from "formik";
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -59,7 +58,7 @@ const LoginForm = () => {
     const [pageType, setPageType] = useState("login");
     const isLogin = pageType === "login";
     const isRegister = pageType === "register";
-    
+
     const handleFormSwitch = (type) => {
         setPageType(type);
       };
@@ -214,7 +213,8 @@ const LoginForm = () => {
                 <div className="passwordError" hidden>
                   Invalid Username or Password
                 </div>
-                <input type="checkbox" className="check-box" id="rememberMe" />
+                <input type="checkbox" className="check-box" id="rememberMe"/>
+                <label htmlFor="rememberMe">Keep Me Logged In</label> 
                 <button type="submit" className="submit-button">
                   <b>Login</b>
                 </button>
