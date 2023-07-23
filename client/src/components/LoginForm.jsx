@@ -100,31 +100,6 @@ const LoginForm = () => {
       }
 
       console.log(savedUser);
-        /*
-        // Get form data
-        const formData = new FormData();
-        for (let value in values)
-            formData.append(value, values[value]);
-        formData.append("picturePath", values.picture.name);
-
-        // Send request to server
-        const savedUserResponse = await fetch(
-            "http://localhost:4000/auth/register",
-            {
-                method: "POST",
-                body: formData,
-            }
-        );
-        const savedUser = await savedUserResponse.json();
-        
-        // If user saved, set login state
-        onSubmitProps.resetForm();
-        if (savedUser) {
-            setPageType("login");
-        }
-
-        console.log(savedUser)
-        */
     };
 
 
@@ -329,11 +304,6 @@ const LoginForm = () => {
       );
     };
     
-
-
-
-
-
 /* EXPORT */
 
 export default LoginForm;
