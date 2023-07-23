@@ -1,0 +1,22 @@
+.user-image-name-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    padding: 10px;
+}
+
+
+
+.user-name {
+    margin-left: 10px;
+    color: var(--color-2);
+}
+
+
+
+.user-name:hover {
+    cursor: pointer;
+    text-decoration: underline;
+    color: var(--color-1);
+}

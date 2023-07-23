@@ -1,0 +1,23 @@
+page.home {
+    padding: 1.5%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("https://chuanfawu.com/wp-content/uploads/2023/06/PokemonCenter.jpg");
+    background-position: center;
+    background-size: cover;
+}
+
+.greeting {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.forum-section {
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    
+}
+
+.post-list {
+    margin-bottom: 20px;
+}

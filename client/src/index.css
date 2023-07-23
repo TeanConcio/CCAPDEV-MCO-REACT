@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+:root {
+    font-family: VT323, sans-serif;
+    font-size: 16px;
+    overflow-wrap: break-word;
+    --color-0: #212121;
+    --color-1: #ff0000;
+    --color-2: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: VT323, sans-serif;
+    color: white;
+    line-height: normal;
+    /*border:rgba(0, 0, 0, .5) solid 1px;*/
+}
+
+
+
+.page {
+    padding: 1.5%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("https://chuanfawu.com/wp-content/uploads/2023/06/PokemonCenter.jpg");
+    background-position: center;
+    background-size: cover;
+}
+
+
+
+.column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+section {
+
+    margin-bottom: 20px;
+    padding: 1.5%;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: var(--color-0);
+}
+
+
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: var(--color-1);
+}

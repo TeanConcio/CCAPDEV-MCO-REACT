@@ -1,0 +1,217 @@
+main {
+    padding: 1.5%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("https://chuanfawu.com/wp-content/uploads/2023/06/PokemonCenter.jpg");
+    background-position: center;
+    background-size: cover;
+}
+
+section {
+    margin-bottom: 20px;
+    background-color: var(--color-0);
+    padding: 1.5%;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.post-section {
+    background-color: var(--color-0);
+    padding: 20px 30px 30px 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.back-to-forum a {
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: var(--color-2);
+}
+
+.post-container {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.go-prev,
+.go-next,
+.go-prev a,
+.go-next a {
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: var(--color-0);
+    background-color: var(--color-1);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.go-prev {
+    margin-right: 20px;
+}
+
+.go-next {
+    margin-left: 20px;
+}
+
+.post {
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: var(--color-2) solid 1px
+}
+
+.post-title {
+    font-size: 1.75rem;
+    margin-bottom: 5px;
+}
+
+.post-details, 
+.comment-details {
+    font-size: 1rem;
+    color: var(--color-1);
+    margin-bottom: 5px;
+}
+
+.post-author,
+.post-date,
+.comment-author,
+.comment-date {
+    margin-right: 10px;
+    color: var(--color-1);
+}
+
+.post-content {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.post-actions, 
+.comment-actions {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.voting-actions, 
+.modify-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.voting-actions {
+    width: 10%;
+}
+
+.modify-actions {
+    width: 10%;
+}
+
+.post-comment-actions {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    width: 5%;
+}
+
+.vote-count,
+.comment-count {
+    font-size: 1.33rem;
+}
+
+.comment-count {
+    margin-right: 10px;
+}
+
+.upvote-btn,
+.downvote-btn,
+.comment-btn,
+.edit-btn,
+.delete-btn {
+    font-size: 1rem;
+    padding: 5px 10px;
+    color: var(--color-0);
+    background-color: var(--color-1);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.comment-section h3 {
+    font-size: 1.75rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.comment {
+    border: 1px solid var(--color-2);
+    border-radius: 5px;
+    padding: 15px;
+    margin-top: 15px;
+}
+
+.comment.level-1 {
+    margin-left: 45px;
+}
+
+.comment.level-2 {
+    margin-left: 90px;
+}
+
+.comment-details {
+    font-size: 1.25rem;
+    color: #777;
+    margin-bottom: 5px;
+}
+
+.comment-author {
+    margin-right: 10px;
+}
+
+.comment-content {
+    font-size: 1.55rem;
+    margin-bottom: 20px;
+}
+
+.write-comment-section h3 {
+    font-size: 1.75rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.comment-input{
+    font: inherit;
+    font-size: 1.75rem;
+    height: 5rem;
+    width: 100%;
+    margin-bottom: 10px;
+    border: 1px solid var(--color-2);
+    border-radius: 5px;
+    outline: none;
+}
+
+.post-comment-btn {
+    font-size: 1.5rem;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid var(--color-2);
+    border-radius: 5px;
+    outline: none;
+    background-color: var(--color-1);
+    color: #fff;
+    cursor: pointer;
+}
+
+.post-comment-btn:hover {
+    background-color: var(--color-1);
+}
+
+.comment-input::placeholder,
+.post-comment-input::placeholder {
+    color: #999;
+}

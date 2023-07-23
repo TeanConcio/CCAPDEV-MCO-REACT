@@ -1,0 +1,22 @@
+.user-image-box {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.user-image {
+    object-fit: cover;
+    border: 2px solid var(--color-2);
+    border-radius: 50%;
+}
+
+
+
+.user-image:hover {
+    cursor: pointer;
+    border: 2px solid var(--color-1);
+    filter: brightness(.75);
+}

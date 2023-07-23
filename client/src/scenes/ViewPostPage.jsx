@@ -1,0 +1,62 @@
+/* IMPORTS */
+
+// Modules
+import { useSelector } from "react-redux";
+
+// Components
+import Navbar from "components/Navbar";
+import UserWidget from "scenes/widgets/UserWidget";
+import MyPostWidget from "scenes/widgets/MyPostWidget";
+import PostFeed from "scenes/widgets/PostFeed";
+import FriendListWidget from "scenes/widgets/FriendListWidget";
+
+// Style
+import "../styles/scenes/HomePage.css";
+
+
+
+
+
+/* VIEW POST PAGE */
+
+const ViewPostPage = () => {
+
+    /* CONTROLLER AND VARIABLES */
+
+    const { _id, picturePath } = useSelector((state) => state.user);
+
+
+
+
+    /* RENDER */
+
+    return (
+
+        <>
+
+            <Navbar />
+
+            <div className="page home">
+
+                <section className="greeting">
+                    <h2>Welcome to Pokéhub Forum!</h2>
+                </section>
+
+                <PostFeed userId={_id} />
+                <MyPostWidget picturePath={picturePath} />
+
+            </div>
+
+        </>
+
+    );
+}
+
+
+
+
+
+
+/* EXPORT */
+
+export default ViewPostPage
