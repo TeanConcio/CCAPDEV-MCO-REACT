@@ -2,6 +2,7 @@
 
 // Modules
 import { useState } from "react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -175,85 +176,95 @@ const LoginForm = () => {
 
     return (
         <div className="form-container">
-          <div className="welcome">Welcome to The Pokéhub!</div>
-          <div className="button-container">
-            <div id="button" style={{ left: pageType === "login" ? "0px" : "110px" }}></div>
-            <button
-              type="button"
-              className={`toggle-button ${pageType === "login" ? "active" : ""}`}
-              onClick={() => handleFormSwitch("login")}
-            >
-              <b>Login</b>
-            </button>
-            <button
-              type="button"
-              className={`toggle-button ${pageType === "register" ? "active" : ""}`}
-              onClick={() => handleFormSwitch("register")}
-            >
-              <b>Register</b>
-            </button>
-          </div>
-    
-            {pageType === "login" && (
-              <form className="input-group" onSubmit={handleLogin}>
-                <input
-                  type="text"
-                  className="input-field"
-                  placeholder="Username"
-                  name="username"
-                  required
-                />
-                <input
-                  type="password"
-                  className="input-field"
-                  placeholder="Password"
-                  name="password"
-                  required
-                />
-                <div className="passwordError" hidden>
-                  Invalid Username or Password
-                </div>
-                <input type="checkbox" className="check-box" id="rememberMe"/>
-                <label htmlFor="rememberMe">Keep Me Logged In</label> 
-                <button type="submit" className="submit-button">
-                  <b>Login</b>
-                </button>
-              </form>
-            )}
-    
-            {pageType === "register" && (
-              <form className="input-group" onSubmit={handleRegister}>
-                <input
-                  type="text"
-                  className="input-field"
-                  placeholder="Username"
-                  required
-                />
-                <input
-                  type="email"
-                  className="input-field"
-                  placeholder="Email"
-                  required
-                />
-                <input
-                  type="password"
-                  className="input-field"
-                  placeholder="Enter Password"
-                  required
-                />
-                 <input
-                    type="file" // Set the type to "file" for the picture input
-                    accept="image/*" // Specify the allowed file types (images)
-                    name="picture" // Set the name to "picture" to match the FormData key
-                    required
-                />
-
-                <button type="submit" className="submit-button">
-                  <b>Register</b>
-                </button>
-              </form>
-            )}
-          </div>
+        <div className="welcome">Welcome to The Pokéhub!</div>
+        <div className="button-container">
+          <div id="button" style={{ left: pageType === "login" ? "0px" : "110px" }}></div>
+          <button
+            type="button"
+            className={`toggle-button ${pageType === "login" ? "active" : ""}`}
+            onClick={() => handleFormSwitch("login")}
+          >
+            <b>Login</b>
+          </button>
+          <button
+            type="button"
+            className={`toggle-button ${pageType === "register" ? "active" : ""}`}
+            onClick={() => handleFormSwitch("register")}
+          >
+            <b>Register</b>
+          </button>
+        </div>
+  
+        {pageType === "login" && (
+          <Formik
+            initialValues={initialValuesLogin}
+            validationSchema={loginSchema}
+            onSubmit={handleFormSubmit}
+          >
+            <Form className="input-group">
+              <Field
+                type="text"
+                className="input-field"
+                placeholder="Username"
+                name="username"
+                required
+              />
+              <Field
+                type="password"
+                className="input-field"
+                placeholder="Password"
+                name="password"
+                required
+              />
+              <div className="passwordError" hidden>
+                Invalid Username or Password
+              </div>
+              <Field type="checkbox" className="check-box" id="rememberMe" name="rememberMe" />
+              <label htmlFor="rememberMe">Keep Me Logged In</label>
+              <button type="submit" className="submit-button">
+                <b>Login</b>
+              </button>
+            </Form>
+          </Formik>
+        )}
+  
+        {pageType === "register" && (
+          <Formik
+            initialValues={initialValuesRegister}
+            validationSchema={registerSchema}
+            onSubmit={handleFormSubmit}
+          >
+            <Form className="input-group">
+              <Field
+                type="text"
+                className="input-field"
+                placeholder="Username"
+                name="username"
+                required
+              />
+              <Field type="email" className="input-field" placeholder="Email" name="email" required />
+              <Field
+                type="password"
+                className="input-field"
+                placeholder="Enter Password"
+                name="password"
+                required
+              />
+              <Field
+                type="file"
+                accept="image/*"
+                name="picture"
+                className="input-field" // Adjust styling if needed
+                required
+              />
+  
+              <button type="submit" className="submit-button">
+                <b>Register</b>
+              </button>
+            </Form>
+          </Formik>
+        )}
+      </div>
       );
     };
     
