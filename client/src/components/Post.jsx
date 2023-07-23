@@ -2,7 +2,7 @@
 
 // Modules
 import { useState } from 'react'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { formatDistanceToNow } from 'date-fns'
 
@@ -40,14 +40,18 @@ const Post = ({
 
     /* HOOKS AND STATES */
     const [error, setError] = useState(null)
+    const [currentPost, setCurrentPost] = useState(null)
 
-    // Get token, user, and post data
+    // Get token and user data
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const token = useSelector((state) => state.token);
     const loggedInUserId = useSelector((state) => state.user._id);
+
+    // Get upvote and downvote data
     const isUpvoted = Boolean(upvotes[loggedInUserId]);
-    const upvoteCount = Object.keys(upvotes).length;
     const isDownvoted = Boolean(downvotes[loggedInUserId]);
+    const upvoteCount = Object.keys(upvotes).length;
     const downvoteCount = Object.keys(downvotes).length;
 
     // Style variables
@@ -134,9 +138,12 @@ const Post = ({
 
         // If response is valid: Delete selected post from posts state context variable
         // Else: Set the error state variable
-        if (response.ok)
+        if (response.ok) {
             dispatch(setUndeletedPosts({ post: deletedPost }))
-        else 
+            navigate(`/home`)
+        }
+            
+        else {}
             setError(deletedPost.error)
     }
 

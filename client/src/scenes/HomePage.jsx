@@ -5,10 +5,8 @@ import { useSelector } from "react-redux";
 
 // Components
 import Navbar from "components/Navbar";
-import UserWidget from "scenes/widgets/UserWidget";
 import MyPostWidget from "scenes/widgets/MyPostWidget";
 import PostFeed from "components/PostFeed";
-import FriendListWidget from "scenes/widgets/FriendListWidget";
 
 // Style
 import "../styles/scenes/HomePage.css";
