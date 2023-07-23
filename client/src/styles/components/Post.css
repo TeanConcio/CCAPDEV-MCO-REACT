@@ -17,7 +17,7 @@
 }
 
 .post .author,
-.post .date {
+.post .create-date {
     margin-right: 10px;
     color: inherit;
 }
