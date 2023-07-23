@@ -21,7 +21,6 @@
 
 
 .page {
-    display: flex;
     padding: .5rem;
     background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("https://chuanfawu.com/wp-content/uploads/2023/06/PokemonCenter.jpg");
     background-position: center;
