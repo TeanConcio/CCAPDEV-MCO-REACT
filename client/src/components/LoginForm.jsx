@@ -7,7 +7,7 @@ import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setLogin } from "state";
-
+import "../styles/components/LoginForm.css";
 
 /* FORM VALIDATION SCHEMA */
 
@@ -76,6 +76,12 @@ const LoginForm = () => {
     event.preventDefault();
     const formData = new FormData(event.target);
     const values = Object.fromEntries(formData);
+
+    // Handle the picture file separately and append it to the form data
+    const pictureInput = event.target.querySelector('input[type="file"]');
+    const pictureFile = pictureInput.files[0];
+    formData.append("picture", pictureFile);
+
         register(values, {
             resetForm: () => event.target.reset(),
         });
@@ -164,7 +170,6 @@ const LoginForm = () => {
     /* RENDER */
 
     return (
-        <div className="account-background">
           <div className="form-container">
             <div className="welcome">Welcome to The Pokéhub!</div>
             <div className="button-container">
@@ -231,13 +236,19 @@ const LoginForm = () => {
                   placeholder="Enter Password"
                   required
                 />
+                 <input
+                    type="file" // Set the type to "file" for the picture input
+                    accept="image/*" // Specify the allowed file types (images)
+                    name="picture" // Set the name to "picture" to match the FormData key
+                    required
+                />
+
                 <button type="submit" className="submit-button">
                   <b>Register</b>
                 </button>
               </form>
             )}
           </div>
-        </div>
       );
     };
     
@@ -249,3 +260,4 @@ const LoginForm = () => {
 /* EXPORT */
 
 export default LoginForm;
+
