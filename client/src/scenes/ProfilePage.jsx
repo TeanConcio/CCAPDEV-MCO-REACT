@@ -68,7 +68,7 @@ const ProfilePage = () => {
 
             <Navbar />
 
-            <div className="page">
+            <div className="page" style={{display: "flex"}}>
 
                 <div className="column">
 
