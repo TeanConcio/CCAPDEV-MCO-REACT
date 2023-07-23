@@ -4,10 +4,13 @@
 import { useState } from 'react'
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { formatDistanceToNow, set } from 'date-fns'
+import { formatDistanceToNow } from 'date-fns'
 
 // State
-import { setPost } from "state";
+import { 
+    setPost, 
+    setUndeletedPosts 
+} from "state";
 
 // Components
 
@@ -131,7 +134,7 @@ const Post = ({
         if (response.ok)
             dispatch(setUndeletedPosts({ post: deletedPost }))
         else 
-            setError(json.error)
+            setError(deletedPost.error)
     }
 
 
@@ -195,7 +198,7 @@ const Post = ({
 
                     <div className="modify">
                         <button className="edit btn"> ✏ </button>
-                        <button className="delete btn" onClick={handleDeletePostClick}> 🗑 </button>
+                        <button className="delete btn" onClick={deletePost}> 🗑 </button>
                     </div>
                 )}
 
