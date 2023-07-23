@@ -9,6 +9,18 @@
     font-family: VT323;
 }
 
+/* Style for the error message */
+.passwordError {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}
+  
+  /* Style to display the error message when there's an error */
+  .errorText.visible {
+    display: block;
+  }
+
 :root { /*Variables for the switching of login to register (technically there are 2 forms in one page)*/
     --login-left: 50px;
     --register-left: 450px;

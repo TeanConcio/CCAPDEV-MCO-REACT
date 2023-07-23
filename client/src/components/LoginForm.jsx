@@ -119,8 +119,9 @@ const LoginForm = () => {
         const loggedIn = await loggedInResponse.json();
 
         // If user logged in, set login state
-        onSubmitProps.resetForm();
-        if (loggedIn) {
+       
+        if (loggedIn.success) {
+            onSubmitProps.resetForm();
             dispatch(
                 setLogin({
                 user: loggedIn.user,
@@ -128,7 +129,12 @@ const LoginForm = () => {
                 })
             );
             navigate("/home");
-        }
+        } else{
+            // If login failed, display the error message by removing hidden attribute in div
+            const passwordError = document.getElementById("passwordError");
+            passwordError.removeAttribute("hidden");
+            console.log("Failed to Log In");
+          }
 
         console.log(loggedIn)
     };
@@ -137,7 +143,6 @@ const LoginForm = () => {
 
     // Handle Form Submit
     const handleFormSubmit = async (values, onSubmitProps) => {
-
         if (isLogin) 
             await login(values, onSubmitProps);
 
@@ -149,7 +154,7 @@ const LoginForm = () => {
 
     return (
       <div className="account-background">
-        <p style={{fontFamily: "VT323", fontSize: "20px", color: "white", textAlign: "center"}}>
+        <div style={{fontFamily: "VT323", fontSize: "20px", color: "white", textAlign: "center"}}>
         <div className="form-container">
         <div className="welcome">Welcome to The Pokéhub!</div>
         <div className="button-container">
@@ -193,7 +198,7 @@ const LoginForm = () => {
                                 name="password"
                                 required
                             />
-                            <div className="passwordError" hidden>
+                            <div className="passwordError" name="passwordError" id="passwordError" hidden>
                                 Invalid Username or Password
                             </div>
                             <Field
@@ -205,6 +210,8 @@ const LoginForm = () => {
                                 onChange={handleChange}
                             />
                             <label htmlFor="rememberMe">Keep Me Logged In</label>
+                           
+                            
                             <button
                                 type="submit"
                                 className="submit-button"
@@ -306,7 +313,7 @@ const LoginForm = () => {
                 </Formik>
             )}
         </div>
-        </p>
+        </div>
         </div>
       );
     };
