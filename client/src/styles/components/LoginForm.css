@@ -3,11 +3,6 @@
     font-family: VT323;
     src: url(https://chuanfawu.com/wp-content/uploads/2023/06/VT323-Regular.ttf);
 }
-*{
-    margin: 0;
-    padding: 0;
-    font-family: VT323;
-}
 
 :root { /*Variables for the switching of login to register (technically there are 2 forms in one page)*/
     --login-left: 50px;
@@ -139,11 +134,7 @@
 #register{
     left: var(--register-left);
 }
-*/
-.input-group .input-field {
-    color: #FFF;
-  }
 
-  label {
+label {
     color: #FFF;
-  }
+}

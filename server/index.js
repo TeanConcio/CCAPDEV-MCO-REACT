@@ -20,7 +20,11 @@ import postRoutes from "./routes/posts.js"
 // Controllers
 import { register } from "./controllers/auth.js";
 import { verifyToken } from "./middleware/auth.js";
-import { createPost } from "./controllers/posts.js";
+import { 
+    validatePostId,
+    createPost,
+    updatePost
+} from "./controllers/posts.js";
 
 // Populate database with data (Run only once)
 import { addData } from "./data/addData.js";
@@ -77,7 +81,8 @@ const upload = multer({ storage })
 
 // Routs with files
 app.post("/auth/register", upload.single("picture"), register);
-app.post("/posts", verifyToken, upload.single("picture"), createPost);
+app.post("/posts", verifyToken, createPost);
+app.patch("/posts/:postId", verifyToken, validatePostId, upload.single("picture"), updatePost);
 
 // Main Routes
 app.use("/auth", authRoutes)

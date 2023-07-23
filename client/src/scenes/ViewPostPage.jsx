@@ -70,42 +70,47 @@ const ViewPostPage = () => {
 
             <Navbar />
 
-            <div className="page view-post">
+            <div className="page">
 
-                <div className="column">
+                <div className="column-container">
 
-                    <section class="post-container">
+                    <div className="column">
+
+                        <section class="post-container">
+                            
+                            <button class="go-prev">
+                                <a>←</a>
+                            </button>
+
+                            <Post
+                                key={post._id}
+                                postId={post._id}
+                                postUserId={post.userId}
+                                username={post.username}
+                                title={post.title}
+                                createdAt={post.createdAt}
+                                updatedAt={post.updatedAt}
+                                body={post.body}
+                                picturePath={post.picturePath}
+                                userPicturePath={post.userPicturePath}
+                                upvotes={post.upvotes}
+                                downvotes={post.downvotes}
+                                commentCount={post.comments.length}
+                                ViewPost
+                            />
+
+                            <button class="go-next">
+                                <a>→</a>
+                            </button>
                         
-                        <button class="go-prev">
-                            <a>←</a>
-                        </button>
+                        </section>
 
-                        <Post
-                            key={post._id}
-                            postId={post._id}
-                            postUserId={post.userId}
-                            username={post.username}
-                            title={post.title}
-                            createdAt={post.createdAt}
-                            body={post.body}
-                            picturePath={post.picturePath}
-                            userPicturePath={post.userPicturePath}
-                            upvotes={post.upvotes}
-                            downvotes={post.downvotes}
-                            commentCount={post.comments.length}
-                            ViewPost
-                        />
+                        {/* <CreateCommentForm/>
 
-                        <button class="go-next">
-                            <a>→</a>
-                        </button>
+                        <section class="comment-section"></section> */}
+
+                    </div>
                     
-                    </section>
-
-                    {/* <CreateCommentForm/>
-
-                    <section class="comment-section"></section> */}
-
                 </div>
 
             </div>

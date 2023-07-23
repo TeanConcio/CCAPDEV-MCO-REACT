@@ -1,0 +1,48 @@
+.create-edit {
+    align-items: center;
+    padding: 20px;
+}
+
+.create-edit .title,
+.create-edit .body,
+.create-edit .button-container {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.create-edit .body {
+    margin-left: -10px;
+}
+
+.create-edit .input {
+    width: 100%;
+    padding: 5px;
+    margin-left: 10px;
+    border: 1px solid var(--color-1);
+    border-radius: 5px;
+}
+
+.submit-post-btn {
+    box-sizing: border-box;
+    width: 100%;
+    margin-top: 10px;
+    font-size: 2rem;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    background-color: var(--color-1);
+    color: #fff;
+    cursor: pointer;
+}
+
+.submit-post-btn:hover {
+    background-color: var(--color-1);
+}
+
+.post-title-input::placeholder,
+.post-content-input::placeholder {
+    color: #999;
+}

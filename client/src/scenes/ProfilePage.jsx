@@ -9,7 +9,7 @@ import { useParams } from "react-router-dom";
 // Components
 import Navbar from "components/Navbar";
 import FriendListWidget from "scenes/widgets/FriendListWidget";
-import MyPostWidget from "scenes/widgets/MyPostWidget";
+import CreateEditPostForm from "components/CreateEditPostForm";
 import PostsWidget from "components/PostFeed";
 import UserWidget from "scenes/widgets/UserWidget";
 
@@ -70,19 +70,23 @@ const ProfilePage = () => {
 
             <div className="page" style={{display: "flex"}}>
 
-                <div className="column">
+                <div className="column-container">
 
-                    <UserWidget userId={userId} picturePath={user.picturePath} />
+                    <div className="column">
 
-                    <FriendListWidget userId={userId} />
+                        <UserWidget userId={userId} picturePath={user.picturePath} />
 
-                </div>
+                        <FriendListWidget userId={userId} />
 
-                <div className="column">
+                    </div>
 
-                    <MyPostWidget picturePath={user.picturePath} />
+                    <div className="column">
 
-                    <PostsWidget userId={userId} isProfile />
+                        {/* <MyPostWidget picturePath={user.picturePath} /> */}
+
+                        <PostsWidget userId={userId} isProfile />
+
+                    </div>
 
                 </div>
 

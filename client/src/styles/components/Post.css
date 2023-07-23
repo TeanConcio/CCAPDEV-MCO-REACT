@@ -1,29 +1,24 @@
 .post {
     border-radius: 5px;
     padding: 15px;
+    padding-left: 20px;
     border: var(--color-2) solid 1px;
     margin: 20px;
 }
 
-.post .title {
-    font-weight: bold;
-    font-size: 2rem;
-    margin-bottom: 5px;
-}
-
 .post .details {
-    font-size: 1.25rem;
-    color: var(--color-1);
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .post .author,
-.post .create-date {
-    margin-right: 10px;
-    color: inherit;
+.post .create-date,
+.post .update-date {
+    margin-right: 20px;
 }
 
 .post .body {
-    font-size: 1.5rem;
     margin-bottom: 10px;
 }
 
@@ -48,12 +43,18 @@
     width: 100%;
 }
 
-.post .actions .main, 
-.post .actions .modify {
+.post .actions .main {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 20%;
+    width: 30%;
+}
+
+.post .actions .vote {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 50%;
 }
 
 .post .actions .comment {
@@ -63,6 +64,13 @@
     width: 5%;
 }
 
+.post .actions .modify {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 20%;
+}
+
 .post .actions .vote .count,
 .post .actions .comment .count {
     font-size: 1.33rem;
@@ -70,19 +78,4 @@
 
 .post .actions .comment .count {
     margin-right: 10px;
-}
-
-button {
-    color: var(--color-0);
-    font-size: 1rem;
-    padding: 5px 10px;
-    background-color: var(--color-1);
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button:hover {
-    transform: scale(1.1);
-    background: linear-gradient(0deg, #ddb355 0%, #f0cf60 36%, #f0cf60 100%);
 }

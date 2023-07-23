@@ -39,7 +39,6 @@ router.get("/:userId/posts", verifyToken, getUserPosts);
 // Update
 router.patch("/:postId/upvote", verifyToken, validatePostId, upvotePost);
 router.patch("/:postId/downvote", verifyToken, validatePostId, downvotePost);
-router.patch("/:postId", verifyToken, validatePostId, updatePost);
 
 // Delete
 router.delete("/:postId", verifyToken, validatePostId, deletePost);

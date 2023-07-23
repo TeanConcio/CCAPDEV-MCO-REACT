@@ -80,8 +80,20 @@ const PostFeed = ({ userId, isProfile = false }) => {
     return (
 
         <section>
+
             {Array.isArray(posts) && posts.length > 0 ? (
-                posts.map(({ _id, userId, username, createdAt, title, body, picturePath, userPicturePath, upvotes, comments, downvotes }) => (
+                posts.map(({
+                    _id, 
+                    userId, 
+                    username, 
+                    createdAt, 
+                    title, 
+                    body, 
+                    picturePath, 
+                    userPicturePath, 
+                    upvotes, 
+                    comments, 
+                    downvotes }) => (
                 <Post
                     key={_id}
                     postId={_id}
@@ -94,7 +106,7 @@ const PostFeed = ({ userId, isProfile = false }) => {
                     userPicturePath={userPicturePath}
                     upvotes={upvotes}
                     downvotes={downvotes}
-                    commentCount={comments.length}
+                    commentCount={Array.isArray(comments) && comments.length > 0 ? (comments.length) : (0)}
                 />
                 ))
             ) : (

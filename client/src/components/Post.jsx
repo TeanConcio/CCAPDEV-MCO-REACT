@@ -4,7 +4,7 @@
 import { useState } from 'react'
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { formatDistanceToNow } from 'date-fns'
+import { formatDistanceToNow, set } from 'date-fns'
 
 // State
 import { 
@@ -40,7 +40,7 @@ const Post = ({
 
     /* HOOKS AND STATES */
     const [error, setError] = useState(null)
-    const [currentPost, setCurrentPost] = useState(null)
+
 
     // Get token and user data
     const dispatch = useDispatch();
@@ -51,8 +51,9 @@ const Post = ({
     // Get upvote and downvote data
     const isUpvoted = Boolean(upvotes[loggedInUserId]);
     const isDownvoted = Boolean(downvotes[loggedInUserId]);
-    const upvoteCount = Object.keys(upvotes).length;
-    const downvoteCount = Object.keys(downvotes).length;
+    const baseUpvoteCount = Object.keys(upvotes).length;
+    const baseDownvoteCount = Object.keys(downvotes).length;
+    const [voteCount, setVoteCount] = useState(baseUpvoteCount - baseDownvoteCount)
 
     // Style variables
     const width = ViewPost ? "100%" : "auto"
@@ -86,6 +87,7 @@ const Post = ({
         if (response.ok) {
             dispatch(setPost({ post: updatedPost }));
             setError(null)
+            setVoteCount(Object.keys(updatedPost.upvotes).length - Object.keys(updatedPost.downvotes).length)
         }
         else 
             setError(updatedPost.error)
@@ -115,6 +117,7 @@ const Post = ({
         if (response.ok) {
             dispatch(setPost({ post: updatedPost }));
             setError(null)
+            setVoteCount(Object.keys(updatedPost.upvotes).length - Object.keys(updatedPost.downvotes).length)
         }
         else 
             setError(updatedPost.error)
@@ -192,7 +195,7 @@ const Post = ({
                         ) : (
                             <button className="upvote btn" onClick={patchUpvote}> ⬆ </button>
                         )}
-                        <div className="count"> {upvoteCount - downvoteCount} </div> 
+                        <div className="count"> {voteCount} </div> 
                         {isDownvoted ? (
                             <button className="downvote btn active" onClick={patchDownvote}> ⬇ </button>
                         ) : (
