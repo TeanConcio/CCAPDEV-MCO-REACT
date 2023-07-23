@@ -59,6 +59,11 @@ const LoginForm = () => {
     const [pageType, setPageType] = useState("login");
     const isLogin = pageType === "login";
     const isRegister = pageType === "register";
+    
+    const handleFormSwitch = (type) => {
+        setPageType(type);
+      };
+    
 
 
     // Handle Login Form Submit
@@ -170,25 +175,25 @@ const LoginForm = () => {
     /* RENDER */
 
     return (
-          <div className="form-container">
-            <div className="welcome">Welcome to The Pokéhub!</div>
-            <div className="button-container">
-              <div id="button"></div>
-              <button
-                type="button"
-                className="toggle-button"
-                onClick={() => setPageType("login")}
-              >
-                <b>Login</b>
-              </button>
-              <button
-                type="button"
-                className="toggle-button"
-                onClick={() => setPageType("register")}
-              >
-                <b>Register</b>
-              </button>
-            </div>
+        <div className="form-container">
+          <div className="welcome">Welcome to The Pokéhub!</div>
+          <div className="button-container">
+            <div id="button" style={{ left: pageType === "login" ? "0px" : "110px" }}></div>
+            <button
+              type="button"
+              className={`toggle-button ${pageType === "login" ? "active" : ""}`}
+              onClick={() => handleFormSwitch("login")}
+            >
+              <b>Login</b>
+            </button>
+            <button
+              type="button"
+              className={`toggle-button ${pageType === "register" ? "active" : ""}`}
+              onClick={() => handleFormSwitch("register")}
+            >
+              <b>Register</b>
+            </button>
+          </div>
     
             {pageType === "login" && (
               <form className="input-group" onSubmit={handleLogin}>
