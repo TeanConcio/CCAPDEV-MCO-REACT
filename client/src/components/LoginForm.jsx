@@ -30,7 +30,7 @@ const registerSchema = yup.object().shape({
 // Login
 const loginSchema = yup.object().shape({
     email: yup.string().email("invalid username").required("required"),
-    password: yup.string().required("required")
+    password: yup.string().required("required"),
 });
 
 
