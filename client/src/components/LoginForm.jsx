@@ -8,6 +8,14 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setLogin } from "state";
 import "../styles/components/LoginForm.css";
+import Dropzone from "react-dropzone";
+import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
+import {
+  Box,
+  Typography,
+  useTheme,
+} from "@mui/material";
+
 
 /* FORM VALIDATION SCHEMA */
 
@@ -36,13 +44,14 @@ const initialValuesRegister = {
     email: "",
     password: "",
     username: "",
-    picture: ""
+    picture: null,
 };
 
 // Login
 const initialValuesLogin = {
     email: "",
-    password: ""
+    password: "",
+    rememberMe: undefined, // Set a default value for the checkbox
 };
 
 
@@ -59,47 +68,39 @@ const LoginForm = () => {
     const [pageType, setPageType] = useState("login");
     const isLogin = pageType === "login";
     const isRegister = pageType === "register";
+    const { palette } = useTheme();
 
     const handleFormSwitch = (type) => {
         setPageType(type);
       };
-    
-
-
-    // Handle Login Form Submit
-    const handleLogin = (event) => {
-    event.preventDefault();
-    const formData = new FormData(event.target);
-    const values = Object.fromEntries(formData);
-        login(values, {
-            resetForm: () => event.target.reset(),
-        });
-    };
-
-    // Handle Register Form Submit
-    const handleRegister = (event) => {
-    event.preventDefault();
-    const formData = new FormData(event.target);
-    const values = Object.fromEntries(formData);
-
-    // Handle the picture file separately and append it to the form data
-    const pictureInput = event.target.querySelector('input[type="file"]');
-    const pictureFile = pictureInput.files[0];
-    formData.append("picture", pictureFile);
-
-        register(values, {
-            resetForm: () => event.target.reset(),
-        });
-    };
-
-
-
-
+   
     /* CONTROLLERS */
 
     // Register
     const register = async (values, onSubmitProps) => {
-        
+
+      // Get form data
+      const formData = new FormData();
+      for (let value in values)
+      formData.append(value, values[value]);
+      formData.append("picturePath", values.picture.name);
+
+
+      // Send request to server
+      const savedUserResponse = await fetch("http://localhost:4000/auth/register", {
+          method: "POST",
+          body: formData,
+      });
+      const savedUser = await savedUserResponse.json();
+
+      // If user saved, set login state
+      onSubmitProps.resetForm();
+      if (savedUser) {
+          setPageType("login");
+      }
+
+      console.log(savedUser);
+        /*
         // Get form data
         const formData = new FormData();
         for (let value in values)
@@ -123,6 +124,7 @@ const LoginForm = () => {
         }
 
         console.log(savedUser)
+        */
     };
 
 
@@ -168,10 +170,6 @@ const LoginForm = () => {
             await register(values, onSubmitProps);
     };
 
-
-
-
-
     /* RENDER */
 
     return (
@@ -196,75 +194,126 @@ const LoginForm = () => {
         </div>
   
         {pageType === "login" && (
-          <Formik
-            initialValues={initialValuesLogin}
-            validationSchema={loginSchema}
-            onSubmit={handleFormSubmit}
-          >
-            <Form className="input-group">
-              <Field
-                type="text"
-                className="input-field"
-                placeholder="Username"
-                name="username"
-                required
-              />
-              <Field
-                type="password"
-                className="input-field"
-                placeholder="Password"
-                name="password"
-                required
-              />
-              <div className="passwordError" hidden>
-                Invalid Username or Password
-              </div>
-              <Field type="checkbox" className="check-box" id="rememberMe" name="rememberMe" />
-              <label htmlFor="rememberMe">Keep Me Logged In</label>
-              <button type="submit" className="submit-button">
-                <b>Login</b>
-              </button>
-            </Form>
-          </Formik>
-        )}
-  
-        {pageType === "register" && (
-          <Formik
-            initialValues={initialValuesRegister}
-            validationSchema={registerSchema}
-            onSubmit={handleFormSubmit}
-          >
-            <Form className="input-group">
-              <Field
-                type="text"
-                className="input-field"
-                placeholder="Username"
-                name="username"
-                required
-              />
-              <Field type="email" className="input-field" placeholder="Email" name="email" required />
-              <Field
-                type="password"
-                className="input-field"
-                placeholder="Enter Password"
-                name="password"
-                required
-              />
-              <Field
-                type="file"
-                accept="image/*"
-                name="picture"
-                className="input-field" // Adjust styling if needed
-                required
-              />
-  
-              <button type="submit" className="submit-button">
-                <b>Register</b>
-              </button>
-            </Form>
-          </Formik>
-        )}
-      </div>
+                <Formik
+                    initialValues={initialValuesLogin}
+                    validationSchema={loginSchema}
+                    onSubmit={handleFormSubmit}
+                > 
+                    {({ values, handleChange, handleSubmit}) => (
+                        <Form className="input-group">
+                            <Field
+                                type="text"
+                                className="input-field"
+                                placeholder="Username"
+                                name="username"
+                                required
+                            />
+                            <Field
+                                type="password"
+                                className="input-field"
+                                placeholder="Password"
+                                name="password"
+                                required
+                            />
+                            <div className="passwordError" hidden>
+                                Invalid Username or Password
+                            </div>
+                            <Field
+                                type="checkbox"
+                                className="check-box"
+                                id="rememberMe"
+                                name="rememberMe"
+                                checked= {values.rememberMe}
+                                onChange={handleChange}
+                            />
+                            <label htmlFor="rememberMe">Keep Me Logged In</label>
+                            <button
+                                type="submit"
+                                className="submit-button"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    handleSubmit();
+                                }}
+                            >
+                                <b>Login</b>
+                            </button>
+                        </Form>
+                    )}
+                </Formik>
+            )}
+
+            {pageType === "register" && (
+                <Formik
+                    initialValues={initialValuesRegister}
+                    validationSchema={registerSchema}
+                    onSubmit={handleFormSubmit}
+                >
+                    {({ values, handleChange, handleSubmit, setFieldValue}) => (
+                        <Form className="input-group">
+                            <Field
+                                type="text"
+                                className="input-field"
+                                placeholder="Username"
+                                name="username"
+                                required
+                            />
+                            <Field
+                                type="email"
+                                className="input-field"
+                                placeholder="Email"
+                                name="email"
+                                required
+                            />
+                            <Field
+                                type="password"
+                                className="input-field"
+                                placeholder="Enter Password"
+                                name="password"
+                                required
+                            />
+                             <Dropzone
+                                acceptedFiles=".jpg,.jpeg,.png"
+                                multiple={false}
+                                onDrop={(acceptedFiles) => {
+                                    // Set the selected file to formik values
+                                    setFieldValue("picture", acceptedFiles[0]);
+                                }}
+                            >
+                                {({ getRootProps, getInputProps }) => (
+                                    <Box
+                                        {...getRootProps()}
+                                        border={`2px dashed ${palette.primary.main}`}
+                                        p="1rem"
+                                        sx={{ "&:hover": { cursor: "pointer" } }}
+                                    >
+                                        <input {...getInputProps()} />
+                                        {!values.picture ? (
+                                            <Typography>Add Picture Here</Typography>
+                                        ) : (
+                                            <Box display="flex" alignItems="center">
+                                                <Typography>{values.picture.name}</Typography>
+                                                <EditOutlinedIcon />
+                                            </Box>
+                                        )}
+                                    </Box>
+                                )}
+                              </Dropzone>
+
+                            <button
+                                type="submit"
+                                className="submit-button"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    handleSubmit();
+                                }}
+                            >
+                                <b>Register</b>
+                            </button>
+                        </Form>
+                    )}
+                </Formik>
+            )}
+        </div>
       );
     };
     
