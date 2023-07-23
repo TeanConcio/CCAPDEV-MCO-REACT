@@ -29,7 +29,7 @@ const registerSchema = yup.object().shape({
 
 // Login
 const loginSchema = yup.object().shape({
-    email: yup.string().email("invalid email").required("required"),
+    email: yup.string().email("invalid username").required("required"),
     password: yup.string().required("required")
 });
 
@@ -51,7 +51,7 @@ const initialValuesRegister = {
 const initialValuesLogin = {
     email: "",
     password: "",
-    rememberMe: undefined, // Set a default value for the checkbox
+    rememberMe: false, // Set a default value for the checkbox
 };
 
 
@@ -204,8 +204,8 @@ const LoginForm = () => {
                             <Field
                                 type="text"
                                 className="input-field"
-                                placeholder="Username"
-                                name="username"
+                                placeholder="Email"
+                                name="email"
                                 required
                             />
                             <Field
@@ -240,7 +240,7 @@ const LoginForm = () => {
                         </Form>
                     )}
                 </Formik>
-            )}
+            )};
 
             {pageType === "register" && (
                 <Formik
