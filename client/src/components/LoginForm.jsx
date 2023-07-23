@@ -218,7 +218,7 @@ const LoginForm = () => {
                         </Form>
                     )}
                 </Formik>
-            )};
+            )}
 
             {pageType === "register" && (
                 <Formik
