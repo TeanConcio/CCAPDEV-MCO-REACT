@@ -288,7 +288,19 @@ const LoginForm = () => {
                                     >
                                         <input {...getInputProps()} />
                                         {!values.picture ? (
-                                            <Typography>Add Picture Here</Typography>
+                                             <Typography
+                                             sx={{
+                                                 display: "flex",
+                                                 alignItems: "center",
+                                                 justifyContent: "center",
+                                                 height: "100%",
+                                                 color: palette.text.secondary,
+                                                 fontSize: "14px",
+                                                 fontWeight: "bold",
+                                             }}
+                                         >
+                                             Insert Profile Picture Here
+                                         </Typography>
                                         ) : (
                                             <Box display="flex" alignItems="center">
                                                 <Typography>{values.picture.name}</Typography>
@@ -298,7 +310,7 @@ const LoginForm = () => {
                                     </Box>
                                 )}
                               </Dropzone>
-
+                            <br></br>
                             <button
                                 type="submit"
                                 className="submit-button"
