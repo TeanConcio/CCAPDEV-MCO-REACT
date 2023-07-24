@@ -119,8 +119,9 @@ const LoginForm = () => {
         const loggedIn = await loggedInResponse.json();
 
         // If user logged in, set login state
-        onSubmitProps.resetForm();
-        if (loggedIn) {
+        
+        if (loggedIn.success) {
+            onSubmitProps.resetForm();
             dispatch(
                 setLogin({
                 user: loggedIn.user,
@@ -128,7 +129,12 @@ const LoginForm = () => {
                 })
             );
             navigate("/home");
-        }
+        } else{
+            // If login failed, display the error message by removing hidden attribute in div
+            const passwordError = document.getElementById("passwordError");
+            passwordError.removeAttribute("hidden");
+            console.log("Failed to Log In");
+          }
 
         console.log(loggedIn)
     };
@@ -193,7 +199,7 @@ const LoginForm = () => {
                                 name="password"
                                 required
                             />
-                            <div className="passwordError" hidden>
+                            <div className="passwordError" name="passwordError" id="passwordError" hidden>
                                 Invalid Username or Password
                             </div>
                             <Field
