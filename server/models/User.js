@@ -32,7 +32,7 @@ const UserSchema = new mongoose.Schema(
         description: {
             type: String,
             max: 50,
-            defult: ""
+            default: ""
         },
         picturePath: {
             type: String,

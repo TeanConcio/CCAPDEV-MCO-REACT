@@ -44,6 +44,11 @@ export const createPost = async (req, res) => {
         } = req.body;
         const user = await User.findById(userId);
 
+        // If there are empty required fields
+        if (title === "")
+            // Send error as response
+            return res.status(400).json({error: "Please fill in a title"})
+
         // Create new post and save to database
         const newPost = new Post({
             userId,
@@ -74,6 +79,68 @@ export const createPost = async (req, res) => {
 
 
 
+/* UPDATE POST */
+
+export const updatePost = async (req, res) => {
+
+    // Get post and user information from request body and parameters
+    const { postId } = req.params;
+    const { 
+        title, 
+        body, 
+        picturePath 
+    } = req.body;
+
+    // If there are empty required fields
+    if (title === "")
+        // Send error as response
+        return res.status(400).json({error: "Please fill in a title"})
+
+    // Update post from db by postId (asynchronous)
+    const post = await Post.findByIdAndUpdate(postId, {
+        title: title,
+        body: body,
+        picturePath: picturePath,
+    })
+
+    // If post not found
+    if (!post)
+        // Send error as response
+        return res.status(404).json({error: "Post not found"})
+
+    // Send post data as response
+    res.status(200).json(post)
+}
+
+
+
+
+
+/* GET SPECIFIC POST */
+
+export const getPost = async (req, res) => {
+
+    try {
+
+        // Get post id from request parameters and find in database
+        const { postId } = req.params;
+        const post = await Post.findById(postId);
+
+        // Respond with post
+        res.status(200).json(post);
+    } 
+    catch (err) {
+
+        // Respond with error
+        res.status(404).json({ message: err.message });
+        console.log(err)
+    }
+};
+
+
+
+
+
 /* GET ALL POSTS */
 
 export const getFeedPosts = async (req, res) => {
@@ -81,7 +148,7 @@ export const getFeedPosts = async (req, res) => {
     try {
 
         // Respond with all posts from database
-        const post = await Post.find();
+        const post = await Post.find().sort({createdAt: -1});
         res.status(200).json(post);
     } 
     catch (err) {
@@ -103,7 +170,7 @@ export const getUserPosts = async (req, res) => {
 
         // Get user id from request parameters and find their posts in database
         const { userId } = req.params;
-        const post = await Post.find({ userId });
+        const post = await Post.find({ userId }).sort({createdAt: -1});
 
         // Respond with all of user's posts
         res.status(200).json(post);
@@ -194,31 +261,6 @@ export const downvotePost = async (req, res) => {
         res.status(404).json({ message: err.message });
     }
 };
-
-
-
-
-
-/* UPDATE POST */
-
-export const updatePost = async (req, res) => {
-
-    // Get postId from request parameters
-    const postId = req.params.postId
-
-    // Update post from db by postId (asynchronous)
-    const post = await Post.findByIdAndUpdate(postId, {
-        ...req.body
-    })
-
-    // If post not found
-    if (!post)
-        // Send error as response
-        return res.status(404).json({error: "Post not found"})
-
-    // Send post data as response
-    res.status(200).json(post)
-}
 
 
 

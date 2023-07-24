@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setPosts } from "state";
 
 // Components
-import Post from "../../components/Post";
+import Post from "./Post";
 
 
 
@@ -80,41 +80,39 @@ const PostFeed = ({ userId, isProfile = false }) => {
     return (
 
         <section>
-            {
-                posts.map(
-                    ({
-                        _id,
-                        userId,
-                        username,
-                        title,
-                        createdAt,
-                        body,
-                        picturePath,
-                        userPicturePath,
-                        upvotes,
-                        comments,
-                        downvotes,
-                    }) => (
-                        <Post
-                            key={_id}
-                            postId={_id}
-                            postUserId={userId}
-                            username={username}
-                            title={title}
-                            createdAt={createdAt}
-                            body={body}
-                            picturePath={picturePath}
-                            userPicturePath={userPicturePath}
-                            upvotes={upvotes}
-                            downvotes={downvotes}
-                            commentCount={comments.length}
-                        />
-                    )
-                )
-            }
 
+            {Array.isArray(posts) && posts.length > 0 ? (
+                posts.map(({
+                    _id, 
+                    userId, 
+                    username, 
+                    createdAt, 
+                    title, 
+                    body, 
+                    picturePath, 
+                    userPicturePath, 
+                    upvotes, 
+                    comments, 
+                    downvotes }) => (
+                <Post
+                    key={_id}
+                    postId={_id}
+                    postUserId={userId}
+                    username={username}
+                    createdAt={createdAt}
+                    title={title}
+                    body={body}
+                    picturePath={picturePath}
+                    userPicturePath={userPicturePath}
+                    upvotes={upvotes}
+                    downvotes={downvotes}
+                    commentCount={Array.isArray(comments) && comments.length > 0 ? (comments.length) : (0)}
+                />
+                ))
+            ) : (
+                <p>No posts found</p>
+            )}
         </section>
-
     );
 };
 

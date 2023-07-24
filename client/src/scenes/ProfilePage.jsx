@@ -9,8 +9,8 @@ import { useParams } from "react-router-dom";
 // Components
 import Navbar from "components/Navbar";
 import FriendListWidget from "scenes/widgets/FriendListWidget";
-import MyPostWidget from "scenes/widgets/MyPostWidget";
-import PostsWidget from "scenes/widgets/PostFeed";
+import CreateEditPostForm from "components/CreateEditPostForm";
+import PostsWidget from "components/PostFeed";
 import UserWidget from "scenes/widgets/UserWidget";
 
 
@@ -27,6 +27,9 @@ const ProfilePage = () => {
     const [user, setUser] = useState(null);
     const { userId } = useParams();
     const token = useSelector((state) => state.token);
+
+
+
 
 
     /* FUNCTIONS */
@@ -61,7 +64,7 @@ const ProfilePage = () => {
 
     return (
 
-        <Box>
+        <>
 
             <Navbar />
 
@@ -91,21 +94,21 @@ const ProfilePage = () => {
                 justifyContent="center"
             >
                 <Box flexBasis={isNonMobileScreens ? "26%" : undefined}>
-                    <UserWidget userId={userId} picturePath={user.picturePath} />
+                    
                     <Box m="2rem 0" />
-                        <FriendListWidget userId={userId} />
+                        
                     </Box>
                     <Box
                         flexBasis={isNonMobileScreens ? "42%" : undefined}
                         mt={isNonMobileScreens ? undefined : "2rem"}
                     >
-                        <MyPostWidget picturePath={user.picturePath} />
+                        
                     <Box m="2rem 0" />
-                    <PostsWidget userId={userId} isProfile />
+                    
                 </Box>
          </Box> */}
 
-        </Box>
+        </>
 
     );
 }

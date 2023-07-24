@@ -5,10 +5,11 @@ page.home {
     background-size: cover;
 }
 
-.greeting {
+.greeting > * {
     text-align: center;
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: bold;
+    padding: .25rem;
 }
 
 .forum-section {

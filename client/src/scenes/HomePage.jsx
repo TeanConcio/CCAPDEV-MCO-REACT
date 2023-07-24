@@ -5,10 +5,8 @@ import { useSelector } from "react-redux";
 
 // Components
 import Navbar from "components/Navbar";
-import UserWidget from "scenes/widgets/UserWidget";
-import MyPostWidget from "scenes/widgets/MyPostWidget";
-import PostFeed from "scenes/widgets/PostFeed";
-import FriendListWidget from "scenes/widgets/FriendListWidget";
+import CreateEditPostForm from "components/CreateEditPostForm";
+import PostFeed from "components/PostFeed";
 
 // Style
 import "../styles/scenes/HomePage.css";
@@ -38,12 +36,21 @@ const HomePage = () => {
 
             <div className="page home">
 
-                <section className="greeting">
-                    <h2>Welcome to Pokéhub Forum!</h2>
-                </section>
+                <div className="column-container">
 
-                <PostFeed userId={_id} />
-                <MyPostWidget picturePath={picturePath} />
+                    <div className="column">
+
+                        <section className="greeting">
+                            <h2>Welcome to Pokéhub Forum!</h2>
+                        </section>
+
+                        <CreateEditPostForm />
+
+                        <PostFeed userId={_id} />
+
+                    </div>
+                
+                </div>
 
             </div>
 

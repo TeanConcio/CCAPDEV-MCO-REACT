@@ -1,17 +1,16 @@
 /* IMPORTS */
 
 // Modules
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
 // Components
 import Navbar from "components/Navbar";
-import UserWidget from "scenes/widgets/UserWidget";
-import MyPostWidget from "scenes/widgets/MyPostWidget";
-import PostFeed from "scenes/widgets/PostFeed";
-import FriendListWidget from "scenes/widgets/FriendListWidget";
+import Post from "components/Post";
 
 // Style
-import "../styles/scenes/HomePage.css";
+import "../styles/scenes/ViewPostPage.css";
 
 
 
@@ -21,9 +20,44 @@ import "../styles/scenes/HomePage.css";
 
 const ViewPostPage = () => {
 
-    /* CONTROLLER AND VARIABLES */
+    /* HOOKS AND STATES */
 
-    const { _id, picturePath } = useSelector((state) => state.user);
+    // Get post id and token
+    const { postId } = useParams();
+    const token = useSelector((state) => state.token);
+
+    // Set post state
+    const [post, setPost] = useState(null);
+
+
+
+
+
+    /* FUNCTIONS */
+
+    // Get post
+    const getPost = async () => {
+
+        // Get post data from server
+        const response = await fetch(`http://localhost:4000/posts/view/${postId}`, {
+            method: "GET",
+            headers: { Authorization: `Bearer ${token}` },
+        });
+
+        const data = await response.json();
+        setPost(data);
+    };
+
+
+    // Get post data on process start (ran only once)
+    useEffect(() => {
+        getPost();
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+
+    // If post is not found, return null (don't render)
+    if (!post) return null;
+
 
 
 
@@ -36,14 +70,48 @@ const ViewPostPage = () => {
 
             <Navbar />
 
-            <div className="page home">
+            <div className="page">
 
-                <section className="greeting">
-                    <h2>Welcome to Pokéhub Forum!</h2>
-                </section>
+                <div className="column-container">
 
-                <PostFeed userId={_id} />
-                <MyPostWidget picturePath={picturePath} />
+                    <div className="column">
+
+                        <section class="post-container">
+                            
+                            <button class="go-prev">
+                                <a>←</a>
+                            </button>
+
+                            <Post
+                                key={post._id}
+                                postId={post._id}
+                                postUserId={post.userId}
+                                username={post.username}
+                                title={post.title}
+                                createdAt={post.createdAt}
+                                updatedAt={post.updatedAt}
+                                body={post.body}
+                                picturePath={post.picturePath}
+                                userPicturePath={post.userPicturePath}
+                                upvotes={post.upvotes}
+                                downvotes={post.downvotes}
+                                commentCount={post.comments.length}
+                                ViewPost
+                            />
+
+                            <button class="go-next">
+                                <a>→</a>
+                            </button>
+                        
+                        </section>
+
+                        {/* <CreateCommentForm/>
+
+                        <section class="comment-section"></section> */}
+
+                    </div>
+                    
+                </div>
 
             </div>
 

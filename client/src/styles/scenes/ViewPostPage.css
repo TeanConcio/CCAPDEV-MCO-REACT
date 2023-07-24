@@ -1,0 +1,37 @@
+.back-to-forum a {
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: var(--color-2);
+}
+
+.post-container {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5rem;
+}
+
+.go-prev,
+.go-next,
+.go-prev a,
+.go-next a {
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: var(--color-0);
+    background-color: var(--color-1);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.go-prev {
+    margin-right: 20px;
+}
+
+.go-next {
+    margin-left: 20px;
+}

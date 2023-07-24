@@ -70,7 +70,11 @@ export const authSlice = createSlice({
         // Set posts as all posts
         setPosts: (state, action) => {
 
-            state.posts = action.payload.posts;
+            // Sort posts by date
+            state.posts = action.payload.posts.sort((a, b) => {
+                
+                return new Date(b.createdAt) - new Date(a.createdAt);
+            });
         },
 
 

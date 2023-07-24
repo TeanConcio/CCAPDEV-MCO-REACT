@@ -15,14 +15,14 @@ import "styles/components/UserImageName.css"
 
 /* MAIN COMPONENT */
 
-const UserImageName = ({ image, username, userId, imageSize = "60px", fontSize = "2rem" }) => {
+const UserImageName = ({ picturePath, username, userId, imageSize = "60px", fontSize = "2rem" }) => {
 
     const navigate = useNavigate();
 
     return (
 
         <div className="user-image-name-box" width={imageSize} height={imageSize}>
-            <UserImage image={image} userId={userId} size={imageSize} />
+            <UserImage picturePath={picturePath} userId={userId} size={imageSize} />
             <div 
                 className="user-name" 
                 style={{ fontSize: fontSize }}

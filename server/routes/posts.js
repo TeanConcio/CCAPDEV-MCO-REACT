@@ -6,6 +6,7 @@ import express from "express";
 // Controllers
 import { 
     validatePostId,
+    getPost,
     getFeedPosts,
     getUserPosts,
     upvotePost,
@@ -31,13 +32,13 @@ const router = express.Router();
 /* ROUTES */
 
 // Read
+router.get("/view/:postId", verifyToken, validatePostId, getPost);
 router.get("/", verifyToken, getFeedPosts);
 router.get("/:userId/posts", verifyToken, getUserPosts);
 
 // Update
 router.patch("/:postId/upvote", verifyToken, validatePostId, upvotePost);
 router.patch("/:postId/downvote", verifyToken, validatePostId, downvotePost);
-router.patch("/:postId", verifyToken, validatePostId, updatePost);
 
 // Delete
 router.delete("/:postId", verifyToken, validatePostId, deletePost);
