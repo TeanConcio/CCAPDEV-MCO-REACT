@@ -65,7 +65,6 @@ const ProfilePage = () => {
     return (
 
         <>
-
             <Navbar />
 
             <div className="page">
