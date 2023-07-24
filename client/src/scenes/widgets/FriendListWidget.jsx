@@ -61,9 +61,7 @@ const FriendListWidget = ({ userId }) => {
 
     return (
 
-        <WidgetWrapper>
-
-            <div className="actual-container">
+            <div className="friendlistactual-container">
                 <div className="cont-header">
                     <div className="heading">Follower List</div>
                 </div>
@@ -78,8 +76,6 @@ const FriendListWidget = ({ userId }) => {
                     ))}
                 </div>
             </div>
-
-        </WidgetWrapper>
 
     );
 };

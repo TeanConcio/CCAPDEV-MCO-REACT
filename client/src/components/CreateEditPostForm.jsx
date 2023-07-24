@@ -96,7 +96,7 @@ const CreateEditPostForm = ({ postId = "", postTitle = "", postBody = "",  EditM
         // If response is valid: Update post in state
         // Else: Set the error state variable
         if (response.ok) {
-            dispatch(setPosts({ post: posts }));
+            dispatch(setPosts({ posts: posts }));
 
             // Reset data
             setImage(null);

@@ -149,7 +149,7 @@ const LoginForm = () => {
 
     return (
       <div className="account-background">
-        <p style={{fontFamily: "VT323", fontSize: "20px", color: "white", textAlign: "center"}}>
+        <div style={{fontFamily: "VT323", fontSize: "20px", color: "white", textAlign: "center"}}>
         <div className="form-container">
         <div className="welcome">Welcome to The Pokéhub!</div>
         <div className="button-container">
@@ -306,7 +306,7 @@ const LoginForm = () => {
                 </Formik>
             )}
         </div>
-        </p>
+        </div>
         </div>
       );
     };

@@ -68,16 +68,16 @@ const ProfilePage = () => {
 
             <Navbar />
 
-            <div className="page" style={{display: "flex"}}>
-
-            <div className="user-widget-container" style={{ flex: "0 0 25%", marginRight: "1rem" }}>
-                    <UserWidget userId={userId} picturePath={user.picturePath} />
-            </div>
-                <div className="column-container" style={{ flex: "1", display: "flex", flexDirection: "column" }}>
-                    <div className="friend-list-widget-container" style={{ marginBottom: "1rem" }}>
+            <div className="page">
+                <div className="column-container" style={{marginTop: "5%", display: "flex", flexWrap: "wrap"}}>
+                    <div className="user-widget-container" style={{ flex: "0 0 25%"}}>
+                            <UserWidget userId={userId} picturePath={user.picturePath} />
+                    </div>
+                    <div className="friend-list-widget-container" style={{}}>
                         <FriendListWidget userId={userId} />
                     </div>
-                    <div className="posts-widget-container">
+
+                    <div className="posts-widget-container" style={{ marginTop: "4%", flex: "0 0 100%" }}>
                         <PostsWidget userId={userId} isProfile />
                     </div>
                 </div>
