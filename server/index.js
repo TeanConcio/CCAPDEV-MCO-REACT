@@ -102,7 +102,7 @@ mongoose
     })
     .then(() => {
 
-        console.log(`MongoDB Port: ${process.env.LOCAL_MONGO_URL}`)
+        console.log(`MongoDB Port: ${process.env.ONLINE_MONGO_URL}`)
 
         // If connection is successful, listen to port
         app.listen(PORT, () => console.log(`Server Port: ${PORT}`));
