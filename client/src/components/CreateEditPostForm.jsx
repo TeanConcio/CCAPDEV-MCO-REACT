@@ -22,6 +22,7 @@ import {
 import Dropzone from "react-dropzone";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 // State
 import { setPosts, setPost } from "state";
@@ -33,6 +34,7 @@ import WidgetWrapper from "components/WidgetWrapper";
 
 // Style
 import "../styles/components/CreateEditPostForm.css";
+import { set } from "date-fns";
 
 
 
@@ -44,6 +46,7 @@ const CreateEditPostForm = ({ postId = "", postTitle = "", postBody = "",  EditM
 
     /* HOOKS AND STATES */
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     // Get user and token
     const token = useSelector((state) => state.token);
@@ -53,6 +56,9 @@ const CreateEditPostForm = ({ postId = "", postTitle = "", postBody = "",  EditM
     const [title, setTitle] = useState(postTitle);
     const [body, setBody] = useState(postBody);
     const [image, setImage] = useState(null);
+
+    // Error
+    const [error, setError] = useState(null);
 
 
 
@@ -76,9 +82,6 @@ const CreateEditPostForm = ({ postId = "", postTitle = "", postBody = "",  EditM
             formData.append("picturePath", image.name);
         }
 
-        console.log(_id, title, body, image)
-        console.log(formData)
-
         // Post data to server
         const response = await fetch(`http://localhost:4000/posts`, 
         {
@@ -90,13 +93,19 @@ const CreateEditPostForm = ({ postId = "", postTitle = "", postBody = "",  EditM
 
         console.log(posts)
 
-        // Update posts in state
-        dispatch(setPosts({ posts }));
+        // If response is valid: Update post in state
+        // Else: Set the error state variable
+        if (response.ok) {
+            dispatch(setPosts({ post: posts }));
 
-        // Reset data
-        setImage(null);
-        setTitle("");
-        setBody("");
+            // Reset data
+            setImage(null);
+            setTitle("");
+            setBody("");
+            setError(null);
+        }
+        else 
+            setError(posts.error)
     };
 
 
@@ -108,7 +117,6 @@ const CreateEditPostForm = ({ postId = "", postTitle = "", postBody = "",  EditM
 
         // Make form from data
         const formData = new FormData();
-        formData.append("userId", _id);
         formData.append("title", title);
         formData.append("body", body);
 
@@ -127,13 +135,15 @@ const CreateEditPostForm = ({ postId = "", postTitle = "", postBody = "",  EditM
         });
         const posts = await response.json();
 
-        // Update posts in state
-        dispatch(setPost({ posts }));
+        // If response is valid: Update post in state
+        // Else: Set the error state variable
+        if (response.ok) {
+            dispatch(setPost({ post: posts }));
 
-        // Reset data
-        setImage(null);
-        setTitle("");
-        setBody("");
+            window.location.reload();
+        }
+        else 
+            setError(posts.error)
     };
 
 
@@ -204,6 +214,11 @@ const CreateEditPostForm = ({ postId = "", postTitle = "", postBody = "",  EditM
                         </FlexBetween>
                     )}
                 </Dropzone>
+
+                {
+                    // Display error if there is
+                    error && <div className="error" style={{marginBottom: "-10px"}}>{error}</div>
+                }
 
                 <button 
                     type="submit" 

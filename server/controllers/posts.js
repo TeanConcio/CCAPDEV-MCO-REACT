@@ -44,6 +44,11 @@ export const createPost = async (req, res) => {
         } = req.body;
         const user = await User.findById(userId);
 
+        // If there are empty required fields
+        if (title === "")
+            // Send error as response
+            return res.status(400).json({error: "Please fill in a title"})
+
         // Create new post and save to database
         const newPost = new Post({
             userId,
@@ -85,6 +90,11 @@ export const updatePost = async (req, res) => {
         body, 
         picturePath 
     } = req.body;
+
+    // If there are empty required fields
+    if (title === "")
+        // Send error as response
+        return res.status(400).json({error: "Please fill in a title"})
 
     // Update post from db by postId (asynchronous)
     const post = await Post.findByIdAndUpdate(postId, {

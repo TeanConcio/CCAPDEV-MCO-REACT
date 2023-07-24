@@ -81,7 +81,7 @@ const upload = multer({ storage })
 
 // Routs with files
 app.post("/auth/register", upload.single("picture"), register);
-app.post("/posts", verifyToken, createPost);
+app.post("/posts", verifyToken, upload.single("picture"), createPost);
 app.patch("/posts/:postId", verifyToken, validatePostId, upload.single("picture"), updatePost);
 
 // Main Routes

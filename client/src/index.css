@@ -101,3 +101,9 @@ input[type="text"],
 textarea {
     color: var(--color-0);
 }
+
+.error {
+    color: var(--color-1);
+    font-size: 1.5rem;
+    font-weight: bold;
+}
