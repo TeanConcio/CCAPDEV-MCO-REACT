@@ -89,7 +89,7 @@ app.patch("/posts/:postId", verifyToken, validatePostId, upload.single("picture"
 app.use("/auth", authRoutes)
 app.use("/users", userRoutes)
 app.use("/posts", postRoutes)
-app.user("/comments", commentRoutes)
+app.use("/comments", commentRoutes)
 
 
 

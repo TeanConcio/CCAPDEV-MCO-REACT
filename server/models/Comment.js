@@ -52,6 +52,6 @@ const commentSchema = mongoose.Schema(
 
 /* EXPORT */
 
-// Export Post Schema as Model
-const Post = mongoose.model("Post", commentSchema);
-export default Post;
+// Export Comment Schema as Model
+const Comment = mongoose.model("Comment", commentSchema);
+export default Comment;
