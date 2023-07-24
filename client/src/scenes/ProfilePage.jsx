@@ -65,34 +65,27 @@ const ProfilePage = () => {
     return (
 
         <>
-
             <Navbar />
 
-            <div className="page" style={{display: "flex"}}>
-
-                <div className="column-container">
-
-                    <div className="column">
-
-                        <UserWidget userId={userId} picturePath={user.picturePath} />
-
+            <div className="page">
+                <div className="column-container" style={{marginTop: "5%", display: "flex", flexWrap: "wrap"}}>
+                    <div className="user-widget-container" style={{ flex: "0 0 25%"}}>
+                            <UserWidget userId={userId} picturePath={user.picturePath} />
+                    </div>
+                    <div className="friend-list-widget-container" style={{}}>
                         <FriendListWidget userId={userId} />
-
                     </div>
 
-                    <div className="column">
-
-                        {/* <MyPostWidget picturePath={user.picturePath} /> */}
-
+                    <div className="posts-widget-container" style={{ marginTop: "4%", flex: "0 0 100%" }}>
                         <PostsWidget userId={userId} isProfile />
-
                     </div>
-
                 </div>
-
             </div>
+        
 
-            {/* <Box
+            
+
+            {/*<Box
                 width="100%"
                 padding="2rem 6%"
                 display={isNonMobileScreens ? "flex" : "block"}
@@ -112,7 +105,7 @@ const ProfilePage = () => {
                     <Box m="2rem 0" />
                     
                 </Box>
-            </Box> */}
+         </Box> */}
 
         </>
 

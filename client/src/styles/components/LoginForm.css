@@ -8,11 +8,17 @@
     --login-left: 50px;
     --register-left: 450px;
 }
+/* Style for the error message */
+.passwordError {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}
 
 .account-background{
     height: 100%;
     width: 100%;
-    background-image:  linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url("https://chuanfawu.com/wp-content/uploads/2023/06/PokemonCenter.jpg"); /*can replace with: https://chuanfawu.com/wp-content/uploads/2023/06/PokemonCenter.jpg*/
+    /*background-image:  linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url("https://chuanfawu.com/wp-content/uploads/2023/06/PokemonCenter.jpg"); */
     /*background-position: center;*/
     background-size: cover;
     position: relative;
@@ -95,6 +101,11 @@
     background: transparent;
 }
 
+.input-field[type="text"], textarea {
+    color: white;
+}
+
+
 .usernameError{
     color: red;
     font-size: 12px;
@@ -112,7 +123,7 @@
     padding: 10px 30px;
     cursor: pointer;
     
-   margin-left: 65px;
+    margin-left: 65px;
     background: linear-gradient(to right, #ff105f, #ffad06);
     border: 0;
     outline: none;

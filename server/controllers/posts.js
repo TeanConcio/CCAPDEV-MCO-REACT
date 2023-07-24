@@ -69,6 +69,10 @@ export const createPost = async (req, res) => {
         });
         await newPost.save();
 
+        //increment post count by 1
+        user.postsNum += 1;
+        await user.save();
+
         // Respond with all posts from database to update feed
         const post = await Post.find();
         res.status(201).json(post);
@@ -246,12 +250,14 @@ export const downvotePost = async (req, res) => {
         // If user has already downvoted post: remove downvote
         // Else: add downvote and remove upvote if user has upvoted post
         const isDownvoted = post.downvotes.get(userId);
-        if (isDownvoted)
+        if (isDownvoted){
             post.downvotes.delete(userId);
+        }
         else {
             post.downvotes.set(userId, true);
             post.upvotes.delete(userId);
         }
+      
         
         // Update post in database and respond with updated post
         const updatedPost = await Post.findByIdAndUpdate(

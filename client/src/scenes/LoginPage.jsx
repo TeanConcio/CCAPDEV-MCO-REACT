@@ -27,33 +27,34 @@ const LoginPage = () => {
     /* RENDER */
 
     return (
-
         <Box>
-
+            {/* Parent Box with background image */}
             <Box
-                width="100%"
-                backgroundColor={"black"}
-                p="1rem 6%"
-                textAlign="center"
+                sx={{
+                    backgroundImage: `url("https://chuanfawu.com/wp-content/uploads/2023/06/PokemonCenter.jpg")`,
+                    backgroundSize: "cover",
+                    height: "100vh", // Set the height to cover the whole screen
+                }}
             >
-                <Typography fontWeight="bold" fontSize="32px" color="#ff105f">
-                    Pokehub
-                </Typography>
+                {/* Header */}
+                <Box
+                    width="100%"
+                    backgroundColor="black"
+                    p="1rem 6%"
+                    textAlign="center"
+                >
+                </Box>
+                
+                {/* Login Form */}
+                <Box 
+                    width={isNonMobileScreens ? "50%" : "100%"}
+                    p="2rem"
+                    m="2rem auto"
+                    borderRadius="1.5rem"
+                >
+                    <LoginForm />
+                </Box>
             </Box>
-
-            <Box
-                width={isNonMobileScreens ? "50%" : "93%"}
-                p="2rem"
-                m="2rem auto"
-                borderRadius="1.5rem"
-                backgroundColor={"theme.palette.background.alt"}
-            >
-                <Typography fontWeight="500" variant="h5" sx={{ mb: "1.5rem" }}>
-                    Welcome to Pokehub, a Forum for Pokemon Enthusiasts!
-                </Typography>
-                <LoginForm />
-            </Box>
-
         </Box>
     )
 }
