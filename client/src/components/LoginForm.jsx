@@ -288,7 +288,7 @@ const LoginForm = () => {
                                              Insert Profile Picture Here
                                          </Typography>
                                         ) : (
-                                            <Box margin="50px 50px 50px 50px" alignItems="center">
+                                            <Box alignItems="center">
                                                 <Typography>{values.picture.name}</Typography>
                                                 <EditOutlinedIcon />
                                             </Box>
