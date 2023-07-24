@@ -1,7 +1,7 @@
 /* IMPORTS */
 
 // Modules
-import { Box, Typography, useTheme } from "@mui/material";
+//import { Box, Typography, useTheme } from "@mui/material";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -12,6 +12,7 @@ import { setFriends } from "state";
 import Friend from "components/Friend";
 import WidgetWrapper from "components/WidgetWrapper";
 
+import "../../styles/scenes/widgets/FriendList.css";
 
 
 
@@ -27,7 +28,7 @@ const FriendListWidget = ({ userId }) => {
     const friends = useSelector((state) => state.user.friends);
 
     // Get theme
-    const { palette } = useTheme();
+    //const { palette } = useTheme();
 
 
 
@@ -62,25 +63,21 @@ const FriendListWidget = ({ userId }) => {
 
         <WidgetWrapper>
 
-            <Typography
-                color={palette.neutral.dark}
-                variant="h5"
-                fontWeight="500"
-                sx={{ mb: "1.5rem" }}
-            >
-                Friend List
-            </Typography>
-
-            <Box display="flex" flexDirection="column" gap="1.5rem">
-                {friends.map((friend) => (
-                    <Friend
-                        key={friend._id}
-                        friendId={friend._id}
-                        username={friend.username}
-                        userPicturePath={friend.picturePath}
-                    />
-                ))}
-            </Box>
+            <div className="actual-container">
+                <div className="cont-header">
+                    <div className="heading">Follower List</div>
+                </div>
+                <div className="cont-body">
+                    {friends.map((friend) => (
+                        <div key={friend._id} className="user-row">
+                            <div className="user-info">
+                                <img src={friend.picturePath} alt={friend.username} />
+                                <span>{friend.username}</span>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
 
         </WidgetWrapper>
 

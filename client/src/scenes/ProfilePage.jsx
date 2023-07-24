@@ -28,12 +28,6 @@ const ProfilePage = () => {
     const { userId } = useParams();
     const token = useSelector((state) => state.token);
 
-    // Check screen size
-    const isNonMobileScreens = useMediaQuery("(min-width:1000px)");
-
-
-
-
 
     /* FUNCTIONS */
 
@@ -71,7 +65,25 @@ const ProfilePage = () => {
 
             <Navbar />
 
-            <Box
+            <div className="page" style={{display: "flex"}}>
+
+            <div className="user-widget-container" style={{ flex: "0 0 25%", marginRight: "1rem" }}>
+                    <UserWidget userId={userId} picturePath={user.picturePath} />
+            </div>
+                <div className="column-container" style={{ flex: "1", display: "flex", flexDirection: "column" }}>
+                    <div className="friend-list-widget-container" style={{ marginBottom: "1rem" }}>
+                        <FriendListWidget userId={userId} />
+                    </div>
+                    <div className="posts-widget-container">
+                        <PostsWidget userId={userId} isProfile />
+                    </div>
+                </div>
+            </div>
+        
+
+            
+
+            {/*<Box
                 width="100%"
                 padding="2rem 6%"
                 display={isNonMobileScreens ? "flex" : "block"}
@@ -91,7 +103,7 @@ const ProfilePage = () => {
                     <Box m="2rem 0" />
                     <PostsWidget userId={userId} isProfile />
                 </Box>
-            </Box>
+         </Box> */}
 
         </Box>
 
