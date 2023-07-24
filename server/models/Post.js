@@ -12,8 +12,9 @@ import mongoose from "mongoose";
 const postSchema = mongoose.Schema(
     {
         userId: {
-            type: String,
-            required: true
+            type: mongoose.Schema.Types.ObjectId,
+            required: true,
+            ref: "User"
         },
         username: {
             type: String,
@@ -46,7 +47,7 @@ const postSchema = mongoose.Schema(
         },
         comments: {
             type: Array,
-            default: []
+            default: [],
         }
     },
     { 

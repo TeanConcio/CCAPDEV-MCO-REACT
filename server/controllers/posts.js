@@ -44,6 +44,11 @@ export const createPost = async (req, res) => {
         } = req.body;
         const user = await User.findById(userId);
 
+        console.log(req.body)
+
+        if (!user)
+            return res.status(400).json({error: "User not found"})
+
         // If there are empty required fields
         if (title === "")
             // Send error as response
@@ -72,6 +77,7 @@ export const createPost = async (req, res) => {
 
         // Respond with error
         res.status(409).json({ message: err.message });
+        console.log(err)
     }
 };
 

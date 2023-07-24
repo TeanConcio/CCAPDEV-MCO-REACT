@@ -8,6 +8,8 @@ import { useParams } from "react-router-dom";
 // Components
 import Navbar from "components/Navbar";
 import Post from "components/Post";
+import CreateEditCommentForm from "components/CreateEditCommentForm";
+import CommentFeed from "components/CommentFeed";
 
 // Style
 import "../styles/scenes/ViewPostPage.css";
@@ -45,6 +47,7 @@ const ViewPostPage = () => {
         });
 
         const data = await response.json();
+
         setPost(data);
     };
 
@@ -105,9 +108,13 @@ const ViewPostPage = () => {
                         
                         </section>
 
-                        {/* <CreateCommentForm/>
+                        <CreateEditCommentForm parentId={postId} />
 
-                        <section class="comment-section"></section> */}
+                        <section>
+
+                            <CommentFeed parentId={postId} />
+
+                        </section>
 
                     </div>
                     

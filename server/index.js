@@ -26,6 +26,11 @@ import {
     createPost,
     updatePost
 } from "./controllers/posts.js";
+import {
+    validateCommentId,
+    createComment,
+    updateComment
+} from "./controllers/comments.js";
 
 // Populate database with data (Run only once)
 import { addData } from "./data/addData.js";
@@ -82,8 +87,13 @@ const upload = multer({ storage })
 
 // Routs with files
 app.post("/auth/register", upload.single("picture"), register);
+
 app.post("/posts", verifyToken, upload.single("picture"), createPost);
 app.patch("/posts/:postId", verifyToken, validatePostId, upload.single("picture"), updatePost);
+
+app.post("/comments/:parentId", verifyToken, upload.single("picture"), createComment)
+app.patch("/comments/:commentId", verifyToken, validateCommentId, upload.single("picture"), updateComment);
+
 
 // Main Routes
 app.use("/auth", authRoutes)

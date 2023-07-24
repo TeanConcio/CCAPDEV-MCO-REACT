@@ -3,8 +3,16 @@
     padding: 20px;
 }
 
+.create-edit .label {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: -5px;
+    margin-bottom: 10px;
+}
+
 .create-edit .title,
 .create-edit .body,
+.create-edit .message,
 .create-edit .button-container {
     display: flex;
     justify-content: left;
@@ -24,12 +32,12 @@
     border-radius: 5px;
 }
 
-.submit-post-btn {
+.create-edit .submit.btn {
     box-sizing: border-box;
     width: 100%;
     margin-top: 10px;
-    font-size: 2rem;
-    padding: 5px;
+    font-size: 1.75rem;
+    padding: 2.5px;
     border: 1px solid #ccc;
     border-radius: 5px;
     outline: none;
@@ -38,7 +46,7 @@
     cursor: pointer;
 }
 
-.submit-post-btn:hover {
+.create-edit .submit.btn:hover {
     background-color: var(--color-1);
 }
 

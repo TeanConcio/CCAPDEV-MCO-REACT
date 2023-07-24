@@ -33,7 +33,7 @@ import UserImage from "components/UserImage";
 import WidgetWrapper from "components/WidgetWrapper";
 
 // Style
-import "../styles/components/CreateEditPostForm.css";
+import "../styles/components/CreateEditForm.css";
 import { set } from "date-fns";
 
 
@@ -91,12 +91,10 @@ const CreateEditPostForm = ({ postId = "", postTitle = "", postBody = "",  EditM
         });
         const posts = await response.json();
 
-        console.log(posts)
-
         // If response is valid: Update post in state
         // Else: Set the error state variable
         if (response.ok) {
-            dispatch(setPosts({ post: posts }));
+            dispatch(setPosts({ posts: posts }));
 
             // Reset data
             setImage(null);
@@ -155,6 +153,17 @@ const CreateEditPostForm = ({ postId = "", postTitle = "", postBody = "",  EditM
     return (
 
         <section className="create-edit">
+
+            { !EditMode ? (
+                <div className="label">
+                    Create Post
+                </div>
+            ) : (
+                <div className="label">
+                    Edit Post
+                </div>
+            )}
+
             <form>
 
                 <div className="title">
@@ -222,7 +231,7 @@ const CreateEditPostForm = ({ postId = "", postTitle = "", postBody = "",  EditM
 
                 <button 
                     type="submit" 
-                    class="submit-post-btn"
+                    class="submit btn"
                     onClick={(EditMode) ? (editPost) : (createPost)}
                 >
                     Submit

@@ -1,0 +1,80 @@
+.comment {
+    border-radius: 5px;
+    padding: 15px;
+    padding-left: 20px;
+    margin: 20px;
+}
+
+.comment .details {
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.comment .author,
+.comment .create-date,
+.comment .update-date {
+    margin-right: 20px;
+}
+
+.comment .body {
+    margin-bottom: 10px;
+}
+
+.comment .image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.comment .image {
+    max-height: 300px;
+    width: auto;
+    border: var(--color-2) solid 1px;
+    border-radius: "0.75rem";
+    margin: 15px 0px;
+}
+
+.comment .actions {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.comment .actions .main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 30%;
+}
+
+.comment .actions .vote {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 50%;
+}
+
+.comment.actions.comment {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    width: 5%;
+}
+
+.comment .actions .modify {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 20%;
+}
+
+.comment .actions .vote .count,
+.comment .actions .comment .count {
+    font-size: 1.33rem;
+}
+
+.comment .actions .comment .count {
+    margin-right: 10px;
+}

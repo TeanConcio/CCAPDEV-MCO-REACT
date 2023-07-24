@@ -16,6 +16,7 @@ const initialState = {
     user: null,
     token: null,
     posts: [],
+    comments: []
 };
 
 
@@ -99,10 +100,50 @@ export const authSlice = createSlice({
 
             const undeletedPosts = state.posts.filter((post) => {
 
-                return post._id !== action.payload.postId;
+                return post._id !== action.payload.post._id;
             });
             
             state.posts = undeletedPosts;
+        },
+
+
+
+        // Set comments as all comments
+        setComments: (state, action) => {
+
+            // Sort comments by date
+            state.comments = action.payload.comments.sort((a, b) => {
+                
+                return new Date(b.createdAt) - new Date(a.createdAt);
+            });
+        },
+
+
+
+        // Set a single comment
+        setComment: (state, action) => {
+
+            const updatedComments = state.comments.map((comment) => {
+
+                if (comment._id === action.payload.comment._id) 
+                    return action.payload.comment;
+                    
+                return comment;
+            });
+            state.comments = updatedComments;
+        },
+
+
+
+        // Set undeleted comments
+        setUndeletedComments: (state, action) => {
+
+            const undeletedComments = state.comments.filter((comment) => {
+
+                return comment._id !== action.payload.comment._id;
+            });
+            
+            state.comments = undeletedComments;
         }
     },
 });
@@ -120,6 +161,9 @@ export const {
     setFriends, 
     setPosts, 
     setPost,
-    setUndeletedPosts
+    setUndeletedPosts,
+    setComments,
+    setComment,
+    setUndeletedComments
 } = authSlice.actions;
 export default authSlice.reducer;

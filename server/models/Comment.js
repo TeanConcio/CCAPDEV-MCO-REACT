@@ -12,8 +12,9 @@ import mongoose from "mongoose";
 const commentSchema = mongoose.Schema(
     {
         userId: {
-            type: String,
-            required: true
+            type: mongoose.Schema.Types.ObjectId,
+            required: true,
+            ref: "User"
         },
         username: {
             type: String,
@@ -30,14 +31,16 @@ const commentSchema = mongoose.Schema(
         upvotes: {
             type: Map,
             of: Boolean,
+            default: {},
         },
         downvotes: {
             type: Map,
             of: Boolean,
+            default: {},
         },
         comments: {
             type: Array,
-            default: []
+            default: [],
         }
     },
     { 
@@ -52,6 +55,6 @@ const commentSchema = mongoose.Schema(
 
 /* EXPORT */
 
-// Export Comment Schema as Model
+// Export Post Schema as Model
 const Comment = mongoose.model("Comment", commentSchema);
 export default Comment;

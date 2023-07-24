@@ -2,6 +2,7 @@
 
 // Modules
 import mongoose from "mongoose";
+import Post from "../models/Post.js";
 import Comment from "../models/Comment.js";
 import User from "../models/User.js";
 
@@ -29,25 +30,41 @@ export const validateCommentId = (req, res, next) => {
 
 
 
+
+
+
 /* CREATE COMMENT */
 
 export const createComment = async (req, res) => {
 
     try {
-
+    
         // Get comment information and user id from request body
         const { 
             userId, 
-            message,
+            message
         } = req.body;
-        const user = await User.findById(userId);
 
+        console.log(req.params)
+        console.log(req.body)
+    
         // If there are empty required fields
         if (message === "")
             // Send error as response
             return res.status(400).json({error: "Please fill in a message"})
+    
+        // Get parentId from request parameters and find in database
+        const { parentId } = req.params;
+        let parent = await Post.findById(parentId);
+        if (!parent) {
+            parent = await Comment.findById(parentId);
+            if (!parent)
+                return res.status(404).json({error: "Parent not found"})
+        }
 
-        // Create new comment and save to database
+        const user = await User.findById(userId);
+    
+        // Create new comment object
         const newComment = new Comment({
             userId,
             username: user.username,
@@ -56,20 +73,26 @@ export const createComment = async (req, res) => {
                 [userId]: true
             },
             downvotes: {},
-            comments: [],
+            comments: []
         });
         await newComment.save();
 
+        // Add comment to the parent comment's comments array and save to database
+        parent.comments.push(newComment._id);
+        await parent.save();
+    
         // Respond with all comments from database to update feed
-        const comment = await Comment.find();
-        res.status(201).json(comment);
+        const comments = await Comment.find();
+        res.status(201).json(comments);
     } 
     catch (err) {
-
+    
         // Respond with error
         res.status(409).json({ message: err.message });
+        console.log(err)
     }
 };
+
 
 
 
@@ -108,26 +131,26 @@ export const updateComment = async (req, res) => {
 
 
 
-/* GET SPECIFIC COMMENT */
+// /* GET SPECIFIC COMMENT */
 
-export const getComment = async (req, res) => {
+// export const getComment = async (req, res) => {
 
-    try {
+//     try {
 
-        // Get comment id from request parameters and find in database
-        const { commentId } = req.params;
-        const comment = await Comment.findById(commentId);
+//         // Get comment id from request parameters and find in database
+//         const { commentId } = req.params;
+//         const comment = await Comment.findById(commentId);
 
-        // Respond with comment
-        res.status(200).json(comment);
-    } 
-    catch (err) {
+//         // Respond with comment
+//         res.status(200).json(comment);
+//     } 
+//     catch (err) {
 
-        // Respond with error
-        res.status(404).json({ message: err.message });
-        console.log(err)
-    }
-};
+//         // Respond with error
+//         res.status(404).json({ message: err.message });
+//         console.log(err)
+//     }
+// };
 
 
 
@@ -139,19 +162,21 @@ export const getPostComments = async (req, res) => {
 
     try {
 
-        // Get post id from request parameters and find their comments in database
-        const { postId } = req.params;
-        const post = await Post.findById(postId).populate("comments"); // Use await and assign result to post
-
-        if (!post) {
-            return res.status(404).json({ message: "Post not found" }); // Handle post not found
+        // Get parentId from request parameters and find in database
+        const { parentId } = req.params;
+        let parent = await Post.findById(parentId);
+        if (!parent) {
+            parent = await Comment.findById(parentId);
+            if (!parent)
+                return res.status(404).json({error: "Parent not found"})
         }
 
-        // Sort the comments by date in descending order
-        post.comments.sort((a, b) => b.createdAt - a.createdAt); // Use a custom function to sort by createdAt
+        const comments = await Comment.find().sort({createdAt: -1});
+
+        console.log(comments)
 
         // Respond with all of post's comments
-        res.status(200).json(post.comments); // Return only the comments array
+        res.status(200).json(comments); // Return only the comments array
     } 
     catch (err) {
 
