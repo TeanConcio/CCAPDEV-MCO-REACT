@@ -69,6 +69,7 @@ const LoginForm = () => {
     const isLogin = pageType === "login";
     const isRegister = pageType === "register";
     const { palette } = useTheme();
+    const [rememberMe, setrememberMe] = useState(false);
 
     const handleFormSwitch = (type) => {
         setPageType(type);
@@ -128,6 +129,7 @@ const LoginForm = () => {
                 token: loggedIn.token,
                 })
             );
+            
             navigate("/home");
         } else{
             // If login failed, display the error message by removing hidden attribute in div
@@ -206,10 +208,18 @@ const LoginForm = () => {
                                 className="check-box"
                                 id="rememberMe"
                                 name="rememberMe"
-                                checked= {values.rememberMe}
-                                onChange={handleChange}
+                                checked= {rememberMe}
+                                onChange={() => {
+                                     setrememberMe(!rememberMe);
+                                     values.rememberMe = !rememberMe;
+                                    }
+                                }
+                                
                             />
-                            <label htmlFor="rememberMe">Keep Me Logged In</label>
+                         
+                         {console.log("rememberMe" + rememberMe)}
+                         {console.log("values.rememberMe:" + values.rememberMe)}
+                        <label htmlFor="rememberMe">Keep Me Logged In</label>
                            
                             
                             <button

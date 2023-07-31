@@ -70,6 +70,7 @@ export const login = async (req, res) => {
 
         // Get data from request body json
         const { email, password, rememberMe } = req.body
+        console.log("rememberMe in login func:" + rememberMe)
 
         // Get user if user exists, if not: respond with error
         const user = await User.findOne({ email: email })
@@ -82,9 +83,9 @@ export const login = async (req, res) => {
             return res.status(400).json({ msg: "Invalid credentials. ", success: false})
 
         // Create signed token with user id
-        //let expiresIn = rememberMe ? '7d' : '10s';
-        //const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {expiresIn: expiresIn,})
-        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET)
+        let expiresIn = rememberMe ? '7d' : '10s';
+        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {expiresIn: expiresIn,})
+        //const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET)
 
         // Delete password from user and respond with token and user
         delete user.password
