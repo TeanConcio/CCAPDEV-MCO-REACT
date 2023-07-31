@@ -9,7 +9,7 @@ import { useParams } from "react-router-dom";
 // Components
 import Navbar from "components/Navbar";
 import FriendListWidget from "scenes/widgets/FriendListWidget";
-import MyPostWidget from "scenes/widgets/MyPostWidget";
+import CreateEditPostForm from "components/CreateEditPostForm";
 import PostsWidget from "components/PostFeed";
 import UserWidget from "scenes/widgets/UserWidget";
 
@@ -65,30 +65,27 @@ const ProfilePage = () => {
     return (
 
         <>
-
             <Navbar />
 
-            <div className="page" style={{display: "flex"}}>
+            <div className="page">
+                <div className="column-container" style={{marginTop: "5%", display: "flex", flexWrap: "wrap"}}>
+                    <div className="user-widget-container" style={{ flex: "0 0 25%"}}>
+                            <UserWidget userId={userId} picturePath={user.picturePath} />
+                    </div>
+                    <div className="friend-list-widget-container" style={{}}>
+                        <FriendListWidget userId={userId} />
+                    </div>
 
-                <div className="column">
-
-                    <UserWidget userId={userId} picturePath={user.picturePath} />
-
-                    <FriendListWidget userId={userId} />
-
+                    <div className="posts-widget-container" style={{ marginTop: "4%", flex: "0 0 100%" }}>
+                        <PostsWidget userId={userId} isProfile />
+                    </div>
                 </div>
-
-                <div className="column">
-
-                    <MyPostWidget picturePath={user.picturePath} />
-
-                    <PostsWidget userId={userId} isProfile />
-
-                </div>
-
             </div>
+        
 
-            {/* <Box
+            
+
+            {/*<Box
                 width="100%"
                 padding="2rem 6%"
                 display={isNonMobileScreens ? "flex" : "block"}
@@ -108,7 +105,7 @@ const ProfilePage = () => {
                     <Box m="2rem 0" />
                     
                 </Box>
-            </Box> */}
+         </Box> */}
 
         </>
 

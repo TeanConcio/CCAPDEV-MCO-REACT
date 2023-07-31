@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+
+* {
+
+    font-family: 'VT323', sans-serif;
+
+}
+
+
+.friendlistactual-container {
+    background-color: #212121;
+    box-shadow: 5px 5px 20px #ff2574;
+    width: 100%;
+    height: 40vh;
+    border-radius: 50px 50px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.friendlistcontainer {
+    background-color: #212121;
+    width: 400px;
+    height: 70vh;
+    border-radius: 50px 50px;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+}
+
+.cont-header {
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(182,2,2,1) 0%, rgb(208, 94, 94) 20%,  #212121 100%);
+    padding: 5px 0 5px;
+    border-radius: 50px 50px 0 0;
+    width: 400px;
+}
+
+.cont-header .heading{
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 100;
+    width: 100%;
+    text-align: center;
+    padding: 20px 0;
+    
+}
+
+.cont-header .return-btn{
+    position: center;
+    display: block;
+    text-align: center;
+    margin: 5px auto;
+    border: none;
+    outline: none;
+    background: #ff2574;
+    border-radius: 40px;
+    color: #ffffff;
+    height: 20px;
+    width: 80px;
+    box-shadow: #212121;
+
+}
+/*
+.action-return
+*/
+.cont-body{
+    background-color: #be0c0c;
+    overflow:auto;
+}
+
+.user-row{
+    padding: 15px 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.user-info{
+    display: flex;
+    align-items: center;
+}
+
+.user-info img{
+    width: 60px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.user-info span{
+    color: #ffffff;
+}
+
+::-webkit-scrollbar{
+    opacity:0;
+    width: 5px;
+}
+::-webkit-scrollbar-thumb{
+    opacity:0;
+    background-color: rgba(0,0,0,0);
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover{
+   opacity:1;
+    background: #ff9cc8;
+}
+
+.basic-actions {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 30px;
+}
+
+
+.back-btn {
+    width: 5rem;
+    height: 2.75rem;
+    font-size: 1.25rem;
+    color: #ffffff;
+    text-align: center;
+    background-color: #212121;
+    border: #b60202 solid 5px;
+    border-radius: 25px;
+}
+
+.back-btn:hover {
+    background-color: #ff2547;
+    transform: scale(1.1);
+    transition: all 0.3s;
+}

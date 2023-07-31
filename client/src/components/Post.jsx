@@ -2,7 +2,7 @@
 
 // Modules
 import { useState } from 'react'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { formatDistanceToNow } from 'date-fns'
 
@@ -13,6 +13,7 @@ import {
 } from "state";
 
 // Components
+import CreateEditPostForm from './CreateEditPostForm';
 
 // Styles
 import "styles/components/Post.css"
@@ -41,14 +42,22 @@ const Post = ({
     /* HOOKS AND STATES */
     const [error, setError] = useState(null)
 
-    // Get token, user, and post data
+
+    // Get token and user data
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const token = useSelector((state) => state.token);
     const loggedInUserId = useSelector((state) => state.user._id);
+
+    // Get upvote and downvote data
     const isUpvoted = Boolean(upvotes[loggedInUserId]);
-    const upvoteCount = Object.keys(upvotes).length;
     const isDownvoted = Boolean(downvotes[loggedInUserId]);
-    const downvoteCount = Object.keys(downvotes).length;
+    const baseUpvoteCount = Object.keys(upvotes).length;
+    const baseDownvoteCount = Object.keys(downvotes).length;
+    const [voteCount, setVoteCount] = useState(baseUpvoteCount - baseDownvoteCount)
+    
+    // Edit
+    const [editMode, setEditMode] = useState(false)
 
     // Style variables
     const width = ViewPost ? "100%" : "auto"
@@ -82,6 +91,7 @@ const Post = ({
         if (response.ok) {
             dispatch(setPost({ post: updatedPost }));
             setError(null)
+            setVoteCount(Object.keys(updatedPost.upvotes).length - Object.keys(updatedPost.downvotes).length)
         }
         else 
             setError(updatedPost.error)
@@ -111,6 +121,7 @@ const Post = ({
         if (response.ok) {
             dispatch(setPost({ post: updatedPost }));
             setError(null)
+            setVoteCount(Object.keys(updatedPost.upvotes).length - Object.keys(updatedPost.downvotes).length)
         }
         else 
             setError(updatedPost.error)
@@ -134,9 +145,12 @@ const Post = ({
 
         // If response is valid: Delete selected post from posts state context variable
         // Else: Set the error state variable
-        if (response.ok)
+        if (response.ok) {
             dispatch(setUndeletedPosts({ post: deletedPost }))
-        else 
+            navigate(`/home`)
+        }
+            
+        else {}
             setError(deletedPost.error)
     }
 
@@ -148,72 +162,96 @@ const Post = ({
 
     return (
 
-        <div className="post" style={{width: width, margin: margin}}>
+        <div className="post-component" 
+            style={ViewPost ? (
+                {display: "flex", width: "75%", flexDirection: "column", flexWrap: "wrap", alignContent: "center", justifyContent: "center"}) : ({width: "100%"})}
+        >
 
-            { ViewPost ? (
-                <h2 className="title"> {title} </h2>
-            ) : (
-                <Link to={`/post/${postId}`} className="title"> {title} </Link>
-            )}
+            <div className="post" style={{width: width, margin: margin}}>
 
-            <div className="details">
-                <Link to={`/profile/${postUserId}`} className="author"> Posted by: {username} </Link>
-                <span className="create-date">
-                    Posted on: {formatDistanceToNow(new Date(createdAt), {addSuffix: true})}
-                </span>
-            </div>
+                { ViewPost ? (
+                    <h2 className="title"> {title} </h2>
+                ) : (
+                    <Link to={`/post/${postId}`} className="title"> {title} </Link>
+                )}
 
-            <p className="body">{body}</p>
-
-            {picturePath && (
-                <div
-                    className='image-container'>
-                    <img
-                        className='image'
-                        alt="post"
-                        src={`http://localhost:4000/assets/${picturePath}`}
-                    />
-                </div>
-            )}
-
-            <div className="actions">
-
-                <div className="main">
-                    <div className="vote">
-                        {isUpvoted ? (
-                            <button className="upvote btn active" onClick={patchUpvote}> ⬆ </button>
-                        ) : (
-                            <button className="upvote btn" onClick={patchUpvote}> ⬆ </button>
-                        )}
-                        <div className="count"> {upvoteCount - downvoteCount} </div> 
-                        {isDownvoted ? (
-                            <button className="downvote btn active" onClick={patchDownvote}> ⬇ </button>
-                        ) : (
-                            <button className="downvote btn" onClick={patchDownvote}> ⬇ </button>
-                        )}
-                    </div>
-
-                    <div className="comment">
-                        <div className="count"> {commentCount} </div> 
-                        <button className="comment-btn"> 💭 </button>
-                    </div>
+                <div className="details">
+                    <Link to={`/profile/${postUserId}`} className="author"> Posted by: {username} </Link>
+                    <span className="create-date">
+                        Posted on: {formatDistanceToNow(new Date(createdAt), {addSuffix: true})}
+                    </span>
                 </div>
 
+                <p className="body">{body}</p>
 
-                { ViewPost && (postUserId === loggedInUserId) && (
-
-                    <div className="modify">
-                        <button className="edit btn"> ✏ </button>
-                        <button className="delete btn" onClick={deletePost}> 🗑 </button>
+                {picturePath && (
+                    <div
+                        className='image-container'>
+                        <img
+                            className='image'
+                            alt="post"
+                            src={`http://localhost:4000/assets/${picturePath}`}
+                        />
                     </div>
                 )}
 
+                <div className="actions">
+
+                    <div className="main">
+                        <div className="vote">
+                            {isUpvoted ? (
+                                <button className="upvote btn active" onClick={patchUpvote}> ⬆ </button>
+                            ) : (
+                                <button className="upvote btn" onClick={patchUpvote}> ⬆ </button>
+                            )}
+                            <div className="count"> {voteCount} </div> 
+                            {isDownvoted ? (
+                                <button className="downvote btn active" onClick={patchDownvote}> ⬇ </button>
+                            ) : (
+                                <button className="downvote btn" onClick={patchDownvote}> ⬇ </button>
+                            )}
+                        </div>
+
+                        <div className="comment">
+                            <div className="count"> {commentCount} </div> 
+                            { !ViewPost ? (
+                                <button className="comment-btn" onClick={() => navigate("/post/" + postId)}> 💭 </button>
+                            ) : (
+                                <button className="comment-btn"> 💭 </button>
+                            )}
+                            
+                        </div>
+                    </div>
+
+
+                    { ViewPost && (postUserId === loggedInUserId) && (
+
+                        <div className="modify">
+                            <button className="edit btn" onClick={() => setEditMode(!editMode)}> ✏ </button>
+                            <button className="delete btn" onClick={deletePost}> 🗑 </button>
+                        </div>
+                    )}
+
+                </div>
+
+                {
+                    // Display error if there is
+                    error && <div className="error">{error}</div>
+                }
+
             </div>
 
-            {
-                // Display error if there is
-                error && <div className="error">{error}</div>
-            }
+
+            
+            { ViewPost && (postUserId === loggedInUserId) && editMode && (
+
+                <CreateEditPostForm 
+                    postId = {postId}
+                    postTitle = {title}
+                    postBody = {body}
+                    EditMode
+                />
+            )}
 
         </div>
     );

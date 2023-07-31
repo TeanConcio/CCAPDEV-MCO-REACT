@@ -44,6 +44,16 @@ export const createPost = async (req, res) => {
         } = req.body;
         const user = await User.findById(userId);
 
+        console.log(req.body)
+
+        if (!user)
+            return res.status(400).json({error: "User not found"})
+
+        // If there are empty required fields
+        if (title === "")
+            // Send error as response
+            return res.status(400).json({error: "Please fill in a title"})
+
         // Create new post and save to database
         const newPost = new Post({
             userId,
@@ -59,6 +69,10 @@ export const createPost = async (req, res) => {
         });
         await newPost.save();
 
+        //increment post count by 1
+        user.postsNum += 1;
+        await user.save();
+
         // Respond with all posts from database to update feed
         const post = await Post.find();
         res.status(201).json(post);
@@ -67,8 +81,46 @@ export const createPost = async (req, res) => {
 
         // Respond with error
         res.status(409).json({ message: err.message });
+        console.log(err)
     }
 };
+
+
+
+
+
+/* UPDATE POST */
+
+export const updatePost = async (req, res) => {
+
+    // Get post and user information from request body and parameters
+    const { postId } = req.params;
+    const { 
+        title, 
+        body, 
+        picturePath 
+    } = req.body;
+
+    // If there are empty required fields
+    if (title === "")
+        // Send error as response
+        return res.status(400).json({error: "Please fill in a title"})
+
+    // Update post from db by postId (asynchronous)
+    const post = await Post.findByIdAndUpdate(postId, {
+        title: title,
+        body: body,
+        picturePath: picturePath,
+    })
+
+    // If post not found
+    if (!post)
+        // Send error as response
+        return res.status(404).json({error: "Post not found"})
+
+    // Send post data as response
+    res.status(200).json(post)
+}
 
 
 
@@ -198,12 +250,14 @@ export const downvotePost = async (req, res) => {
         // If user has already downvoted post: remove downvote
         // Else: add downvote and remove upvote if user has upvoted post
         const isDownvoted = post.downvotes.get(userId);
-        if (isDownvoted)
+        if (isDownvoted){
             post.downvotes.delete(userId);
+        }
         else {
             post.downvotes.set(userId, true);
             post.upvotes.delete(userId);
         }
+      
         
         // Update post in database and respond with updated post
         const updatedPost = await Post.findByIdAndUpdate(
@@ -219,31 +273,6 @@ export const downvotePost = async (req, res) => {
         res.status(404).json({ message: err.message });
     }
 };
-
-
-
-
-
-/* UPDATE POST */
-
-export const updatePost = async (req, res) => {
-
-    // Get postId from request parameters
-    const postId = req.params.postId
-
-    // Update post from db by postId (asynchronous)
-    const post = await Post.findByIdAndUpdate(postId, {
-        ...req.body
-    })
-
-    // If post not found
-    if (!post)
-        // Send error as response
-        return res.status(404).json({error: "Post not found"})
-
-    // Send post data as response
-    res.status(200).json(post)
-}
 
 
 

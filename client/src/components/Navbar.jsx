@@ -49,7 +49,7 @@ const Navbar = () => {
 
                 <div className="menu">
                     <UserImageName 
-                        image={user.picturePath}
+                        picturePath={user.picturePath}
                         username={user.username} 
                         userId={user._id}
                         imageSize="45px"

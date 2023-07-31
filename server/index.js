@@ -16,11 +16,21 @@ import { fileURLToPath } from "url"
 import authRoutes from "./routes/auth.js"
 import userRoutes from "./routes/users.js"
 import postRoutes from "./routes/posts.js"
+import commentRoutes from "./routes/comments.js"
 
 // Controllers
 import { register } from "./controllers/auth.js";
 import { verifyToken } from "./middleware/auth.js";
-import { createPost } from "./controllers/posts.js";
+import { 
+    validatePostId,
+    createPost,
+    updatePost
+} from "./controllers/posts.js";
+import {
+    validateCommentId,
+    createComment,
+    updateComment
+} from "./controllers/comments.js";
 
 // Populate database with data (Run only once)
 import { addData } from "./data/addData.js";
@@ -77,12 +87,19 @@ const upload = multer({ storage })
 
 // Routs with files
 app.post("/auth/register", upload.single("picture"), register);
+
 app.post("/posts", verifyToken, upload.single("picture"), createPost);
+app.patch("/posts/:postId", verifyToken, validatePostId, upload.single("picture"), updatePost);
+
+app.post("/comments/:parentId", verifyToken, upload.single("picture"), createComment)
+app.patch("/comments/:commentId", verifyToken, validateCommentId, upload.single("picture"), updateComment);
+
 
 // Main Routes
 app.use("/auth", authRoutes)
 app.use("/users", userRoutes)
 app.use("/posts", postRoutes)
+app.use("/comments", commentRoutes)
 
 
 

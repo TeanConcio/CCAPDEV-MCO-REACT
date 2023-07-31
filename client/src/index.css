@@ -1,55 +1,80 @@
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 
 :root {
-    font-family: VT323, sans-serif;
-    font-size: 16px;
-    overflow-wrap: break-word;
     --color-0: #212121;
     --color-1: #ff0000;
     --color-2: #ffffff;
 }
 
 * {
+    font-family: VT323, sans-serif;
+    font-size: 16px;
+    overflow-wrap: break-word;
+    color: var(--color-2);
     margin: 0;
     padding: 0;
-    font-family: VT323, sans-serif;
-    color: white;
     line-height: normal;
-    /*border:rgba(0, 0, 0, .5) solid 1px;*/
 }
 
 
 
+
+
+/* Main Components */
 .page {
-    padding: .5rem;
+    display: flex; 
+    justify-content: center; 
     background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("https://chuanfawu.com/wp-content/uploads/2023/06/PokemonCenter.jpg");
     background-position: center;
     background-size: cover;
-    justify-content: center;
+    height: 100%;
 }
 
-
+.column-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 1rem;
+    justify-content: center;
+    width: 75%;
+}
 
 .column {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    display: block;
     margin: 1rem;
 }
 
-
-
 section {
-    margin: .5rem;
+    margin: .75rem;
     padding: .5rem;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     background-color: var(--color-0);
-    width: 75%;
 }
 
 
+
+
+
+/* Main formatting */
+
+.title,
+.title > * {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.details,
+.details > * {
+    font-size: 1.25rem;
+    color: var(--color-1);
+}
+
+.body,
+.body > *,
+.message,
+.message > * {
+    font-size: 1.5rem;
+}
 
 a {
     text-decoration: none;
@@ -58,4 +83,30 @@ a {
 a:hover {
     text-decoration: underline;
     color: var(--color-1);
+}
+
+button {
+    color: var(--color-0);
+    font-size: 1rem;
+    padding: 5px 10px;
+    background-color: var(--color-1);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    transform: scale(1.1);
+    background: linear-gradient(0deg, #ddb355 0%, #f0cf60 36%, #f0cf60 100%);
+}
+
+input[type="text"],
+textarea {
+    color: var(--color-0);
+}
+
+.error {
+    color: var(--color-1);
+    font-size: 1.5rem;
+    font-weight: bold;
 }
