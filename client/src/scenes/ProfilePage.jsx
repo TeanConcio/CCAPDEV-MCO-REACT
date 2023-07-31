@@ -43,7 +43,12 @@ const ProfilePage = () => {
             headers: { Authorization: `Bearer ${token}` },
         });
         const data = await response.json();
-        setUser(data);
+        if(data.error == "no token"){
+            alert("Token Expired");
+            window.location = "/";
+        }
+        else
+            setUser(data);
     };
 
 

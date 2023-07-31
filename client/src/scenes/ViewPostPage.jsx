@@ -45,10 +45,16 @@ const ViewPostPage = () => {
             method: "GET",
             headers: { Authorization: `Bearer ${token}` },
         });
-
+       
         const data = await response.json();
 
-        setPost(data);
+        if(data.error == "no token"){
+            alert("Token Expired");
+            window.location = "/";
+        }
+        else{
+            setPost(data);
+        }
     };
 
 

@@ -43,7 +43,12 @@ const CommentFeed = ({ parentId }) => {
         );
         const data = await response.json();
 
-        dispatch(setComments({ comments: data }));
+        if(data.error == "no token"){
+            alert("Token Expired");
+            window.location = "/";
+        }
+        else
+            dispatch(setComments({ comments: data }));
     };
 
 

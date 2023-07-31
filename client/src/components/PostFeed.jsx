@@ -39,8 +39,12 @@ const PostFeed = ({ userId, isProfile = false }) => {
             headers: { Authorization: `Bearer ${token}` },
         });
         const data = await response.json();
-
-        dispatch(setPosts({ posts: data }));
+        if(data.error == "no token"){
+            alert("Token Expired");
+            window.location = "/";
+        }
+        else
+            dispatch(setPosts({ posts: data }));
     };
 
 
@@ -56,7 +60,13 @@ const PostFeed = ({ userId, isProfile = false }) => {
         }
         );
         const data = await response.json();
-        dispatch(setPosts({ posts: data }));
+        
+        if(data.error == "no token"){
+            alert("Token Expired");
+            window.location = "/";
+        }
+        else
+            dispatch(setPosts({ posts: data }));
     };
 
 
