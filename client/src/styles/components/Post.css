@@ -79,3 +79,8 @@
 .post .actions .comment .count {
     margin-right: 10px;
 }
+
+.upvote.active,
+.downvote.active {
+  background-color: #ddb355;
+}

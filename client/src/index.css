@@ -98,7 +98,10 @@ button {
 button:hover {
     transform: scale(1.1);
     background: linear-gradient(0deg, #ddb355 0%, #f0cf60 36%, #f0cf60 100%);
+    transition: all 0.3s;
 }
+
+
 
 input[type="text"],
 textarea {
