@@ -50,7 +50,7 @@ export const createComment = async (req, res) => {
             // Send error as response
             return res.status(400).json({error: "Please fill in a message"})
     
-        // Get parentId from request parameters and find in database
+        // Find parent and increment commentCount
         const { parentId } = req.params;
         let parent = await Post.findById(parentId);
         if (!parent) {
@@ -58,8 +58,16 @@ export const createComment = async (req, res) => {
             if (!parent)
                 return res.status(404).json({error: "Parent not found"})
         }
+        parent.commentCount += 1;
+        await parent.save();
 
+        // Find user and increment commentCount
         const user = await User.findById(userId);
+        if (!user)
+            return res.status(404).json({error: "User not found"})
+        user.commentCount += 1;
+        user.upvoteCount += 1;
+        await user.save();
     
         // Create new comment object
         const newComment = new Comment({
@@ -71,13 +79,9 @@ export const createComment = async (req, res) => {
                 [userId]: true
             },
             downvotes: {},
-            comments: []
+            commentCount: 0
         });
         await newComment.save();
-
-        // Add comment to the parent comment's comments array and save to database
-        parent.comments.push(newComment._id);
-        await parent.save();
     
         // Respond with all comments from database to update feed
         const comments = await Comment.find();
@@ -154,14 +158,16 @@ export const updateComment = async (req, res) => {
 
 
 
-/* GET POST COMMENTS */
+/* GET PARENT COMMENTS */
 
-export const getPostComments = async (req, res) => {
+export const getParentComments = async (req, res) => {
 
     try {
 
         // Get parentId from request parameters and find in database
         const { parentId } = req.params;
+
+        // Get parent from database
         let parent = await Post.findById(parentId);
         if (!parent) {
             parent = await Comment.findById(parentId);
@@ -169,12 +175,8 @@ export const getPostComments = async (req, res) => {
                 return res.status(404).json({error: "Parent not found"})
         }
 
-        console.log(parent.comments)
-
-        // Get all comments from database in parent's comments array
-        const comments = await Comment.find({ parentId: { $in: parent.comments } });
-
-        console.log(comments)
+        // Get all comments with parentId from database
+        const comments = await Comment.find({ parentId: parentId }).sort({ createdAt: -1 });
 
         // Respond with all of post's comments
         res.status(200).json(comments); // Return only the comments array
@@ -199,17 +201,33 @@ export const upvoteComment = async (req, res) => {
         // Get comment and user id from request parameters
         const { commentId } = req.params;
         const { userId } = req.body;
+
         const comment = await Comment.findById(commentId);
+        if (!comment)
+            return res.status(404).json({error: "Comment not found"})
+
+        // Get user from database
+        const user = await User.findById(userId);
+        if (!user)
+            return res.status(404).json({error: "User not found"})
 
         // If user has already upvoted comment: remove upvote
         // Else: add upvote and remove downvote if user has downvoted comment
         const isUpvoted = comment.upvotes.get(userId);
-        if (isUpvoted)
+        if (isUpvoted) {
             comment.upvotes.delete(userId);
+            user.upvoteCount -= 1;
+        }
         else {
             comment.upvotes.set(userId, true);
-            comment.downvotes.delete(userId);
+            user.upvoteCount += 1;
+
+            if (comment.downvotes.get(userId)) {
+                comment.downvotes.delete(userId);
+                user.downvoteCount -= 1;
+            }
         }
+        user.save();
         
         // Update comment in database and respond with updated comment
         const updatedComment = await Comment.findByIdAndUpdate(
@@ -239,17 +257,33 @@ export const downvoteComment = async (req, res) => {
         // Get comment and user id from request parameters
         const { commentId } = req.params;
         const { userId } = req.body;
+
         const comment = await Comment.findById(commentId);
+        if (!comment)
+            return res.status(404).json({error: "Comment not found"})
+
+        // Get user from database
+        const user = await User.findById(userId);
+        if (!user)
+            return res.status(404).json({error: "User not found"})
 
         // If user has already downvoted comment: remove downvote
         // Else: add downvote and remove upvote if user has upvoted comment
         const isDownvoted = comment.downvotes.get(userId);
-        if (isDownvoted)
+        if (isDownvoted) {
             comment.downvotes.delete(userId);
+            user.downvoteCount -= 1;
+        }
         else {
             comment.downvotes.set(userId, true);
-            comment.upvotes.delete(userId);
+            user.downvoteCount += 1;
+
+            if (comment.upvotes.get(userId)) {
+                comment.upvotes.delete(userId);
+                user.upvoteCount -= 1;
+            }
         }
+        user.save();
         
         // Update comment in database and respond with updated comment
         const updatedComment = await Comment.findByIdAndUpdate(
@@ -279,23 +313,77 @@ export const deleteComment = async (req, res) => {
 
     // Delete comment from db by commentId (asynchronous)
     const comment = await Comment.findByIdAndDelete(commentId)
-
-    // Delete comment from parent's comments array
-    const parent = await Post.findById(comment.parentId)
-    if (!parent) {
-        const parent = await Comment.findById(comment.parentId)
-        if (!parent)
-            return res.status(404).json({error: "Parent not found"})
-    }
-
-    // Delete comment from parent's comments array
-    parent.comments.pull(commentId)
-
     // If comment not found
     if (!comment)
         // Send error as response
         return res.status(404).json({error: "Comment not found"})
+    
+    // Find parent and decrement comment count
+    let parent = await Post.findById(comment.parentId);
+    if (!parent) {
+        parent = await Comment.findById(comment.parentId);
+        if (!parent)
+            return res.status(404).json({error: "Parent not found"})
+    }
+    parent.commentCount -= 1;
+    await parent.save();
+
+    // Find user
+    const user = await User.findById(comment.userId);
+    if (!user)
+        // Send error as response
+        return res.status(404).json({error: "User not found"})
+
+    // Decrement user's commentCount
+    user.commentCount -= 1;
+
+    // Decrement user's upvoteCount and downvoteCount
+    if (comment.upvotes.get(user._id))
+        user.upvoteCount -= 1;
+    else {
+        if (comment.downvotes.get(user._id))
+            user.downvoteCount -= 1;
+    }
+
+    await user.save();
+
+    deleteCommentsRecursive(commentId);
 
     // Send comment data as response
     res.status(200).json(comment)
+}
+
+
+
+const deleteCommentsRecursive = async (parentId) => {
+
+    const toDelete = await Comment.find({parentId: parentId})
+
+    console.log(toDelete)
+
+    for (let i = 0; i < toDelete.length; i++) {
+
+        // Find user
+        const user = await User.findById(toDelete[i].userId);
+        if (!user)
+            // Send error as response
+            return res.status(404).json({error: "User not found"})
+
+        // Decrement user's commentCount
+        user.commentCount -= 1;
+
+        // Decrement user's upvoteCount and downvoteCount
+        if (toDelete[i].upvotes.get(user._id))
+            user.upvoteCount -= 1;
+        else {
+            if (toDelete[i].downvotes.get(user._id))
+                user.downvoteCount -= 1;
+        }
+
+        await user.save();
+
+        await deleteCommentsRecursive(toDelete[i]._id)
+
+        await Comment.findByIdAndDelete(toDelete[i]._id)
+    }
 }

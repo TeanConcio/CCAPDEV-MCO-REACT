@@ -36,18 +36,30 @@ const UserSchema = new mongoose.Schema(
         },
         picturePath: {
             type: String,
-            default: ""
+            default: "no_picture.png"
         },
         friends: {
             type: Array,
             default: []
         },
-        postsNum: {
+        postCount: {
             type: Number,
+            required: true,
             default: 0
         },
-        upvotes: {
+        commentCount: {
             type: Number,
+            required: true,
+            default: 0
+        },
+        upvoteCount: {
+            type: Number,
+            required: true,
+            default: 0
+        },
+        downvoteCount: {
+            type: Number,
+            required: true,
             default: 0
         }
     },

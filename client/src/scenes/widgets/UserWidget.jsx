@@ -58,8 +58,10 @@ const UserWidget = ({ userId }) => {
     const {
         username,
         description,
-        postsNum,
-        upvotes,
+        postCount,
+        commentCount,
+        upvoteCount,
+        downvoteCount,
         friends,
     } = user;
 
@@ -92,7 +94,7 @@ const UserWidget = ({ userId }) => {
                     <div className="userprofilerow">
                         <div>
                             <p>Upvotes</p>
-                            <h2>{upvotes}</h2>
+                            <h2>{upvoteCount-downvoteCount}</h2>
                         </div>
                         <div>
                             <p>Date Joined</p>
@@ -100,7 +102,7 @@ const UserWidget = ({ userId }) => {
                         </div>
                         <div>
                             <p>Posts</p>
-                            <h2>{postsNum}</h2>
+                            <h2>{postCount}</h2>
                         </div>
                     </div>
                 </div>

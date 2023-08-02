@@ -91,6 +91,8 @@ const CreateEditCommentForm = ({  parentId, commentMessage = "",  EditMode = fal
             // Reset data
             setMessage("");
             setError(null);
+
+            window.location.reload();
         }
         else 
             setError(comments.error)
@@ -121,7 +123,7 @@ const CreateEditCommentForm = ({  parentId, commentMessage = "",  EditMode = fal
         if (response.ok) {
             dispatch(setComment({ comment: comments }));
 
-            window.location.reload();
+            //window.location.reload();
         }
         else 
             setError(comments.error)

@@ -2,7 +2,7 @@
 
 // Modules
 import { useState } from 'react'
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { formatDistanceToNow } from 'date-fns'
 
@@ -14,6 +14,7 @@ import {
 
 // Components
 import CreateEditCommentForm from './CreateEditCommentForm';
+import CommentFeed from "components/CommentFeed";
 
 // Styles
 import "styles/components/Comment.css"
@@ -32,7 +33,7 @@ const Comment = ({
     message,
     upvotes,
     downvotes,
-    comments
+    commentCount
 }) => {
 
     /* HOOKS AND STATES */
@@ -40,7 +41,6 @@ const Comment = ({
 
     // Get token and user data
     const dispatch = useDispatch();
-    const navigate = useNavigate();
     const token = useSelector((state) => state.token);
     const loggedInUserId = useSelector((state) => state.user._id);
 
@@ -51,14 +51,13 @@ const Comment = ({
     const baseDownvoteCount = Object.keys(downvotes).length;
     const [voteCount, setVoteCount] = useState(baseUpvoteCount - baseDownvoteCount)
     
-    // Edit
+    // Modes
+    const [replyMode, setReplyMode] = useState(false)
     const [editMode, setEditMode] = useState(false)
 
     // Style variables
     const width = "100%"
     const margin = "0px 20px"
-
-    console.log(commentId, commentUserId, username, createdAt, message, upvotes, downvotes, comments)
 
 
 
@@ -144,7 +143,7 @@ const Comment = ({
         // Else: Set the error state variable
         if (response.ok) {
             dispatch(setUndeletedComments({ comment: deletedComment }))
-            navigate(`/home`)
+            window.location.reload();
         }
             
         else {}
@@ -193,8 +192,11 @@ const Comment = ({
                         </div>
 
                         <div className="comment">
-                            <div className="count"> {comments.length} </div> 
-                            <button className="comment-btn"> 💭 </button>
+                            <div className="count"> {commentCount} </div> 
+                            <button 
+                                className="comment-btn" 
+                                onClick={() => setReplyMode(!replyMode)}
+                            > 💭 </button>
                             
                         </div>
                     </div>
@@ -202,7 +204,10 @@ const Comment = ({
                     { (commentUserId === loggedInUserId) && (
 
                         <div className="modify">
-                            <button className="edit btn" onClick={() => setEditMode(!editMode)}> ✏ </button>
+                            <button
+                                className="edit btn"
+                                onClick={() => setEditMode(!editMode)}
+                            > ✏ </button>
                             <button className="delete btn" onClick={deleteComment}> 🗑 </button>
                         </div>
                     )}
@@ -225,6 +230,28 @@ const Comment = ({
                     commentMessage = {message}
                     EditMode
                 />
+            )}
+
+
+
+            { replyMode && (
+
+                <div 
+                    className="reply"
+                    style={{paddingLeft: "50px"}}
+                >
+
+                    <CreateEditCommentForm
+                        parentId = {commentId}
+                    />
+
+                    <CommentFeed 
+                        parentId = {commentId}
+                        replyMode
+                    />
+
+                </div>
+
             )}
 
         </div>

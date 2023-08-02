@@ -6,7 +6,7 @@ import express from "express";
 // Controllers
 import { 
     validateCommentId,
-    getPostComments,
+    getParentComments,
     upvoteComment,
     downvoteComment,
     deleteComment
@@ -30,7 +30,7 @@ const router = express.Router();
 
 // Read
 // router.get("/commentId", verifyToken, validateCommentId, getComment);
-router.get("/:parentId/comments", verifyToken, getPostComments);
+router.get("/:parentId/comments", verifyToken, getParentComments);
 
 // Update
 router.patch("/:commentId/upvote", verifyToken, validateCommentId, upvoteComment);

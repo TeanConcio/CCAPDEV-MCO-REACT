@@ -43,10 +43,10 @@ const commentSchema = mongoose.Schema(
             of: Boolean,
             default: {},
         },
-        comments: {
-            type: Array,
-            of: String,
-            default: [],
+        commentCount: {
+            type: Number,
+            required: true,
+            default: 0
         }
     },
     { 

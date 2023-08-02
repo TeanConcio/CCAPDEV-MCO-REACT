@@ -104,7 +104,7 @@ const ViewPostPage = () => {
                                 userPicturePath={post.userPicturePath}
                                 upvotes={post.upvotes}
                                 downvotes={post.downvotes}
-                                commentCount={post.comments.length}
+                                commentCount={post.commentCount}
                                 ViewPost
                             />
 

@@ -22,11 +22,7 @@ export const register = async (req, res) => {
             email,
             password,
             username,
-            description,
             picturePath,
-            friends,
-            postsNum,
-            upvotes
         } = req.body
 
         // Get random decryption key to Hash password
@@ -35,14 +31,10 @@ export const register = async (req, res) => {
 
         // Create new user with data
         const newUser = new User({
-            email,
+            email: email,
             password: passwordHash,
-            username,
-            description,
-            picturePath,
-            friends,
-            postsNum,
-            upvotes
+            username: username,
+            picturePath: picturePath,
         })
 
         // Save new user to database

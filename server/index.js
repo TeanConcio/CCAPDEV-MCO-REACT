@@ -109,7 +109,7 @@ app.use("/comments", commentRoutes)
 
 // Assign local port
 const PORT = process.env.LOCAL_PORT || process.env.BACKUP_LOCAL_PORT
-const MONGO_URL = process.env.ONLINE_MONGO_URL
+const MONGO_URL = process.env.LOCAL_MONGO_URL
 
 // Connect to MongoDB
 mongoose

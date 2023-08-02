@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 // State
+import { useState } from "react";
 import { setComments } from "state";
 
 // Components
@@ -16,14 +17,16 @@ import Comment from "./Comment";
 
 /* POSTS WIDGET COMPONENT */
 
-const CommentFeed = ({ parentId }) => {
+const CommentFeed = ({ parentId, replyMode = false }) => {
 
     /* HOOKS AND STATES */
 
     // Get comment and token
     const dispatch = useDispatch();
-    const comments = useSelector((state) => state.comments);
     const token = useSelector((state) => state.token);
+    const comments = useSelector((state) => state.comments);
+
+    const [replies, setReplies] = useState(null);
 
 
 
@@ -48,7 +51,10 @@ const CommentFeed = ({ parentId }) => {
             window.location = "/";
         }
         else
-            dispatch(setComments({ comments: data }));
+            if (!replyMode)
+                dispatch(setComments({ comments: data }));
+            else
+                setReplies(data);
     };
 
 
@@ -70,32 +76,66 @@ const CommentFeed = ({ parentId }) => {
 
         <section>
 
-            {Array.isArray(comments) && comments.length > 0 ? (
-                comments.map(({
-                    _id, 
-                    userId, 
-                    username, 
-                    createdAt, 
-                    message,
-                    upvotes,
-                    downvotes,
-                    comments
-                }) => (
-                <Comment
-                    key={_id}
-                    commentId = {_id}
-                    commentUserId = {userId}
-                    username = {username}
-                    createdAt = {createdAt}
-                    message = {message}
-                    upvotes = {upvotes}
-                    downvotes = {downvotes}
-                    comments = {comments}
-                />
-                ))
+            {!replyMode ? (
+
+                Array.isArray(comments) && comments.length > 0 ? (
+                    comments.map(({
+                        _id, 
+                        userId, 
+                        username, 
+                        createdAt, 
+                        message,
+                        upvotes,
+                        downvotes,
+                        commentCount
+                    }) => (
+                    <Comment
+                        key={_id}
+                        commentId = {_id}
+                        commentUserId = {userId}
+                        username = {username}
+                        createdAt = {createdAt}
+                        message = {message}
+                        upvotes = {upvotes}
+                        downvotes = {downvotes}
+                        commentCount = {commentCount}
+                    />
+                    ))
+                ) : (
+                    <p>No comments found</p>
+                )
+
             ) : (
-                <p>No comments found</p>
+
+                Array.isArray(replies) && replies.length > 0 ? (
+                    replies.map(({
+                        _id, 
+                        userId, 
+                        username, 
+                        createdAt, 
+                        message,
+                        upvotes,
+                        downvotes,
+                        commentCount
+                    }) => (
+                    <Comment
+                        key={_id}
+                        commentId = {_id}
+                        commentUserId = {userId}
+                        username = {username}
+                        createdAt = {createdAt}
+                        message = {message}
+                        upvotes = {upvotes}
+                        downvotes = {downvotes}
+                        commentCount = {commentCount}
+                    />
+                    ))
+                ) : (
+                    <p>No replies found</p>
+                )
+
             )}
+
         </section>
     );
 };

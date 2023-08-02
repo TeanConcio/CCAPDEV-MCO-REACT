@@ -102,8 +102,9 @@ const PostFeed = ({ userId, isProfile = false }) => {
                     picturePath, 
                     userPicturePath, 
                     upvotes, 
-                    comments, 
-                    downvotes }) => (
+                    downvotes,
+                    commentCount
+                }) => (
                 <Post
                     key={_id}
                     postId={_id}
@@ -116,7 +117,7 @@ const PostFeed = ({ userId, isProfile = false }) => {
                     userPicturePath={userPicturePath}
                     upvotes={upvotes}
                     downvotes={downvotes}
-                    commentCount={Array.isArray(comments) && comments.length > 0 ? (comments.length) : (0)}
+                    commentCount={commentCount}
                 />
                 ))
             ) : (

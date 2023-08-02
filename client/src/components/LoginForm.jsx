@@ -44,7 +44,7 @@ const initialValuesRegister = {
     email: "",
     password: "",
     username: "",
-    picture: null,
+    picture: "",
 };
 
 // Login
@@ -80,27 +80,30 @@ const LoginForm = () => {
     // Register
     const register = async (values, onSubmitProps) => {
 
-      // Get form data
-      const formData = new FormData();
-      for (let value in values)
-      formData.append(value, values[value]);
-      formData.append("picturePath", values.picture.name);
+        // Get form data
+        const formData = new FormData();
+        for (let value in values)
+            formData.append(value, values[value]);
+        if (values.picture.name)
+            formData.append("picturePath", values.picture.name);
+        else
+            formData.append("picturePath", "no_picture.png");
 
 
-      // Send request to server
-      const savedUserResponse = await fetch("http://localhost:4000/auth/register", {
-          method: "POST",
-          body: formData,
-      });
-      const savedUser = await savedUserResponse.json();
+        // Send request to server
+        const savedUserResponse = await fetch("http://localhost:4000/auth/register", {
+            method: "POST",
+            body: formData,
+        });
+        const savedUser = await savedUserResponse.json();
 
-      // If user saved, set login state
-      onSubmitProps.resetForm();
-      if (savedUser) {
-          setPageType("login");
-      }
+        // If user saved, set login state
+        onSubmitProps.resetForm();
+        if (savedUser) {
+            setPageType("login");
+        }
 
-      console.log(savedUser);
+        console.log(savedUser);
     };
 
 
@@ -266,7 +269,7 @@ const LoginForm = () => {
                                 name="password"
                                 required
                             />
-                             <Dropzone
+                            <Dropzone
                                 acceptedFiles=".jpg,.jpeg,.png"
                                 multiple={false}
                                 onDrop={(acceptedFiles) => {
@@ -306,7 +309,7 @@ const LoginForm = () => {
                                         )}
                                     </Box>
                                 )}
-                              </Dropzone>
+                            </Dropzone>
                             <br></br>
                             <button
                                 type="submit"
