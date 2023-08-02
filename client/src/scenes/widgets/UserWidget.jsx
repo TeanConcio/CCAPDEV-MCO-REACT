@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import UserImage from "components/UserImage";
 import FlexBetween from "components/FlexBetween";
 import WidgetWrapper from "components/WidgetWrapper";
+import { format } from 'date-fns'
 
 // CSS import
 import "../../styles/scenes/widgets/UserProfile.css";
@@ -95,7 +96,7 @@ const UserWidget = ({ userId }) => {
                         </div>
                         <div>
                             <p>Date Joined</p>
-                            <h2>{user.createdAt}</h2>
+                            <h2>{format(new Date(user.createdAt), "MMMM d Y")}</h2>
                         </div>
                         <div>
                             <p>Posts</p>
