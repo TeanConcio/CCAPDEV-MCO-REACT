@@ -47,6 +47,7 @@ const postSchema = mongoose.Schema(
         },
         comments: {
             type: Array,
+            of: String,
             default: [],
         }
     },

@@ -11,6 +11,11 @@ import mongoose from "mongoose";
 
 const commentSchema = mongoose.Schema(
     {
+        parentId: {
+            type: String,
+            required: true,
+            ref: "Post"
+        },
         userId: {
             type: String,
             required: true,
@@ -40,6 +45,7 @@ const commentSchema = mongoose.Schema(
         },
         comments: {
             type: Array,
+            of: String,
             default: [],
         }
     },

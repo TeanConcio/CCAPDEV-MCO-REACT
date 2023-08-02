@@ -44,9 +44,6 @@ export const createComment = async (req, res) => {
             userId, 
             message
         } = req.body;
-
-        console.log(req.params)
-        console.log(req.body)
     
         // If there are empty required fields
         if (message === "")
@@ -66,9 +63,10 @@ export const createComment = async (req, res) => {
     
         // Create new comment object
         const newComment = new Comment({
-            userId,
+            parentId: parentId,
+            userId: userId,
             username: user.username,
-            message,
+            message: message,
             upvotes: {
                 [userId]: true
             },
@@ -171,7 +169,10 @@ export const getPostComments = async (req, res) => {
                 return res.status(404).json({error: "Parent not found"})
         }
 
-        const comments = await Comment.find().sort({createdAt: -1});
+        console.log(parent.comments)
+
+        // Get all comments from database in parent's comments array
+        const comments = await Comment.find({ parentId: { $in: parent.comments } });
 
         console.log(comments)
 
@@ -278,6 +279,17 @@ export const deleteComment = async (req, res) => {
 
     // Delete comment from db by commentId (asynchronous)
     const comment = await Comment.findByIdAndDelete(commentId)
+
+    // Delete comment from parent's comments array
+    const parent = await Post.findById(comment.parentId)
+    if (!parent) {
+        const parent = await Comment.findById(comment.parentId)
+        if (!parent)
+            return res.status(404).json({error: "Parent not found"})
+    }
+
+    // Delete comment from parent's comments array
+    parent.comments.pull(commentId)
 
     // If comment not found
     if (!comment)
