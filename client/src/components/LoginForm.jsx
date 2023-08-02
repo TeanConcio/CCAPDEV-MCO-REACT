@@ -84,6 +84,7 @@ const LoginForm = () => {
         const formData = new FormData();
         for (let value in values)
             formData.append(value, values[value]);
+            
         if (values.picture.name)
             formData.append("picturePath", values.picture.name);
         else

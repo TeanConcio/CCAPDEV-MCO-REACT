@@ -62,7 +62,6 @@ export const login = async (req, res) => {
 
         // Get data from request body json
         const { email, password, rememberMe } = req.body
-        console.log("rememberMe in login func:" + rememberMe)
 
         // Get user if user exists, if not: respond with error
         const user = await User.findOne({ email: email })

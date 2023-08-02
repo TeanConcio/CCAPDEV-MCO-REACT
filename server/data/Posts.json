@@ -1,0 +1,582 @@
+[{
+  "_id": {
+    "$oid": "64be4959eae01c7c69428d07"
+  },
+  "userId": "64be4959eae01c7c69428d00",
+  "username": "131415",
+  "title": "This is the last really long random description. This one is longer than the previous one.",
+  "picturePath": "post3.jpeg",
+  "upvotes": {
+    "64be4959eae01c7c69428cfd": true,
+    "64be4959eae01c7c69428d02": true,
+    "64be4959eae01c7c69428cff": true,
+    "64be4959eae01c7c69428d01": true
+  },
+  "downvotes": {},
+  "commentCount": 0,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2023-07-24T09:50:21.468Z"
+  },
+  "updatedAt": {
+    "$date": "2023-07-24T09:50:21.468Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "64be4959eae01c7c69428d05"
+  },
+  "userId": "64be4959eae01c7c69428cfd",
+  "username": "456",
+  "title": "Some really long random description",
+  "picturePath": "post1.jpeg",
+  "upvotes": {
+    "64be4959eae01c7c69428cfc": true,
+    "64be4959eae01c7c69428cfe": true,
+    "64be4959eae01c7c69428cff": true,
+    "64be4959eae01c7c69428d00": true
+  },
+  "downvotes": {},
+  "commentCount": 0,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2023-07-24T09:50:21.467Z"
+  },
+  "updatedAt": {
+    "$date": "2023-07-24T09:50:21.467Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "64be4959eae01c7c69428d0a"
+  },
+  "userId": "64be4959eae01c7c69428d03",
+  "username": "222324",
+  "title": "For the last time, I'm going to play video games now. I'm tired of typing. I'm going to play video games now.",
+  "picturePath": "post6.jpeg",
+  "upvotes": {
+    "64be4959eae01c7c69428cfd": true,
+    "64be4959eae01c7c69428cfe": true
+  },
+  "downvotes": {},
+  "commentCount": 0,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2023-07-24T09:50:21.468Z"
+  },
+  "updatedAt": {
+    "$date": "2023-07-24T09:50:21.468Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "64be4959eae01c7c69428d06"
+  },
+  "userId": "64be4959eae01c7c69428cff",
+  "username": "101112",
+  "title": "Another really long random description. This one is longer than the previous one.",
+  "picturePath": "post2.jpeg",
+  "upvotes": {
+    "64be4959eae01c7c69428d03": true,
+    "64be4959eae01c7c69428d00": true,
+    "64be4959eae01c7c69428cfd": true,
+    "64be4959eae01c7c69428cfe": true
+  },
+  "downvotes": {},
+  "commentCount": 0,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2023-07-24T09:50:21.468Z"
+  },
+  "updatedAt": {
+    "$date": "2023-07-24T09:50:21.468Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "64be4959eae01c7c69428d09"
+  },
+  "userId": "64be4959eae01c7c69428d02",
+  "username": "192021",
+  "title": "Just a short description. I'm tired of typing. I'm going to play video games now.",
+  "picturePath": "post5.jpeg",
+  "upvotes": {
+    "64be4959eae01c7c69428cfd": true,
+    "64be4959eae01c7c69428cff": true,
+    "64be4959eae01c7c69428d01": true,
+    "64be4959eae01c7c69428d03": true
+  },
+  "downvotes": {},
+  "commentCount": 0,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2023-07-24T09:50:21.468Z"
+  },
+  "updatedAt": {
+    "$date": "2023-07-24T09:50:21.468Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "64be4959eae01c7c69428d08"
+  },
+  "userId": "64be4959eae01c7c69428d01",
+  "username": "161718",
+  "title": "This is the last really long random description. This one is longer than the previous one. Man I'm bored. I'm going to keep typing until I run out of things to say.",
+  "picturePath": "post4.jpeg",
+  "upvotes": {
+    "64be4959eae01c7c69428cfd": true,
+    "64be4959eae01c7c69428d02": true,
+    "64be4959eae01c7c69428cff": true
+  },
+  "downvotes": {},
+  "commentCount": 0,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2023-07-24T09:50:21.468Z"
+  },
+  "updatedAt": {
+    "$date": "2023-07-24T09:50:21.468Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "64be7ca645858391d0e6f2c2"
+  },
+  "userId": "64be7bf745858391d0e6f2bc",
+  "username": "cynthiaenjoyer",
+  "title": "Pokemon fights",
+  "body": "You know how IRL scientists are always ready to throw hands over certain topics? What I wanna know is what kinda stupid arguments Pokemon scientists get into fights over. A heated battle starts in the middle of a conference because someone asked if Slowking's Shellder could be considered its own separate species or not",
+  "picturePath": "",
+  "upvotes": {
+    "64be7bf745858391d0e6f2bc": true
+  },
+  "downvotes": {},
+  "commentCount": 0,
+  "createdAt": {
+    "$date": "2023-07-24T13:29:10.544Z"
+  },
+  "updatedAt": {
+    "$date": "2023-07-24T13:29:10.544Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64be7d1345858391d0e6f2cb"
+  },
+  "userId": "64be7bf745858391d0e6f2bc",
+  "username": "cynthiaenjoyer",
+  "title": "Playing Pokemon Games the Right Way.",
+  "body": "I think it's very brave and sexy of me to still play Pokemon games in the exact same way I did when I was 5 years old - ignoring all stat changing moves. This is an offensive move only household",
+  "picturePath": "",
+  "upvotes": {
+    "64be7bf745858391d0e6f2bc": true
+  },
+  "downvotes": {},
+  "commentCount": 0,
+  "createdAt": {
+    "$date": "2023-07-24T13:30:59.141Z"
+  },
+  "updatedAt": {
+    "$date": "2023-07-24T13:33:32.973Z"
+  },
+  "__v": 1
+},
+{
+  "_id": {
+    "$oid": "64be7d8f45858391d0e6f2d0"
+  },
+  "userId": "64be7bf745858391d0e6f2bc",
+  "username": "cynthiaenjoyer",
+  "title": "Ash",
+  "body": "honestly stuff like \"ash ketchum has been 10 for 30 years\" isn't as funny as imagining all the events of the series taking place in the span of a year like it's just been one hell of a year lmao",
+  "picturePath": "",
+  "upvotes": {
+    "64be7bf745858391d0e6f2bc": true
+  },
+  "downvotes": {},
+  "commentCount": 0,
+  "createdAt": {
+    "$date": "2023-07-24T13:33:03.171Z"
+  },
+  "updatedAt": {
+    "$date": "2023-07-24T13:33:03.171Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64be7dc845858391d0e6f2d5"
+  },
+  "userId": "64be7bf745858391d0e6f2bc",
+  "username": "cynthiaenjoyer",
+  "title": "[META] Spam",
+  "body": "Mods wtf. There's way too much spam present on this site and no one seems to care about fixing any of it",
+  "picturePath": "",
+  "upvotes": {
+    "64be7bf745858391d0e6f2bc": true
+  },
+  "downvotes": {},
+  "commentCount": 0,
+  "createdAt": {
+    "$date": "2023-07-24T13:34:00.646Z"
+  },
+  "updatedAt": {
+    "$date": "2023-07-24T13:34:00.646Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64be7e3c45858391d0e6f2da"
+  },
+  "userId": "64be7bf745858391d0e6f2bc",
+  "username": "cynthiaenjoyer",
+  "title": "Which Pokemon could you most easily kill with your bare hands",
+  "body": "I'll start: Mr. Mime. Not because Mr. Mime is particularly weak but because if I ever saw a Mr. Mime irl, I'd be imbued weith the exact power I need to kill a Mr. Mime.",
+  "picturePath": "",
+  "upvotes": {
+    "64be7bf745858391d0e6f2bc": true
+  },
+  "downvotes": {},
+  "commentCount": 0,
+  "createdAt": {
+    "$date": "2023-07-24T13:35:56.762Z"
+  },
+  "updatedAt": {
+    "$date": "2023-07-24T13:35:56.762Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64be7eda45858391d0e6f2e4"
+  },
+  "userId": "64be7e6c45858391d0e6f2de",
+  "username": "AmiyaAtRhodes",
+  "title": "Pokemon x Arknights Crossover when?",
+  "body": "I really do believe that pokemon would work great in arknights. They'd be like companions to the members of Rhodes Island (the main organization of the game). I mean they;d be infected with what basically amounts to rock cancer but it would be like having mega-powered moves all the time; also imbued with that same rock cancer",
+  "picturePath": "",
+  "upvotes": {
+    "64be7e6c45858391d0e6f2de": true
+  },
+  "downvotes": {},
+  "commentCount": 0,
+  "createdAt": {
+    "$date": "2023-07-24T13:38:34.038Z"
+  },
+  "updatedAt": {
+    "$date": "2023-07-24T13:38:34.038Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64be7f6845858391d0e6f2e9"
+  },
+  "userId": "64be7e6c45858391d0e6f2de",
+  "username": "AmiyaAtRhodes",
+  "title": "Pokemon Cards",
+  "body": "ayy shoutout to everyone who had pokemon cards when they were younger and didn't have a clue on how to use em lol",
+  "picturePath": "IMG_6125.jpg",
+  "upvotes": {
+    "64be7e6c45858391d0e6f2de": true
+  },
+  "downvotes": {},
+  "commentCount": 0,
+  "createdAt": {
+    "$date": "2023-07-24T13:40:56.639Z"
+  },
+  "updatedAt": {
+    "$date": "2023-07-24T13:40:56.639Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64be7ffd45858391d0e6f2ee"
+  },
+  "userId": "64be7e6c45858391d0e6f2de",
+  "username": "AmiyaAtRhodes",
+  "title": "Pokemon Descriptions",
+  "body": "The Pokemon Descriptions are relatable, we have treasures like \r\n\r\n\"Abra: Abra sleeps for eighteen hours a day\"\r\n\r\nThe real winner though is:\r\n\r\n\"Delcatty: Delcatty prefers to live an unfettered existence in which it can do as it pleases at its own pace. Because this Pokemon eats and sleeps whenever it decides, its daily routines are completely random\"",
+  "picturePath": "",
+  "upvotes": {
+    "64be7e6c45858391d0e6f2de": true
+  },
+  "downvotes": {},
+  "commentCount": 0,
+  "createdAt": {
+    "$date": "2023-07-24T13:43:25.736Z"
+  },
+  "updatedAt": {
+    "$date": "2023-07-24T13:43:25.736Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64be814445858391d0e6f2f3"
+  },
+  "userId": "64be7e6c45858391d0e6f2de",
+  "username": "AmiyaAtRhodes",
+  "title": "Respect",
+  "body": "I was on the phone with my 7-year-old cousin and can I just say that I have a newfound respect for him like damn. He playing pokemon sun and his team?? Nothing but wishiwashi and incineroar LIKE IMAGINE. HOW IN THE HELL. He  BEAT. THE. GAME. with this team. 5 fish and an angry ass cat. I'm scared of him and his 5 fish.",
+  "picturePath": "",
+  "upvotes": {
+    "64be7e6c45858391d0e6f2de": true
+  },
+  "downvotes": {},
+  "commentCount": 0,
+  "createdAt": {
+    "$date": "2023-07-24T13:48:52.050Z"
+  },
+  "updatedAt": {
+    "$date": "2023-07-24T15:50:43.910Z"
+  },
+  "__v": 1
+},
+{
+  "_id": {
+    "$oid": "64be83f045858391d0e6f2ff"
+  },
+  "userId": "64be7e6c45858391d0e6f2de",
+  "username": "AmiyaAtRhodes",
+  "title": "Machamp Vs Dugtrio",
+  "body": "",
+  "picturePath": "IMG_6127.jpg",
+  "upvotes": {
+    "64be7e6c45858391d0e6f2de": true,
+    "64be878f45858391d0e6f321": true
+  },
+  "downvotes": {},
+  "commentCount": 0,
+  "createdAt": {
+    "$date": "2023-07-24T14:00:16.879Z"
+  },
+  "updatedAt": {
+    "$date": "2023-07-24T16:27:04.281Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64be861345858391d0e6f309"
+  },
+  "userId": "64be84b845858391d0e6f303",
+  "username": "oak",
+  "title": "WAY OVERTHINKING THIS BUT",
+  "body": "Just occurred to me that the Team Rocket Trio are the perfect example of the more progressive social theories of crime. Let me explain: Jesse, James, and Meowth really don't seem like very bad people. Yeah, they do bad things sometimes but time and again, we see them put others' needs before theirs, care for the Pokemon they work with, and they even showed up at Ash' final battle to cheer him on. In one of the manga, they literally gave up a life of crime to start a family. SO WHY JOIN TEAM ROCKET? Beacause, they basically had no other choice. Jessie grew up a poor foster kid. James was a runaway. Meowth, a literal alley cat. It's been a while since I watched the anime but they did try to go straight and legit when they were younger but it didn't work so they turned to organized crime. This is like the background of Team Skull in Sun and Moon; the team is made up of disaffected youth who failed their Island Challenges and have been rejected by society so they decided to band together for safety and companionship. Much like actual, real-life gangs. Wow yeah so it's almost like, when given no alternative options and largely shunned by society, poor people often turn to crime. ",
+  "picturePath": "",
+  "upvotes": {
+    "64be84b845858391d0e6f303": true
+  },
+  "downvotes": {},
+  "commentCount": 0,
+  "createdAt": {
+    "$date": "2023-07-24T14:09:23.281Z"
+  },
+  "updatedAt": {
+    "$date": "2023-07-24T15:54:58.760Z"
+  },
+  "__v": 2
+},
+{
+  "_id": {
+    "$oid": "64be865d45858391d0e6f30e"
+  },
+  "userId": "64be84b845858391d0e6f303",
+  "username": "oak",
+  "title": "Me: a Pokemon Nerd",
+  "body": "I need to research why Pokemon Cards are becoming more expensive. It is now time to search up Pokemon Inflation. ",
+  "picturePath": "",
+  "upvotes": {
+    "64be84b845858391d0e6f303": true
+  },
+  "downvotes": {},
+  "commentCount": 0,
+  "createdAt": {
+    "$date": "2023-07-24T14:10:37.562Z"
+  },
+  "updatedAt": {
+    "$date": "2023-07-24T14:10:37.562Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64be868645858391d0e6f313"
+  },
+  "userId": "64be84b845858391d0e6f303",
+  "username": "oak",
+  "title": "Did you know",
+  "body": "combining Happy Hour, Amulet coin, and Rotom Prize Money makes you some ridiculous cash money. ",
+  "picturePath": "",
+  "upvotes": {
+    "64be84b845858391d0e6f303": true
+  },
+  "downvotes": {},
+  "commentCount": 0,
+  "createdAt": {
+    "$date": "2023-07-24T14:11:18.015Z"
+  },
+  "updatedAt": {
+    "$date": "2023-08-02T09:48:00.685Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64be870845858391d0e6f318"
+  },
+  "userId": "64be84b845858391d0e6f303",
+  "username": "oak",
+  "title": "Me vs Others",
+  "body": "Person: This is my lvl100 dragonite, his ability is inner focus and its got a rash nature. ||\r\nMe: This is my gengar i love him he is purple and thicc\r\n",
+  "picturePath": "",
+  "upvotes": {
+    "64be84b845858391d0e6f303": true
+  },
+  "downvotes": {},
+  "commentCount": 0,
+  "createdAt": {
+    "$date": "2023-07-24T14:13:28.535Z"
+  },
+  "updatedAt": {
+    "$date": "2023-08-01T08:44:18.571Z"
+  },
+  "__v": 2
+},
+{
+  "_id": {
+    "$oid": "64be874f45858391d0e6f31d"
+  },
+  "userId": "64be84b845858391d0e6f303",
+  "username": "oak",
+  "title": "How to cook pokemon",
+  "body": "title",
+  "picturePath": "",
+  "upvotes": {
+    "64be84b845858391d0e6f303": true
+  },
+  "downvotes": {},
+  "commentCount": 0,
+  "createdAt": {
+    "$date": "2023-07-24T14:14:39.953Z"
+  },
+  "updatedAt": {
+    "$date": "2023-08-01T08:09:33.894Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64be89a345858391d0e6f363"
+  },
+  "userId": "64be878f45858391d0e6f321",
+  "username": "banana3",
+  "title": "u/oak's posts gave me whiplash",
+  "body": "The Duality of Man",
+  "picturePath": "image (1) (1).jpg",
+  "upvotes": {
+    "64be878f45858391d0e6f321": true
+  },
+  "downvotes": {},
+  "commentCount": 0,
+  "createdAt": {
+    "$date": "2023-07-24T14:24:35.509Z"
+  },
+  "updatedAt": {
+    "$date": "2023-07-24T15:51:35.828Z"
+  },
+  "__v": 1
+},
+{
+  "_id": {
+    "$oid": "64be8e4d45858391d0e6f368"
+  },
+  "userId": "64be878f45858391d0e6f321",
+  "username": "banana3",
+  "title": "What pokemon would you guys wanna be for a day?",
+  "body": "I'll start: Look at my profile pic",
+  "picturePath": "",
+  "upvotes": {
+    "64be878f45858391d0e6f321": true
+  },
+  "downvotes": {},
+  "commentCount": 0,
+  "createdAt": {
+    "$date": "2023-07-24T14:44:29.479Z"
+  },
+  "updatedAt": {
+    "$date": "2023-08-01T08:41:50.019Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64be8f7c45858391d0e6f36d"
+  },
+  "userId": "64be878f45858391d0e6f321",
+  "username": "banana3",
+  "title": "Pokemon games be like",
+  "body": "Pikachu: Pika Pika! || Every Other Pokemon: *computer generated screams of the damned*",
+  "picturePath": "",
+  "upvotes": {
+    "64be878f45858391d0e6f321": true
+  },
+  "downvotes": {},
+  "commentCount": 0,
+  "createdAt": {
+    "$date": "2023-07-24T14:49:32.995Z"
+  },
+  "updatedAt": {
+    "$date": "2023-08-01T08:41:55.426Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64be905545858391d0e6f372"
+  },
+  "userId": "64be878f45858391d0e6f321",
+  "username": "banana3",
+  "title": "Chinese and Egyptians are Pokemon Professors",
+  "body": "The Chinese and ancient Egyptian Word for cat is \"Mao\" and \"Mau\" respectively. In fact, the Egyptian \"Mau\" is the oldest cat breed in the world and they both named this after the sounds that cats made. ||| Early Chinese/Egyptian encountering cat for the first time: \"What are you, creature?\" Cat: *meows* Humans: \"Oh okay then\"",
+  "picturePath": "",
+  "upvotes": {
+    "64be878f45858391d0e6f321": true
+  },
+  "downvotes": {},
+  "commentCount": 0,
+  "createdAt": {
+    "$date": "2023-07-24T14:53:09.484Z"
+  },
+  "updatedAt": {
+    "$date": "2023-08-02T09:19:34.144Z"
+  },
+  "__v": 2
+},
+{
+  "_id": {
+    "$oid": "64c7e4bb0e27e803d22e5efd"
+  },
+  "userId": "64be4959eae01c7c69428d04",
+  "username": "McLovin",
+  "title": "test",
+  "body": "this is a test for token (delete later)",
+  "picturePath": "",
+  "upvotes": {
+    "64be4959eae01c7c69428d04": true
+  },
+  "downvotes": {},
+  "commentCount": 0,
+  "createdAt": {
+    "$date": "2023-07-31T16:43:39.079Z"
+  },
+  "updatedAt": {
+    "$date": "2023-08-02T09:19:39.359Z"
+  },
+  "__v": 0
+}]

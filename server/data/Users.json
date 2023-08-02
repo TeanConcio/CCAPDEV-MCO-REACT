@@ -1,0 +1,308 @@
+[{
+  "_id": {
+    "$oid": "64be4959eae01c7c69428d01"
+  },
+  "email": "harveydunn@gmail.com",
+  "password": "$2b$10$dsasdgsagasda//G9JxQ4bQ8KXf4OAIe/X/AK9skyWUy",
+  "username": "161718",
+  "description": "",
+  "picturePath": "p7.jpeg",
+  "friends": [],
+  "postCount": 1,
+  "commentCount": 0,
+  "upvoteCount": 4,
+  "downvoteCount": 0,
+  "createdAt": {
+    "$date": "1970-01-16T23:42:06.073Z"
+  },
+  "updatedAt": {
+    "$date": "1970-01-16T23:42:06.073Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64be4959eae01c7c69428d03"
+  },
+  "email": "jessicadunn@gmail.com",
+  "password": "$2b$10$dsasdgsagasda//G9JxQ4bQ8KXf4OAIe/X/AK9skyWUy",
+  "username": "222324",
+  "description": "",
+  "picturePath": "p9.jpeg",
+  "friends": [],
+  "postCount": 1,
+  "commentCount": 0,
+  "upvoteCount": 2,
+  "downvoteCount": 0,
+  "createdAt": {
+    "$date": "1970-01-16T20:31:48.044Z"
+  },
+  "updatedAt": {
+    "$date": "1970-01-16T17:35:22.268Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64be4959eae01c7c69428d04"
+  },
+  "email": "tean@gmail.com",
+  "password": "$2b$10$v1yTVBa.c23gXeYaLl8Sbu/KZiA4Vb5k5khKTsAlVx2Xv7XxTaNKq",
+  "username": "McLovin",
+  "description": "",
+  "picturePath": "OVPIA Director for HR.png",
+  "friends": [],
+  "postCount": 1,
+  "commentCount": 0,
+  "upvoteCount": 1,
+  "downvoteCount": 0,
+  "createdAt": {
+    "$date": "1970-01-16T20:31:48.044Z"
+  },
+  "updatedAt": {
+    "$date": "2023-07-31T16:43:39.335Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64be4959eae01c7c69428d02"
+  },
+  "email": "carlyvowel@gmail.com",
+  "password": "$2b$10$dsasdgsagasda//G9JxQ4bQ8KXf4OAIe/X/AK9skyWUy",
+  "username": "192021",
+  "description": "",
+  "picturePath": "p8.jpeg",
+  "friends": [],
+  "postCount": 1,
+  "commentCount": 0,
+  "upvoteCount": 4,
+  "downvoteCount": 0,
+  "createdAt": {
+    "$date": "1970-01-20T20:18:24.324Z"
+  },
+  "updatedAt": {
+    "$date": "1970-01-20T00:18:36.557Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64be4959eae01c7c69428cfd"
+  },
+  "email": "thataaa@gmail.com",
+  "password": "$!FEAS@!O)_IDJda//G9JxQ4bQ8KXf4OAIe/X/AK9skyWUy",
+  "username": "456",
+  "description": "",
+  "picturePath": "p3.jpeg",
+  "friends": [],
+  "postCount": 1,
+  "commentCount": 0,
+  "upvoteCount": 4,
+  "downvoteCount": 0,
+  "createdAt": {
+    "$date": "1970-01-19T11:13:09.072Z"
+  },
+  "updatedAt": {
+    "$date": "1970-01-19T11:13:09.072Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64be4959eae01c7c69428cff"
+  },
+  "email": "whatchadoing@gmail.com",
+  "password": "$2b$10$dsasdgsagasda//G9JxQ4bQ8KXf4OAIe/X/AK9skyWUy",
+  "username": "101112",
+  "description": "",
+  "picturePath": "p6.jpeg",
+  "friends": [],
+  "postCount": 1,
+  "commentCount": 0,
+  "upvoteCount": 4,
+  "downvoteCount": 0,
+  "createdAt": {
+    "$date": "1970-01-15T02:40:14.568Z"
+  },
+  "updatedAt": {
+    "$date": "1970-01-15T02:40:14.568Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64be4959eae01c7c69428cfe"
+  },
+  "email": "someguy@gmail.com",
+  "password": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+  "username": "789",
+  "description": "",
+  "picturePath": "p4.jpeg",
+  "friends": [],
+  "postCount": 0,
+  "commentCount": 0,
+  "upvoteCount": 0,
+  "downvoteCount": 0,
+  "createdAt": {
+    "$date": "1970-01-15T21:48:10.662Z"
+  },
+  "updatedAt": {
+    "$date": "1970-01-15T21:48:10.662Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64be4959eae01c7c69428cfc"
+  },
+  "email": "aaaaaaa@gmail.com",
+  "password": "$2b$10$dsasdgsagasda//G9JxQ4bQ8KXf4OAIe/X/AK9skyWUy",
+  "username": "123",
+  "description": "",
+  "picturePath": "p11.jpeg",
+  "friends": [],
+  "postCount": 0,
+  "commentCount": 0,
+  "upvoteCount": 0,
+  "downvoteCount": 0,
+  "createdAt": {
+    "$date": "1970-01-13T21:46:51.422Z"
+  },
+  "updatedAt": {
+    "$date": "1970-01-13T21:46:51.422Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64be4959eae01c7c69428d00"
+  },
+  "email": "janedoe@gmail.com",
+  "password": "$2b$10$dsasdgsagasda//G9JxQ4bQ8KXf4OAIe/X/AK9skyWUy",
+  "username": "131415",
+  "description": "",
+  "picturePath": "p5.jpeg",
+  "friends": [],
+  "postCount": 1,
+  "commentCount": 0,
+  "upvoteCount": 4,
+  "downvoteCount": 0,
+  "createdAt": {
+    "$date": "1970-01-18T06:51:03.661Z"
+  },
+  "updatedAt": {
+    "$date": "1970-01-18T06:51:03.661Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64be7a76347f52e088c47a29"
+  },
+  "email": "Meowth@gmail.com",
+  "password": "$2b$10$9nmE6vg04oiG145ZNmvKkeFQtzv.9mcL6E7tSY4GjQSPpFTdPtNDC",
+  "username": "Meowth",
+  "description": "",
+  "picturePath": "A-Cat.jpg",
+  "friends": [],
+  "postCount": 0,
+  "commentCount": 0,
+  "upvoteCount": 0,
+  "downvoteCount": 0,
+  "createdAt": {
+    "$date": "2023-07-24T13:19:50.993Z"
+  },
+  "updatedAt": {
+    "$date": "2023-07-24T13:19:50.993Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64be7bf745858391d0e6f2bc"
+  },
+  "email": "cynthiaenjoyer@gmail.com",
+  "password": "$2b$10$jZ0EvpOsHSWpRg8A.JRkX.6EgAVFn0i2d1cVw55WVvCo.UUkbZLje",
+  "username": "cynthiaenjoyer",
+  "description": "",
+  "picturePath": "OIP (3).jpg",
+  "friends": [],
+  "postCount": 5,
+  "commentCount": 0,
+  "upvoteCount": 5,
+  "downvoteCount": 0,
+  "createdAt": {
+    "$date": "2023-07-24T13:26:15.796Z"
+  },
+  "updatedAt": {
+    "$date": "2023-07-24T13:35:57.019Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64be7e6c45858391d0e6f2de"
+  },
+  "email": "amiyaatrhodes@gmail.com",
+  "password": "$2b$10$3phbhjsm2TflEjVkOHb20elM8tkg3ngMzOmZ5FYuIues7a9IM8E/a",
+  "username": "AmiyaAtRhodes",
+  "description": "",
+  "picturePath": "OIP.jpg",
+  "friends": [],
+  "postCount": 5,
+  "commentCount": 0,
+  "upvoteCount": 6,
+  "downvoteCount": 0,
+  "createdAt": {
+    "$date": "2023-07-24T13:36:44.622Z"
+  },
+  "updatedAt": {
+    "$date": "2023-07-24T14:00:17.133Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64be84b845858391d0e6f303"
+  },
+  "email": "oak@gmail.com",
+  "password": "$2b$10$lCcMpO7f8IstN33mfuijBu1kaZND7N3IQk9S3hrNpBTQZoO16OXzS",
+  "username": "oak",
+  "description": "",
+  "picturePath": "OIP (4).jpg",
+  "friends": [],
+  "postCount": 5,
+  "commentCount": 0,
+  "upvoteCount": 5,
+  "downvoteCount": 0,
+  "createdAt": {
+    "$date": "2023-07-24T14:03:36.225Z"
+  },
+  "updatedAt": {
+    "$date": "2023-07-24T14:14:40.188Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64be878f45858391d0e6f321"
+  },
+  "email": "banana3@gmail.com",
+  "password": "$2b$10$uWq/2j5UTSQ8MlVesR9a/.E054Ib0igc2eGqdxfikBn5I3Oxf5kUe",
+  "username": "banana3",
+  "description": "",
+  "picturePath": "aa0800495814818399b9ca665f4e7398.jpg",
+  "friends": [],
+  "postCount": 4,
+  "commentCount": 0,
+  "upvoteCount": 4,
+  "downvoteCount": 0,
+  "createdAt": {
+    "$date": "2023-07-24T14:15:43.158Z"
+  },
+  "updatedAt": {
+    "$date": "2023-07-24T14:53:09.746Z"
+  },
+  "__v": 0
+}]
