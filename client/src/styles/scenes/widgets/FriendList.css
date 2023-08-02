@@ -9,7 +9,7 @@
 
 
 .friendlistactual-container {
-    background-color: #212121;
+    background-color: #112112;
     box-shadow: 5px 5px 20px #ff2574;
     width: 100%;
     height: 40vh;
@@ -19,7 +19,8 @@
 }
 
 .friendlistcontainer {
-    background-color: #212121;
+    background-color:  #112112;
+;
     width: 400px;
     height: 70vh;
     border-radius: 50px 50px;
@@ -30,7 +31,7 @@
 
 .cont-header {
     background: rgb(2,0,36);
-    background: linear-gradient(90deg, rgba(182,2,2,1) 0%, rgb(208, 94, 94) 20%,  #212121 100%);
+    background-color: #b60202;
     padding: 5px 0 5px;
     border-radius: 50px 50px 0 0;
     width: 400px;

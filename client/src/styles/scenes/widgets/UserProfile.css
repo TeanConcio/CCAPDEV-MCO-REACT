@@ -1,0 +1,180 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'VT323', sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #212121;
+}
+
+
+.userprofilecontainer {
+    width: 50vh;
+    min-height: 25vh;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    padding: 0 35px;
+}
+
+.userprofileprofile-card {
+    width: 90%;
+    max-width: 450px;
+    min-height: 40vh;
+    text-align: center;
+    background: #112112;
+    color: #ffffff;
+    box-shadow: 5px 5px 20px #ff2574;
+    border-radius: 50px 50px 50px 50px;
+}
+
+.userprofilecover-pic {
+    display: block;
+    width: 100%;
+    height: 70px;
+    border-radius: 50px 50px 0 0;
+    background-color: #b60202;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 100;
+    text-align: center;
+    padding: 25px 0;
+}
+
+.userprofilebasic-actions {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 30px;
+}
+
+.userprofileback-btn {
+    width: 5rem;
+    height: 2.75rem;
+    font-size: 1.25rem;
+    color: #ffffff;
+    text-align: center;
+    background-color: #212121;
+    border: #b60202 solid 5px;
+    border-radius: 25px;
+}
+
+.userprofileback-btn:hover {
+    background-color: #ff2547;
+    transform: scale(1.1);
+    transition: all 0.3s;
+}
+
+.userprofilelogout-btn {
+    width: 5rem;
+    height: 2.75rem;
+    font-size: 1.25rem;
+    color: #ffffff;
+    text-align: center;
+    background-color: #212121;
+    border: #b60202 solid 5px;
+    border-radius: 25px;
+}
+
+.userprofilelogout-btn:hover {
+    background-color: #ff2547;
+    transform: scale(1.1);
+    transition: all 0.3s;
+}
+
+.userprofileprofile-pic {
+    width: 150px;
+    border-radius: 50%;
+    margin-top: -100px;  
+    box-shadow: 0 0 0 0px #b60202;
+    transition: box-shadow 0.5s;
+    padding: 20px 0 0 0;
+}
+
+.userprofileprofile-pic:hover {
+    box-shadow: 0 0 0 5px #b60202;
+    transition: all 0.5s;
+}
+
+.userprofileprofile-card h1 {
+    font-weight: 100;
+}
+
+.userprofilefollow-btn {
+    display: inline-block;
+    text-decoration: none;
+    border: 1px solid #b60202
+;
+    color: #ffffff;
+    padding: 6px 35px;
+    margin: 25px 0;
+    transition: box-shadow 0.5s;
+}
+
+.userprofilefollow-btn:hover {
+    background-color: #ff2574;
+    transform: scale(1.1);
+    transition: all 0.3s;
+}
+
+.userprofilerow {
+    display: flex;
+    justify-content: space-around;
+}
+
+.userprofilerow h2 {
+    font-weight: 100;
+    font-size: 20px;
+}
+
+.userprofileview-btn {
+    display: inline-block;
+    text-decoration: none;
+    background: #b60202
+;
+    color: #ffffff;
+    width: 100%;
+    padding: 15px 0;
+    margin-top: 20px;
+    border-radius: 0 0 50px 50px;
+}
+
+.userprofileview-btn:hover {
+    background-color: #ff2574;
+}
+
+.userprofilebox {
+    box-sizing: border-box;
+    width: 153px;
+    height: 153px;
+    border: 2px solid #b60202
+;
+    box-shadow: -3px -3px 7px #ffffff73, 3px 3px 5px rgba(94, 104, 121, 0.288);
+    border-radius: 50%;
+    background-color: #212121;
+    margin-top: 50px;
+    overflow: hidden;
+    transition: all 1s;
+}
+
+.userprofileedit-profile-box img {
+    box-sizing: border-box;
+    width: 149px;
+    height: 149px;
+    border-radius: 50%;
+    margin: 0;
+    border: 5px solid #b60202
+;
+    padding: 3px;
+    background-color: #212121;
+}
+
+
