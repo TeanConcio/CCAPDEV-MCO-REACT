@@ -1,12 +1,4 @@
 /* IMPORTS */
-
-import {
-    ManageAccountsOutlined,
-    EditOutlined,
-    LocationOnOutlined,
-    WorkOutlineOutlined,
-} from "@mui/icons-material";
-import { Box, Typography, Divider, useTheme } from "@mui/material";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -24,20 +16,13 @@ import "../../styles/scenes/widgets/UserProfile.css";
 
 /* USER WIDGET COMPONENT */
 
-const UserWidget = ({ userId, picturePath }) => {
+const UserWidget = ({ userId }) => {
 
     /* HOOKS AND STATES */
 
     // Get user and token
     const [user, setUser] = useState(null);
     const token = useSelector((state) => state.token);
-
-    // Get theme
-    const { palette } = useTheme();
-    const navigate = useNavigate();
-    const dark = palette.neutral.dark;
-    const medium = palette.neutral.medium;
-    const main = palette.neutral.main;
 
 
 
@@ -78,6 +63,10 @@ const UserWidget = ({ userId, picturePath }) => {
         friends,
     } = user;
 
+
+
+
+
     /* RENDER */
 
     return (
@@ -89,11 +78,11 @@ const UserWidget = ({ userId, picturePath }) => {
                         </div>
                     </div>
                     <br />
+
                     <UserImage
-                        src={picturePath}
-                        alt="Profile Picture"
-                        className="userprofileprofile-pic"
+                        picturePath={user.picturePath}
                     />
+
                     <h1>{username}</h1>
                     <p>{description}</p>
                     <div className="userprofilefollow-btn">

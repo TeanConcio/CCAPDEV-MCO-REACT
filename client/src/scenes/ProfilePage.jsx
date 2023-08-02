@@ -43,7 +43,10 @@ const ProfilePage = () => {
             headers: { Authorization: `Bearer ${token}` },
         });
         const data = await response.json();
-        if(data.error == "no token"){
+
+        console.log(data)
+
+        if (data.error == "no token"){
             alert("Token Expired");
             window.location = "/";
         }
@@ -74,9 +77,11 @@ const ProfilePage = () => {
 
             <div className="page">
                 <div className="column-container" style={{marginTop: "5%", display: "flex", flexWrap: "wrap"}}>
+
                     <div className="user-widget-container" style={{ flex: "0 0 25%"}}>
-                            <UserWidget userId={userId} picturePath={user.picturePath} />
+                            <UserWidget userId={userId} />
                     </div>
+
                     <div className="friend-list-widget-container" style={{}}>
                         <FriendListWidget userId={userId} />
                     </div>
