@@ -12,7 +12,7 @@ import mongoose from "mongoose";
 const commentSchema = mongoose.Schema(
     {
         userId: {
-            type: mongoose.Schema.Types.ObjectId,
+            type: String,
             required: true,
             ref: "User"
         },

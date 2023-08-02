@@ -10,7 +10,7 @@ import { useParams } from "react-router-dom";
 import Navbar from "components/Navbar";
 import FriendListWidget from "scenes/widgets/FriendListWidget";
 import CreateEditPostForm from "components/CreateEditPostForm";
-import PostsWidget from "components/PostFeed";
+import PostFeed from "components/PostFeed";
 import UserWidget from "scenes/widgets/UserWidget";
 
 
@@ -43,8 +43,6 @@ const ProfilePage = () => {
             headers: { Authorization: `Bearer ${token}` },
         });
         const data = await response.json();
-
-        console.log(data)
 
         if (data.error == "no token"){
             alert("Token Expired");
@@ -79,7 +77,7 @@ const ProfilePage = () => {
                 <div className="column-container" style={{marginTop: "5%", display: "flex", flexWrap: "wrap"}}>
 
                     <div className="user-widget-container" style={{ flex: "0 0 25%"}}>
-                            <UserWidget userId={userId} />
+                        <UserWidget userId={userId} />
                     </div>
 
                     <div className="friend-list-widget-container" style={{}}>
@@ -87,7 +85,7 @@ const ProfilePage = () => {
                     </div>
 
                     <div className="posts-widget-container" style={{ marginTop: "4%", flex: "0 0 100%" }}>
-                        <PostsWidget userId={userId} isProfile />
+                        <PostFeed userId={userId} isProfile />
                     </div>
                 </div>
             </div>

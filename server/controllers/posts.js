@@ -179,8 +179,9 @@ export const getUserPosts = async (req, res) => {
     try {
 
         // Get user id from request parameters and find their posts in database
-        const { userId } = req.params;
-        const post = await Post.find({ userId }).sort({createdAt: -1});
+        const currUserId = req.params.userId;
+
+        const post = await Post.find({userId: currUserId}).sort({createdAt: -1});
 
         // Respond with all of user's posts
         res.status(200).json(post);
