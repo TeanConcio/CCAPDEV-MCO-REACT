@@ -51,7 +51,7 @@ function App() {
             <Routes>
 
                 <Route 
-                    path="/" element={<LoginPage />} 
+                    path="/" element={isAuth ? <HomePage /> : <LoginPage />}
                 />
                 <Route
                     path="/home"
