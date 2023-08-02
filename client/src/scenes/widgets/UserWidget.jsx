@@ -40,7 +40,6 @@ const UserWidget = ({ userId }) => {
             headers: { Authorization: `Bearer ${token}` },
         });
         const data = await response.json();
-        console.log(data);
         setUser(data);
     };
 
@@ -96,7 +95,7 @@ const UserWidget = ({ userId }) => {
                         </div>
                         <div>
                             <p>Date Joined</p>
-                            <h2>October 25, 2019</h2>
+                            <h2>{user.createdAt}</h2>
                         </div>
                         <div>
                             <p>Posts</p>
