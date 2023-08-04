@@ -3,6 +3,8 @@
 // Modules
 import jwt from "jsonwebtoken";
 
+import localstorage from "local-storage";
+
 
 
 
@@ -30,6 +32,8 @@ export const verifyToken = async (req, res, next) => {
         next();
     } 
     catch (err) {
+
+        localStorage.clear();
 
         // Respond with error
         res.status(500).json({ error: "no token" });
