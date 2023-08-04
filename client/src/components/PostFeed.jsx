@@ -44,10 +44,10 @@ const PostFeed = ({ userId, isProfile = false }) => {
         if(data.error === "no token"){
             alert("Token Expired");
 
-            dispatch(setLogin({ user: null, token: null }));
+            const state = dispatch(setLogin({ user: null, token: null }));
 
-            if (useSelector((state) => state.token) === null && 
-                useSelector((state) => state.user) === null)
+            if (state.user === null &&
+                state.token === null)
                 window.location = "/";
         }
         else
@@ -72,10 +72,10 @@ const PostFeed = ({ userId, isProfile = false }) => {
 
             alert("Token Expired");
 
-            dispatch(setLogin({ user: null, token: null }));
+            const state = dispatch(setLogin({ user: null, token: null }));
 
-            if (useSelector((state) => state.token) === null && 
-                useSelector((state) => state.user) === null)
+            if (state.user === null &&
+                state.token === null)
                 window.location = "/";
         }
         else
