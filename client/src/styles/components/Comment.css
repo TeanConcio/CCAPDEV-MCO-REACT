@@ -46,21 +46,28 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 30%;
+    width: 32%;
 }
 
 .comment .actions .vote {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    width: 50%;
+    width: 37%;
 }
 
 .comment.actions.comment {
     display: flex;
-    justify-content: right;
-    align-items: center;
+    justify-content: center;
     width: 5%;
+    padding: 10px 10px 10px 10px;
+}
+
+.comment.actions .count {
+    display: flex;
+    justify-content: center;
+    width: 20%;
+    padding: 10px 10px 10px 10px;
 }
 
 .comment .actions .modify {
@@ -70,11 +77,28 @@
     width: 20%;
 }
 
-.comment .actions .vote .count,
+.comment .actions .vote .count{
+    font-size: 1.33rem;
+    justify-content: space-evenly;
+}
 .comment .actions .comment .count {
     font-size: 1.33rem;
+    padding: 0 10px 0 0;
+    justify-content: space-evenly;
 }
 
-.comment .actions .comment .count {
-    margin-right: 10px;
+.comment .actions .comment {
+    font-size: 1.33rem;
+    padding: 10px;
+    justify-content: space-evenly;
+}
+
+.comment .row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.comment .comment-btn{
+    margin: 0 0 0 5px;
+    justify-content: space-evenly;
 }

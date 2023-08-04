@@ -160,7 +160,7 @@ const Comment = ({
 
         <div 
             className="comment-component" 
-            style={{width: "100%"}}
+            style={{width: "97%"}}
         >
 
             <div className="comment" style={{width: width, margin: margin, border: "var(--color-2) solid 1px"}}>
@@ -169,7 +169,7 @@ const Comment = ({
                     <Link to={`/profile/${commentUserId}`} className="author"> Commented by: {username} </Link>
                     <span className="create-date">
                         Commented on: {formatDistanceToNow(new Date(createdAt), {addSuffix: true})}
-                    </span>
+                    </span>     
                 </div>
 
                 <p className="message">{message}</p>
@@ -190,14 +190,15 @@ const Comment = ({
                                 <button className="downvote btn" onClick={patchDownvote}> ⬇ </button>
                             )}
                         </div>
-
+                        <div className="row">
                         <div className="comment">
-                            <div className="count"> {commentCount} </div> 
+                            <div className="count"> {commentCount} 
                             <button 
                                 className="comment-btn" 
                                 onClick={() => setReplyMode(!replyMode)}
                             > 💭 </button>
-                            
+                            </div>
+                           </div> 
                         </div>
                     </div>
 
