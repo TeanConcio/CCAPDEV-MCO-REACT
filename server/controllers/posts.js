@@ -198,6 +198,27 @@ export const getUserPosts = async (req, res) => {
 
 
 
+export const getSearchPosts = async (req, res) => {
+
+    try {
+
+        const search = req.query.search;
+
+        const posts = await Post.find({title: {$regex: search, $options: "$i"}}).sort({createdAt: -1});
+
+        return res.status(200).json(posts);
+    }
+    catch (err) {
+
+        // Respond with error
+        res.status(404).json({ message: err.message });
+    }
+}
+
+
+
+
+
 /* UPVOTE POST */
 
 export const upvotePost = async (req, res) => {

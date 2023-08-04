@@ -9,9 +9,9 @@ import {
     getPost,
     getFeedPosts,
     getUserPosts,
+    getSearchPosts,
     upvotePost,
     downvotePost,
-    updatePost,
     deletePost
 } from "../controllers/posts.js";
 import { verifyToken } from "../middleware/auth.js";
@@ -35,6 +35,7 @@ const router = express.Router();
 router.get("/view/:postId", verifyToken, validatePostId, getPost);
 router.get("/", verifyToken, getFeedPosts);
 router.get("/:userId/posts", verifyToken, getUserPosts);
+router.get("/search", verifyToken, getSearchPosts);
 
 // Update
 router.patch("/:postId/upvote", verifyToken, validatePostId, upvotePost);

@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 // Styles
 import "styles/components/UserImage.css"
 
+import { API_URL } from "../App";
+
 
 
 
@@ -20,13 +22,13 @@ const UserImage = ({ picturePath, userId = "", size = "60px" }) => {
 
         <div className="user-image-box" width={size} height={size}>
 
-            {(userId == "") ? (
+            {(userId === "") ? (
                 <img
                     className="user-image"
                     width={size}
                     height={size}
                     alt="user"
-                    src={`http://localhost:4000/assets/${picturePath}`}
+                    src={`${API_URL}/assets/${picturePath}`}
                 />
             ) : (
                 <img
@@ -34,7 +36,7 @@ const UserImage = ({ picturePath, userId = "", size = "60px" }) => {
                     width={size}
                     height={size}
                     alt="user"
-                    src={`http://localhost:4000/assets/${picturePath}`}
+                    src={`${API_URL}/assets/${picturePath}`}
                     onClick={() => navigate(`/profile/${userId}`)}
                 />
             )}

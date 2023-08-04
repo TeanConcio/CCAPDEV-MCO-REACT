@@ -34,7 +34,8 @@ import WidgetWrapper from "components/WidgetWrapper";
 
 // Style
 import "../styles/components/CreateEditForm.css";
-import { set } from "date-fns";
+
+import { API_URL } from "../App";
 
 
 
@@ -73,7 +74,7 @@ const CreateEditCommentForm = ({  parentId, commentMessage = "",  EditMode = fal
         formData.append("message", message);
 
         // Comment data to server
-        const response = await fetch(`http://localhost:4000/comments/${parentId}`, 
+        const response = await fetch(`${API_URL}/comments/${parentId}`, 
         {
             method: "POST",
             headers: { Authorization: `Bearer ${token}` },
@@ -110,7 +111,7 @@ const CreateEditCommentForm = ({  parentId, commentMessage = "",  EditMode = fal
         formData.append("message", message);
 
         // Comment data to server
-        const response = await fetch(`http://localhost:4000/comments/${parentId}`, 
+        const response = await fetch(`${API_URL}/comments/${parentId}`, 
         {
             method: "PATCH",
             headers: { Authorization: `Bearer ${token}` },

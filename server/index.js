@@ -58,7 +58,10 @@ app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }))
 app.use(morgan("common"))
 app.use(bodyParser.json({ limit: "30mb", extended: true }))
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }))
-app.use(cors())
+app.use(
+    cors({
+    origin: ["http://localhost:3000", "https://pokehub-ccapdev.onrender.com"],
+}))
 
 // Local Assets
 app.use("/assets", express.static(path.join(__dirname, "public/assets")))
@@ -108,18 +111,18 @@ app.use("/comments", commentRoutes)
 /* MONGOOSE SETUP */
 
 // Assign local port
-const PORT = process.env.LOCAL_PORT || process.env.BACKUP_LOCAL_PORT
-const MONGO_URL = process.env.ONLINE_MONGO_URL
+const PORT = process.env.PORT
+const MONGO_URI = process.env.MONGO_URI
 
 // Connect to MongoDB
 mongoose
-    .connect(MONGO_URL, {
+    .connect(MONGO_URI, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     })
     .then(() => {
 
-        console.log(`MongoDB Port: ${MONGO_URL}`)
+        console.log(`MongoDB Port: ${MONGO_URI}`)
 
         // If connection is successful, listen to port
         app.listen(PORT, () => console.log(`Server Port: ${PORT}`));

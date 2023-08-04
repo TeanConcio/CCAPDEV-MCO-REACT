@@ -19,6 +19,8 @@ import CommentFeed from "components/CommentFeed";
 // Styles
 import "styles/components/Comment.css"
 
+import { API_URL } from "../App";
+
 
 
 
@@ -72,7 +74,7 @@ const Comment = ({
         e.preventDefault()
 
         // Send request to server
-        const response = await fetch(`http://localhost:4000/comments/${commentId}/upvote`, {
+        const response = await fetch(`${API_URL}/comments/${commentId}/upvote`, {
             method: "PATCH",
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -102,7 +104,7 @@ const Comment = ({
         e.preventDefault()
 
         // Send request to server
-        const response = await fetch(`http://localhost:4000/comments/${commentId}/downvote`, {
+        const response = await fetch(`${API_URL}/comments/${commentId}/downvote`, {
             method: "PATCH",
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -131,7 +133,7 @@ const Comment = ({
         e.preventDefault()
 
         // Delete selected comment prom backend REST API server port with method DELETE (asynchronous)
-        const response = await fetch(`http://localhost:4000/comments/${commentId}`, {
+        const response = await fetch(`${API_URL}/comments/${commentId}`, {
             method: 'DELETE',
             headers: {
                 Authorization: `Bearer ${token}`,

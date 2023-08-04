@@ -11,6 +11,8 @@ import { setComments } from "state";
 // Components
 import Comment from "./Comment";
 
+import { API_URL } from "../App";
+
 
 
 
@@ -38,7 +40,7 @@ const CommentFeed = ({ parentId, replyMode = false }) => {
     const getParentComments = async () => {
 
         // Get post comments from server
-        const response = await fetch(`http://localhost:4000/comments/${parentId}/comments`,
+        const response = await fetch(`${API_URL}/comments/${parentId}/comments`,
         {
             method: "GET",
             headers: { Authorization: `Bearer ${token}` },
@@ -46,7 +48,7 @@ const CommentFeed = ({ parentId, replyMode = false }) => {
         );
         const data = await response.json();
 
-        if(data.error == "no token"){
+        if(data.error === "no token"){
             alert("Token Expired");
             window.location = "/";
         }

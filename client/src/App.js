@@ -18,6 +18,10 @@ import { themeSettings } from "./theme";
 
 
 
+export const API_URL = process.env.REACT_APP_API_URL;
+
+
+
 
 
 /* APP COMPONENT */
@@ -32,6 +36,7 @@ function App() {
 
     // Get auth state
     const isAuth = Boolean(useSelector((state) => state.token));
+
 
 
 

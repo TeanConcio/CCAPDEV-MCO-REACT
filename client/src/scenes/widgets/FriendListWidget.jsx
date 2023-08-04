@@ -14,6 +14,8 @@ import WidgetWrapper from "components/WidgetWrapper";
 
 import "../../styles/scenes/widgets/FriendList.css";
 
+import { API_URL } from "../../App";
+
 
 
 /* FRIEND LIST WIDGET COMPONENT */
@@ -39,7 +41,7 @@ const FriendListWidget = ({ userId }) => {
     const getFriends = async () => {
 
         // Get friends data from server
-        const response = await fetch(`http://localhost:4000/users/${userId}/friends`,
+        const response = await fetch(`${API_URL}/users/${userId}/friends`,
         {
             method: "GET",
             headers: { Authorization: `Bearer ${token}` },

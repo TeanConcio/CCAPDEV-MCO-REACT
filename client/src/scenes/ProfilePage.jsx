@@ -13,6 +13,8 @@ import CreateEditPostForm from "components/CreateEditPostForm";
 import PostFeed from "components/PostFeed";
 import UserWidget from "scenes/widgets/UserWidget";
 
+import { API_URL } from "../App";
+
 
 
 
@@ -38,13 +40,13 @@ const ProfilePage = () => {
     const getUser = async () => {
 
         // Get user data from server
-        const response = await fetch(`http://localhost:4000/users/${userId}`, {
+        const response = await fetch(`${API_URL}/users/${userId}`, {
             method: "GET",
             headers: { Authorization: `Bearer ${token}` },
         });
         const data = await response.json();
 
-        if (data.error == "no token"){
+        if (data.error === "no token"){
             alert("Token Expired");
             window.location = "/";
         }

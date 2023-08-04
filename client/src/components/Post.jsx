@@ -18,6 +18,8 @@ import CreateEditPostForm from './CreateEditPostForm';
 // Styles
 import "styles/components/Post.css"
 
+import { API_URL } from "../App";
+
 
 
 
@@ -76,7 +78,7 @@ const Post = ({
         e.preventDefault()
 
         // Send request to server
-        const response = await fetch(`http://localhost:4000/posts/${postId}/upvote`, {
+        const response = await fetch(`${API_URL}/posts/${postId}/upvote`, {
             method: "PATCH",
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -106,7 +108,7 @@ const Post = ({
         e.preventDefault()
 
         // Send request to server
-        const response = await fetch(`http://localhost:4000/posts/${postId}/downvote`, {
+        const response = await fetch(`${API_URL}/posts/${postId}/downvote`, {
             method: "PATCH",
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -135,7 +137,7 @@ const Post = ({
         e.preventDefault()
 
         // Delete selected post prom backend REST API server port with method DELETE (asynchronous)
-        const response = await fetch(`http://localhost:4000/posts/${postId}`, {
+        const response = await fetch(`${API_URL}/posts/${postId}`, {
             method: 'DELETE',
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -190,7 +192,7 @@ const Post = ({
                         <img
                             className='image'
                             alt="post"
-                            src={`http://localhost:4000/assets/${picturePath}`}
+                            src={`${API_URL}/assets/${picturePath}`}
                         />
                     </div>
                 )}

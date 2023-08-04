@@ -34,7 +34,8 @@ import WidgetWrapper from "components/WidgetWrapper";
 
 // Style
 import "../styles/components/CreateEditForm.css";
-import { set } from "date-fns";
+
+import { API_URL } from "../App";
 
 
 
@@ -83,7 +84,7 @@ const CreateEditPostForm = ({ postId = "", postTitle = "", postBody = "",  EditM
         }
 
         // Post data to server
-        const response = await fetch(`http://localhost:4000/posts`, 
+        const response = await fetch(`${API_URL}/posts`, 
         {
             method: "POST",
             headers: { Authorization: `Bearer ${token}` },
@@ -127,7 +128,7 @@ const CreateEditPostForm = ({ postId = "", postTitle = "", postBody = "",  EditM
         }
 
         // Post data to server
-        const response = await fetch(`http://localhost:4000/posts/${postId}`, 
+        const response = await fetch(`${API_URL}/posts/${postId}`, 
         {
             method: "PATCH",
             headers: { Authorization: `Bearer ${token}` },

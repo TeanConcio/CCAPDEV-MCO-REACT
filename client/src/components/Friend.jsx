@@ -11,6 +11,8 @@ import { setFriends } from "state";
 import FlexBetween from "./FlexBetween";
 import UserImage from "./UserImage";
 
+import { API_URL } from "../App";
+
 
 
 
@@ -45,7 +47,7 @@ const Friend = ({ friendId, username, userPicturePath }) => {
 
     const patchFriend = async () => {
         const response = await fetch(
-        `http://localhost:4000/users/${_id}/${friendId}`,
+        `${API_URL}/users/${_id}/${friendId}`,
         {
             method: "PATCH",
             headers: {

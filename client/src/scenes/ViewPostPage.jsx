@@ -14,6 +14,8 @@ import CommentFeed from "components/CommentFeed";
 // Style
 import "../styles/scenes/ViewPostPage.css";
 
+import { API_URL } from "../App";
+
 
 
 
@@ -41,14 +43,14 @@ const ViewPostPage = () => {
     const getPost = async () => {
 
         // Get post data from server
-        const response = await fetch(`http://localhost:4000/posts/view/${postId}`, {
+        const response = await fetch(`${API_URL}/posts/view/${postId}`, {
             method: "GET",
             headers: { Authorization: `Bearer ${token}` },
         });
        
         const data = await response.json();
 
-        if(data.error == "no token"){
+        if(data.error === "no token"){
             alert("Token Expired");
             window.location = "/";
         }

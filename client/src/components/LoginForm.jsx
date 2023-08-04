@@ -16,6 +16,11 @@ import {
   useTheme,
 } from "@mui/material";
 
+import { API_URL } from "../App";
+
+
+
+
 
 /* FORM VALIDATION SCHEMA */
 
@@ -92,7 +97,7 @@ const LoginForm = () => {
 
 
         // Send request to server
-        const savedUserResponse = await fetch("http://localhost:4000/auth/register", {
+        const savedUserResponse = await fetch(`${API_URL}/auth/register`, {
             method: "POST",
             body: formData,
         });
@@ -114,7 +119,7 @@ const LoginForm = () => {
 
         // Send request to server
         const loggedInResponse = await fetch(
-            "http://localhost:4000/auth/login", 
+            `${API_URL}/auth/login`, 
             {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },

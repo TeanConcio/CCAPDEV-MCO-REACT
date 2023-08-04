@@ -12,6 +12,8 @@ import { format } from 'date-fns'
 // CSS import
 import "../../styles/scenes/widgets/UserProfile.css";
 
+import { API_URL } from "../../App";
+
 
 
 
@@ -35,7 +37,7 @@ const UserWidget = ({ userId }) => {
     const getUser = async () => {
 
         // Get user data from server
-        const response = await fetch(`http://localhost:4000/users/${userId}`, 
+        const response = await fetch(`${API_URL}/users/${userId}`, 
         {
             method: "GET",
             headers: { Authorization: `Bearer ${token}` },

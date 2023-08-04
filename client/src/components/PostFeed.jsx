@@ -10,6 +10,8 @@ import { setPosts } from "state";
 // Components
 import Post from "./Post";
 
+import { API_URL } from "../App";
+
 
 
 
@@ -34,12 +36,12 @@ const PostFeed = ({ userId, isProfile = false }) => {
     const getPosts = async () => {
 
         // Get posts from server
-        const response = await fetch("http://localhost:4000/posts", {
+        const response = await fetch(`${API_URL}/posts`, {
             method: "GET",
             headers: { Authorization: `Bearer ${token}` },
         });
         const data = await response.json();
-        if(data.error == "no token"){
+        if(data.error === "no token"){
             alert("Token Expired");
             window.location = "/";
         }
@@ -53,7 +55,7 @@ const PostFeed = ({ userId, isProfile = false }) => {
     const getUserPosts = async () => {
 
         // Get user posts from server
-        const response = await fetch(`http://localhost:4000/posts/${userId}/posts`,
+        const response = await fetch(`${API_URL}/posts/${userId}/posts`,
         {
             method: "GET",
             headers: { Authorization: `Bearer ${token}` },
@@ -61,7 +63,7 @@ const PostFeed = ({ userId, isProfile = false }) => {
         );
         const data = await response.json();
         
-        if(data.error == "no token"){
+        if(data.error === "no token"){
             alert("Token Expired");
             window.location = "/";
         }
