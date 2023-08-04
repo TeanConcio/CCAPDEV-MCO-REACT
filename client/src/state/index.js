@@ -30,14 +30,8 @@ export const authSlice = createSlice({
     initialState,
     reducers: {
 
-        // Toggle between light and dark mode
-        setMode: (state) => {
-
-            state.mode = state.mode === "light" ? "dark" : "light";
-        },
-
-
-
+        
+        
         // Login user and set token
         setLogin: (state, action) => {
 
@@ -52,8 +46,6 @@ export const authSlice = createSlice({
 
             state.user = null;
             state.token = null;
-
-            return [state.user, state.token]
         },
 
 

@@ -8,7 +8,7 @@ import { formatDistanceToNow } from 'date-fns'
 
 // State
 import { 
-    setLogout,
+    setLogin,
     setComment,
     setUndeletedComments 
 } from "state";
@@ -91,11 +91,13 @@ const Comment = ({
 
             alert("Token Expired");
 
-            const [user, token] = dispatch(setLogout({ user: null, token: null }));
+            if (dispatch(setLogin({user: null, token: null}))) {
 
-            if (user === null &&
-                token === null)
-                window.location = "/";
+                window.localStorage.clear();
+                
+                if (window.localStorage.length === 0)
+                    window.location = "/";
+            }
         }
         else if (response.ok) {
             dispatch(setComment({ comment: updatedComment }));
@@ -131,11 +133,13 @@ const Comment = ({
 
             alert("Token Expired");
 
-            const [user, token] = dispatch(setLogout({ user: null, token: null }));
+            if (dispatch(setLogin({user: null, token: null}))) {
 
-            if (user === null &&
-                token === null)
-                window.location = "/";
+                window.localStorage.clear();
+                
+                if (window.localStorage.length === 0)
+                    window.location = "/";
+            }
         }
         else if (response.ok) {
             dispatch(setComment({ comment: updatedComment }));
@@ -168,11 +172,13 @@ const Comment = ({
 
             alert("Token Expired");
 
-            const [user, token] = dispatch(setLogout({ user: null, token: null }));
+            if (dispatch(setLogin({user: null, token: null}))) {
 
-            if (user === null &&
-                token === null)
-                window.location = "/";
+                window.localStorage.clear();
+                
+                if (window.localStorage.length === 0)
+                    window.location = "/";
+            }
         }
         else if (response.ok) {
             dispatch(setUndeletedComments({ comment: deletedComment }))

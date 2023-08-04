@@ -2,7 +2,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { setLogout } from "state";
+import { setLogin } from "state";
 
 // Components
 import UserImage from "components/UserImage";
@@ -49,11 +49,13 @@ const UserWidget = ({ userId }) => {
         if (data.error === "no token"){
             alert("Token Expired");
 
-            const [user, token] = dispatch(setLogout({ user: null, token: null }));
+            if (dispatch(setLogin({user: null, token: null}))) {
 
-            if (user === null &&
-                token === null)
-                window.location = "/";
+                window.localStorage.clear();
+                
+                if (window.localStorage.length === 0)
+                    window.location = "/";
+            }
         }
         else
             setUser(data);

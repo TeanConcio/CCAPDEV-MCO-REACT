@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 // State
-import { setPosts, setLogout } from "state";
+import { setPosts, setLogin } from "state";
 
 // Components
 import Post from "./Post";
@@ -45,11 +45,13 @@ const PostFeed = ({ userId, isProfile = false }) => {
         if(data.error === "no token"){
             alert("Token Expired");
 
-            const [user, token] = dispatch(setLogout({ user: null, token: null }));
+            if (dispatch(setLogin({user: null, token: null}))) {
 
-            if (user === null &&
-                token === null)
-                window.location = "/";
+                window.localStorage.clear();
+                
+                if (window.localStorage.length === 0)
+                    window.location = "/";
+            }
         }
         else
             dispatch(setPosts({ posts: data }));
@@ -72,11 +74,13 @@ const PostFeed = ({ userId, isProfile = false }) => {
         if(data.error === "no token"){
             alert("Token Expired");
 
-            const [user, token] = dispatch(setLogout({ user: null, token: null }));
+            if (dispatch(setLogin({user: null, token: null}))) {
 
-            if (user === null &&
-                token === null)
-                window.location = "/";
+                window.localStorage.clear();
+                
+                if (window.localStorage.length === 0)
+                    window.location = "/";
+            }
         }
         else
             dispatch(setPosts({ posts: data }));

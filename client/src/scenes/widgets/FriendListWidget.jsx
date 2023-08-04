@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 // State
-import { setLogout, setFriends } from "state";
+import { setLogin, setFriends } from "state";
 
 // Components
 import Friend from "components/Friend";
@@ -52,11 +52,13 @@ const FriendListWidget = ({ userId }) => {
         if (data.error === "no token"){
             alert("Token Expired");
 
-            const [user, token] = dispatch(setLogout({ user: null, token: null }));
+            if (dispatch(setLogin({user: null, token: null}))) {
 
-            if (user === null &&
-                token === null)
-                window.location = "/";
+                window.localStorage.clear();
+                
+                if (window.localStorage.length === 0)
+                    window.location = "/";
+            }
         }
         else
             dispatch(setFriends({ friends: data }));

@@ -5,7 +5,7 @@ import { PersonAddOutlined, PersonRemoveOutlined } from "@mui/icons-material";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { setLogout, setFriends } from "state";
+import { setLogin, setFriends } from "state";
 
 // Components
 import FlexBetween from "./FlexBetween";
@@ -62,11 +62,13 @@ const Friend = ({ friendId, username, userPicturePath }) => {
         if(data.error === "no token"){
             alert("Token Expired");
 
-            const [user, token] = dispatch(setLogout({ user: null, token: null }));
+            if (dispatch(setLogin({user: null, token: null}))) {
 
-            if (user === null &&
-                token === null)
-                window.location = "/";
+                window.localStorage.clear();
+                
+                if (window.localStorage.length === 0)
+                    window.location = "/";
+            }
         }
         else
             dispatch(setFriends({ friends: data }));

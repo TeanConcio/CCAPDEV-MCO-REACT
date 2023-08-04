@@ -8,7 +8,7 @@ import { formatDistanceToNow } from 'date-fns'
 
 // State
 import { 
-    setLogout,
+    setLogin,
     setPost, 
     setUndeletedPosts 
 } from "state";
@@ -35,7 +35,6 @@ const Post = ({
     title,
     body,
     picturePath,
-    userPicturePath,
     upvotes,
     downvotes,
     commentCount,
@@ -94,11 +93,13 @@ const Post = ({
         if(updatedPost.error === "no token"){
             alert("Token Expired");
 
-            const [user, token] = dispatch(setLogout({ user: null, token: null }));
+            if (dispatch(setLogin({user: null, token: null}))) {
 
-            if (user === null &&
-                token === null)
-                window.location = "/";
+                window.localStorage.clear();
+                
+                if (window.localStorage.length === 0)
+                    window.location = "/";
+            }
         }
         else if (response.ok) {
             dispatch(setPost({ post: updatedPost }));
@@ -133,11 +134,13 @@ const Post = ({
         if (updatedPost.error === "no token"){
             alert("Token Expired");
 
-            const [user, token] = dispatch(setLogout({ user: null, token: null }));
+            if (dispatch(setLogin({user: null, token: null}))) {
 
-            if (user === null &&
-                token === null)
-                window.location = "/";
+                window.localStorage.clear();
+                
+                if (window.localStorage.length === 0)
+                    window.location = "/";
+            }
         }
         else if (response.ok) {
             dispatch(setPost({ post: updatedPost }));
@@ -169,11 +172,13 @@ const Post = ({
         if (deletedPost.error === "no token"){
             alert("Token Expired");
 
-            const [user, token] = dispatch(setLogout({ user: null, token: null }));
+            if (dispatch(setLogin({user: null, token: null}))) {
 
-            if (user === null &&
-                token === null)
-                window.location = "/";
+                window.localStorage.clear();
+                
+                if (window.localStorage.length === 0)
+                    window.location = "/";
+            }
         }
         else if (response.ok) {
             dispatch(setUndeletedPosts({ post: deletedPost }))

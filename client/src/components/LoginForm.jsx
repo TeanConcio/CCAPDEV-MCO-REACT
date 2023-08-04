@@ -108,8 +108,6 @@ const LoginForm = () => {
         if (savedUser) {
             setPageType("login");
         }
-
-        console.log(savedUser);
     };
 
 
@@ -146,8 +144,6 @@ const LoginForm = () => {
             passwordError.removeAttribute("hidden");
             console.log("Failed to Log In");
           }
-
-        console.log(loggedIn)
     };
 
 
@@ -225,9 +221,6 @@ const LoginForm = () => {
                                 }
                                 
                             />
-                         
-                         {console.log("rememberMe" + rememberMe)}
-                         {console.log("values.rememberMe:" + values.rememberMe)}
                         <label htmlFor="rememberMe">Keep Me Logged In</label>
                            
                             
