@@ -65,6 +65,7 @@ const PostFeed = ({ userId, isProfile = false }) => {
         
         if(data.error === "no token"){
             alert("Token Expired");
+            window.localStorage.clear();
             window.location = "/";
         }
         else
