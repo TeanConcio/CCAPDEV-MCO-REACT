@@ -56,7 +56,7 @@ function App() {
             <Routes>
 
                 <Route 
-                    path="/" element={isAuth ? <Navigate to="#/home" /> : <LoginPage />}
+                    path="/" element={isAuth ? <Navigate to="/home" /> : <LoginPage />}
                 />
                 <Route
                     path="/home"
