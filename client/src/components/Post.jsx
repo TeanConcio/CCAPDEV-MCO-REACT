@@ -207,11 +207,11 @@ const Post = ({
                 { ViewPost ? (
                     <h2 className="title"> {title} </h2>
                 ) : (
-                    <Link to={`#/post/${postId}`} className="title"> {title} </Link>
+                    <Link to={`/post/${postId}`} className="title"> {title} </Link>
                 )}
 
                 <div className="details">
-                    <Link to={`#/profile/${postUserId}`} className="author"> Posted by: {username} </Link>
+                    <Link to={`/profile/${postUserId}`} className="author"> Posted by: {username} </Link>
                     <span className="create-date">
                         Posted on: {formatDistanceToNow(new Date(createdAt), {addSuffix: true})}
                     </span>
@@ -250,7 +250,7 @@ const Post = ({
                         <div className="comment">
                             <div className="count"> {commentCount} </div> 
                             { !ViewPost ? (
-                                <button className="comment-btn" onClick={() => navigate("#/post/" + postId)}> 💭 </button>
+                                <button className="comment-btn" onClick={() => navigate("/post/" + postId)}> 💭 </button>
                             ) : (
                                 <button className="comment-btn"> 💭 </button>
                             )}

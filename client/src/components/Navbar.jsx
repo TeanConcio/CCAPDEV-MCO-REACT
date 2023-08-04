@@ -40,7 +40,7 @@ const Navbar = () => {
         <>
             <header className="navbar">
 
-                <Link to="#/home" className="brand">Pokéhub</Link>
+                <Link to="/home" className="brand">Pokéhub</Link>
 
                 <div className="search">
                     <input type="text" className="text-box" placeholder="Search" />
@@ -55,7 +55,7 @@ const Navbar = () => {
                         imageSize="45px"
                         fontSize="1.75rem"
                     />
-                    <Link to="#/" className="logout" onClick={() => dispatch(setLogout())}>Logout</Link>
+                    <Link to="/" className="logout" onClick={() => dispatch(setLogout())}>Logout</Link>
                 </div>
 
             </header>
