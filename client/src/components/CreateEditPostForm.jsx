@@ -22,7 +22,6 @@ import {
 import Dropzone from "react-dropzone";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 
 // State
 import { setLogin, setPosts, setPost } from "state";
@@ -47,7 +46,6 @@ const CreateEditPostForm = ({ postId = "", postTitle = "", postBody = "",  EditM
 
     /* HOOKS AND STATES */
     const dispatch = useDispatch();
-    const navigate = useNavigate();
 
     // Get user and token
     const token = useSelector((state) => state.token);

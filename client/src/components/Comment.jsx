@@ -204,7 +204,7 @@ const Comment = ({
             <div className="comment" style={{width: width, margin: margin, border: "var(--color-2) solid 1px"}}>
 
                 <div className="details">
-                    <Link to={`/profile/${commentUserId}`} className="author"> Commented by: {username} </Link>
+                    <Link to={`#/profile/${commentUserId}`} className="author"> Commented by: {username} </Link>
                     <span className="create-date">
                         Commented on: {formatDistanceToNow(new Date(createdAt), {addSuffix: true})}
                     </span>

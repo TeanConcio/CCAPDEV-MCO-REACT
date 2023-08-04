@@ -1,7 +1,7 @@
 /* IMPORTS */
 
 // Modules
-import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
+import { HashRouter, Navigate, Routes, Route } from "react-router-dom";
 import { useMemo } from "react";
 import { useSelector } from "react-redux";
 
@@ -48,7 +48,7 @@ function App() {
 
         <div className="app">
 
-        <BrowserRouter>
+        <HashRouter>
 
             <ThemeProvider theme={theme}>
             <CssBaseline />
@@ -56,7 +56,7 @@ function App() {
             <Routes>
 
                 <Route 
-                    path="/" element={isAuth ? <HomePage /> : <LoginPage />}
+                    path="/" element={isAuth ? <Navigate to="#/home" /> : <LoginPage />}
                 />
                 <Route
                     path="/home"
@@ -75,7 +75,7 @@ function App() {
             
             </ThemeProvider>
 
-        </BrowserRouter>
+        </HashRouter>
 
         </div>
 
