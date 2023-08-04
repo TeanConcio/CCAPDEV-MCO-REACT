@@ -182,7 +182,7 @@ const Post = ({
         }
         else if (response.ok) {
             dispatch(setUndeletedPosts({ post: deletedPost }))
-            navigate(`#/home`)
+            navigate(`/home`)
         }
             
         else {}

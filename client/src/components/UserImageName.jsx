@@ -26,7 +26,7 @@ const UserImageName = ({ picturePath, username, userId, imageSize = "60px", font
             <div 
                 className="user-name" 
                 style={{ fontSize: fontSize }}
-                onClick={() => navigate(`#/profile/${userId}`)}>
+                onClick={() => navigate(`/profile/${userId}`)}>
                 {username}
             </div>
         </div>

@@ -137,7 +137,7 @@ const LoginForm = () => {
                 })
             );
             
-            navigate("#/home");
+            navigate("/home");
         } else{
             // If login failed, display the error message by removing hidden attribute in div
             const passwordError = document.getElementById("passwordError");

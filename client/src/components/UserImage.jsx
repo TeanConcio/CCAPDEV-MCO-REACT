@@ -37,7 +37,7 @@ const UserImage = ({ picturePath, userId = "", size = "60px" }) => {
                     height={size}
                     alt="user"
                     src={`${API_URL}/assets/${picturePath}`}
-                    onClick={() => navigate(`#/profile/${userId}`)}
+                    onClick={() => navigate(`/profile/${userId}`)}
                 />
             )}
 
