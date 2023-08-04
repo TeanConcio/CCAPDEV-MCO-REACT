@@ -25,7 +25,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 // State
-import { setComments, setComment } from "state";
+import { setLogout, setComments, setComment } from "state";
 
 // Components
 import FlexBetween from "components/FlexBetween";
@@ -86,7 +86,16 @@ const CreateEditCommentForm = ({  parentId, commentMessage = "",  EditMode = fal
 
         // If response is valid: Update comment in state
         // Else: Set the error state variable
-        if (response.ok) {
+        if(comments.error === "no token"){
+            alert("Token Expired");
+
+            const [user, token] = dispatch(setLogout({ user: null, token: null }));
+
+            if (user === null &&
+                token === null)
+                window.location = "/";
+        }
+        else if (response.ok) {
             dispatch(setComments({ comments: comments }));
 
             // Reset data
@@ -121,7 +130,16 @@ const CreateEditCommentForm = ({  parentId, commentMessage = "",  EditMode = fal
 
         // If response is valid: Update comment in state
         // Else: Set the error state variable
-        if (response.ok) {
+        if(comments.error === "no token"){
+            alert("Token Expired");
+
+            const [user, token] = dispatch(setLogout({ user: null, token: null }));
+
+            if (user === null &&
+                token === null)
+                window.location = "/";
+        }
+        else if (response.ok) {
             dispatch(setComment({ comment: comments }));
 
             //window.location.reload();

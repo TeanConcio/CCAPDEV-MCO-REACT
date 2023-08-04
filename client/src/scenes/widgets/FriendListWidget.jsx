@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 // State
-import { setFriends } from "state";
+import { setLogout, setFriends } from "state";
 
 // Components
 import Friend from "components/Friend";
@@ -48,7 +48,18 @@ const FriendListWidget = ({ userId }) => {
         }
         );
         const data = await response.json();
-        dispatch(setFriends({ friends: data }));
+
+        if (data.error === "no token"){
+            alert("Token Expired");
+
+            const [user, token] = dispatch(setLogout({ user: null, token: null }));
+
+            if (user === null &&
+                token === null)
+                window.location = "/";
+        }
+        else
+            dispatch(setFriends({ friends: data }));
     };
 
     // Get friends data on process start (ran only once)

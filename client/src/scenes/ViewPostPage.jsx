@@ -2,8 +2,9 @@
 
 // Modules
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { setLogout } from "state";
 
 // Components
 import Navbar from "components/Navbar";
@@ -27,6 +28,7 @@ const ViewPostPage = () => {
     /* HOOKS AND STATES */
 
     // Get post id and token
+    const dispatch = useDispatch();
     const { postId } = useParams();
     const token = useSelector((state) => state.token);
 
@@ -50,9 +52,14 @@ const ViewPostPage = () => {
        
         const data = await response.json();
 
-        if(data.error === "no token"){
+        if (data.error === "no token"){
             alert("Token Expired");
-            window.location = "/";
+
+            const [user, token] = dispatch(setLogout({ user: null, token: null }));
+
+            if (user === null &&
+                token === null)
+                window.location = "/";
         }
         else{
             setPost(data);

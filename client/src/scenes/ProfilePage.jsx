@@ -3,8 +3,10 @@
 // Modules
 import { Box, useMediaQuery } from "@mui/material";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+
+import { setLogout } from "state";
 
 // Components
 import Navbar from "components/Navbar";
@@ -26,6 +28,7 @@ const ProfilePage = () => {
     /* HOOKS AND STATES */
 
     // Get token and user id
+    const dispatch = useDispatch();
     const [user, setUser] = useState(null);
     const { userId } = useParams();
     const token = useSelector((state) => state.token);
@@ -48,7 +51,12 @@ const ProfilePage = () => {
 
         if (data.error === "no token"){
             alert("Token Expired");
-            window.location = "/";
+
+            const [user, token] = dispatch(setLogout({ user: null, token: null }));
+
+            if (user === null &&
+                token === null)
+                window.location = "/";
         }
         else
             setUser(data);

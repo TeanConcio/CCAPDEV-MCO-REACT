@@ -1,7 +1,8 @@
 /* IMPORTS */
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { setLogout } from "state";
 
 // Components
 import UserImage from "components/UserImage";
@@ -24,6 +25,7 @@ const UserWidget = ({ userId }) => {
     /* HOOKS AND STATES */
 
     // Get user and token
+    const dispatch = useDispatch();
     const [user, setUser] = useState(null);
     const token = useSelector((state) => state.token);
 
@@ -43,7 +45,18 @@ const UserWidget = ({ userId }) => {
             headers: { Authorization: `Bearer ${token}` },
         });
         const data = await response.json();
-        setUser(data);
+
+        if (data.error === "no token"){
+            alert("Token Expired");
+
+            const [user, token] = dispatch(setLogout({ user: null, token: null }));
+
+            if (user === null &&
+                token === null)
+                window.location = "/";
+        }
+        else
+            setUser(data);
     };
 
     // Get user data on process start (ran only once)

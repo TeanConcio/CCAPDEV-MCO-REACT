@@ -8,6 +8,7 @@ import { formatDistanceToNow } from 'date-fns'
 
 // State
 import { 
+    setLogout,
     setPost, 
     setUndeletedPosts 
 } from "state";
@@ -90,7 +91,16 @@ const Post = ({
 
         // If response is valid: Update post in state
         // Else: Set the error state variable
-        if (response.ok) {
+        if(updatedPost.error === "no token"){
+            alert("Token Expired");
+
+            const [user, token] = dispatch(setLogout({ user: null, token: null }));
+
+            if (user === null &&
+                token === null)
+                window.location = "/";
+        }
+        else if (response.ok) {
             dispatch(setPost({ post: updatedPost }));
             setError(null)
             setVoteCount(Object.keys(updatedPost.upvotes).length - Object.keys(updatedPost.downvotes).length)
@@ -120,7 +130,16 @@ const Post = ({
 
         // If response is valid: Update post in state
         // Else: Set the error state variable
-        if (response.ok) {
+        if (updatedPost.error === "no token"){
+            alert("Token Expired");
+
+            const [user, token] = dispatch(setLogout({ user: null, token: null }));
+
+            if (user === null &&
+                token === null)
+                window.location = "/";
+        }
+        else if (response.ok) {
             dispatch(setPost({ post: updatedPost }));
             setError(null)
             setVoteCount(Object.keys(updatedPost.upvotes).length - Object.keys(updatedPost.downvotes).length)
@@ -147,7 +166,16 @@ const Post = ({
 
         // If response is valid: Delete selected post from posts state context variable
         // Else: Set the error state variable
-        if (response.ok) {
+        if (deletedPost.error === "no token"){
+            alert("Token Expired");
+
+            const [user, token] = dispatch(setLogout({ user: null, token: null }));
+
+            if (user === null &&
+                token === null)
+                window.location = "/";
+        }
+        else if (response.ok) {
             dispatch(setUndeletedPosts({ post: deletedPost }))
             navigate(`/home`)
         }

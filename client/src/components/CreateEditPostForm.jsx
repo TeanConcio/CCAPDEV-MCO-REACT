@@ -25,7 +25,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 // State
-import { setPosts, setPost } from "state";
+import { setLogout, setPosts, setPost } from "state";
 
 // Components
 import FlexBetween from "components/FlexBetween";
@@ -94,7 +94,16 @@ const CreateEditPostForm = ({ postId = "", postTitle = "", postBody = "",  EditM
 
         // If response is valid: Update post in state
         // Else: Set the error state variable
-        if (response.ok) {
+        if(posts.error === "no token"){
+            alert("Token Expired");
+
+            const [user, token] = dispatch(setLogout({ user: null, token: null }));
+
+            if (user === null &&
+                token === null)
+                window.location = "/";
+        }
+        else if (response.ok) {
             dispatch(setPosts({ posts: posts }));
 
             // Reset data
@@ -138,7 +147,16 @@ const CreateEditPostForm = ({ postId = "", postTitle = "", postBody = "",  EditM
 
         // If response is valid: Update post in state
         // Else: Set the error state variable
-        if (response.ok) {
+        if(posts.error === "no token"){
+            alert("Token Expired");
+
+            const [user, token] = dispatch(setLogout({ user: null, token: null }));
+
+            if (user === null &&
+                token === null)
+                window.location = "/";
+        }
+        else if (response.ok) {
             dispatch(setPost({ post: posts }));
 
             //window.location.reload();

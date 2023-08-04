@@ -8,7 +8,8 @@ import { formatDistanceToNow } from 'date-fns'
 
 // State
 import { 
-    setComment, 
+    setLogout,
+    setComment,
     setUndeletedComments 
 } from "state";
 
@@ -86,7 +87,17 @@ const Comment = ({
 
         // If response is valid: Update comment in state
         // Else: Set the error state variable
-        if (response.ok) {
+        if(updatedComment.error === "no token"){
+
+            alert("Token Expired");
+
+            const [user, token] = dispatch(setLogout({ user: null, token: null }));
+
+            if (user === null &&
+                token === null)
+                window.location = "/";
+        }
+        else if (response.ok) {
             dispatch(setComment({ comment: updatedComment }));
             setError(null)
             setVoteCount(Object.keys(updatedComment.upvotes).length - Object.keys(updatedComment.downvotes).length)
@@ -116,7 +127,17 @@ const Comment = ({
 
         // If response is valid: Update comment in state
         // Else: Set the error state variable
-        if (response.ok) {
+        if(updatedComment.error === "no token"){
+
+            alert("Token Expired");
+
+            const [user, token] = dispatch(setLogout({ user: null, token: null }));
+
+            if (user === null &&
+                token === null)
+                window.location = "/";
+        }
+        else if (response.ok) {
             dispatch(setComment({ comment: updatedComment }));
             setError(null)
             setVoteCount(Object.keys(updatedComment.upvotes).length - Object.keys(updatedComment.downvotes).length)
@@ -143,11 +164,20 @@ const Comment = ({
 
         // If response is valid: Delete selected comment from comments state context variable
         // Else: Set the error state variable
-        if (response.ok) {
+        if(deletedComment.error === "no token"){
+
+            alert("Token Expired");
+
+            const [user, token] = dispatch(setLogout({ user: null, token: null }));
+
+            if (user === null &&
+                token === null)
+                window.location = "/";
+        }
+        else if (response.ok) {
             dispatch(setUndeletedComments({ comment: deletedComment }))
             window.location.reload();
         }
-            
         else {}
             setError(deletedComment.error)
     }

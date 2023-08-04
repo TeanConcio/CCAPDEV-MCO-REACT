@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 // State
-import { setPosts, setLogin } from "state";
+import { setPosts, setLogout } from "state";
 
 // Components
 import Post from "./Post";
@@ -41,13 +41,14 @@ const PostFeed = ({ userId, isProfile = false }) => {
             headers: { Authorization: `Bearer ${token}` },
         });
         const data = await response.json();
+
         if(data.error === "no token"){
             alert("Token Expired");
 
-            const state = dispatch(setLogin({ user: null, token: null }));
+            const [user, token] = dispatch(setLogout({ user: null, token: null }));
 
-            if (state.user === null &&
-                state.token === null)
+            if (user === null &&
+                token === null)
                 window.location = "/";
         }
         else
@@ -69,13 +70,12 @@ const PostFeed = ({ userId, isProfile = false }) => {
         const data = await response.json();
         
         if(data.error === "no token"){
-
             alert("Token Expired");
 
-            const state = dispatch(setLogin({ user: null, token: null }));
+            const [user, token] = dispatch(setLogout({ user: null, token: null }));
 
-            if (state.user === null &&
-                state.token === null)
+            if (user === null &&
+                token === null)
                 window.location = "/";
         }
         else

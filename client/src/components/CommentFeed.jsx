@@ -6,7 +6,10 @@ import { useDispatch, useSelector } from "react-redux";
 
 // State
 import { useState } from "react";
-import { setComments } from "state";
+import { 
+    setLogout,
+    setComments 
+} from "state";
 
 // Components
 import Comment from "./Comment";
@@ -49,6 +52,15 @@ const CommentFeed = ({ parentId, replyMode = false }) => {
         const data = await response.json();
 
         if(data.error === "no token"){
+            alert("Token Expired");
+
+            const [user, token] = dispatch(setLogout({ user: null, token: null }));
+
+            if (user === null &&
+                token === null)
+                window.location = "/";
+        }
+        else if(data.error === "no token"){
             alert("Token Expired");
             window.location = "/";
         }
