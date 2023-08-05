@@ -213,7 +213,7 @@ const Post = ({
                 <div className="details">
                     <Link to={`/profile/${postUserId}`} className="author"> Posted by: {username} </Link>
                     <span className="create-date">
-                        Posted on: {formatDistanceToNow(new Date(createdAt), {addSuffix: true})}
+                        Posted: {formatDistanceToNow(new Date(createdAt), {addSuffix: true})}
                     </span>
                 </div>
 

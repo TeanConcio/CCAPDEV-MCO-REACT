@@ -9,6 +9,7 @@ import { setLogout } from "state";
 
 // Components
 import UserImageName from "./UserImageName";
+import SearchBar from "./SearchBar";
 
 // Style
 import "../styles/components/Navbar.css";
@@ -42,10 +43,7 @@ const Navbar = () => {
 
                 <Link to="/home" className="brand">Pokéhub</Link>
 
-                <div className="search">
-                    <input type="text" className="text-box" placeholder="Search" />
-                    <button className="btn">Search</button>
-                </div>
+                <SearchBar />
 
                 <div className="menu">
                     <UserImageName 

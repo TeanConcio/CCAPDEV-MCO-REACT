@@ -204,7 +204,8 @@ export const getSearchPosts = async (req, res) => {
 
         const search = req.query.search;
 
-        const posts = await Post.find({title: {$regex: search, $options: "$i"}}).sort({createdAt: -1});
+        // Respond with at most 5 posts that are similar to search query
+        const posts = await Post.find({title: {$regex: search, $options: "i"}}).limit(5).sort({createdAt: -1});
 
         return res.status(200).json(posts);
     }
