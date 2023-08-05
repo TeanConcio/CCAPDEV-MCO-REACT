@@ -19,6 +19,15 @@ const UserImageName = ({ picturePath, username, userId, imageSize = "60px", font
 
     const navigate = useNavigate();
 
+
+
+    function changeLocation(link){
+        navigate(link, { replace: true });
+        window.location.reload();
+    }
+
+
+
     return (
 
         <div className="user-image-name-box" width={imageSize} height={imageSize}>
@@ -26,7 +35,7 @@ const UserImageName = ({ picturePath, username, userId, imageSize = "60px", font
             <div 
                 className="user-name" 
                 style={{ fontSize: fontSize }}
-                onClick={() => navigate(`/profile/${userId}`)}>
+                onClick={() => changeLocation(`/profile/${userId}`)}>
                 {username}
             </div>
         </div>

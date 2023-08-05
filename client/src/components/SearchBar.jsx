@@ -3,7 +3,7 @@
 // Modules
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { formatDistanceToNow, set } from 'date-fns'
 
 // State Controller
@@ -26,6 +26,7 @@ const SearchBar = () => {
 
     // Get functions
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const token = useSelector((state) => state.token);
     
     const [searchText, setSearchText] = useState("");
@@ -72,6 +73,13 @@ const SearchBar = () => {
 
 
 
+    function changeLocation(link){
+        navigate(link, { replace: true });
+        window.location.reload();
+    }
+
+
+
 
 
     /* RENDER */
@@ -106,10 +114,14 @@ const SearchBar = () => {
 
                             <div className="search-result">
 
-                                <Link to={`/post/${searchResult.postId}`} className="title"> {searchResult.title} </Link>
+                                <Link 
+                                    to={`/post/${searchResult._id}`} 
+                                    className="title"
+                                    onClick={() => {changeLocation(`/post/${searchResult._id}`)}}
+                                > {searchResult.title} </Link>
 
                                 <div className="details">
-                                    <Link to={`/profile/${searchResult.postUserId}`} className="author"> 
+                                    <Link to={`/profile/${searchResult.userId}`} className="author"> 
                                         Posted by: {searchResult.username} 
                                     </Link>
                                     <span className="create-date">

@@ -66,31 +66,18 @@
 .action-return
 */
 .cont-body{
-    background-color: #be0c0c;
     overflow:auto;
 }
 
-.user-row{
-    padding: 15px 25px;
+.friend-row{
+    padding: 5px;
+    margin-bottom: -15px;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.user-info{
-    display: flex;
-    align-items: center;
-}
 
-.user-info img{
-    width: 60px;
-    border-radius: 50%;
-    margin-right: 15px;
-}
-
-.user-info span{
-    color: #ffffff;
-}
 
 ::-webkit-scrollbar{
     opacity:0;

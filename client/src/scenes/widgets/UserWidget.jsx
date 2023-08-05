@@ -2,12 +2,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { setLogin } from "state";
+import { format } from 'date-fns'
 
 // Components
 import UserImage from "components/UserImage";
-import FlexBetween from "components/FlexBetween";
-import WidgetWrapper from "components/WidgetWrapper";
-import { format } from 'date-fns'
+import AddFriendBtn from "components/AddFriendBtn";
 
 // CSS import
 import "../../styles/scenes/widgets/UserProfile.css";
@@ -103,9 +102,8 @@ const UserWidget = ({ userId }) => {
 
                     <h1>{username}</h1>
                     <p>{description}</p>
-                    <div className="userprofilefollow-btn">
-                        Follow
-                    </div>
+                    
+                    <AddFriendBtn friendId={user._id} />
 
                     <div className="userprofilerow">
                         <div>

@@ -2,15 +2,15 @@
 
 // Modules
 //import { Box, Typography, useTheme } from "@mui/material";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 // State
-import { setLogin, setFriends } from "state";
+import { setLogin } from "state";
 
 // Components
-import Friend from "components/Friend";
-import WidgetWrapper from "components/WidgetWrapper";
+import UserImageName from "components/UserImageName";
+import AddFriendBtn from "components/AddFriendBtn";
 
 import "../../styles/scenes/widgets/FriendList.css";
 
@@ -27,10 +27,9 @@ const FriendListWidget = ({ userId }) => {
     // Get token and friends from state
     const dispatch = useDispatch();
     const token = useSelector((state) => state.token);
-    const friends = useSelector((state) => state.user.friends);
 
-    // Get theme
-    //const { palette } = useTheme();
+    const [friends, setFriends] = useState(null);
+
 
 
 
@@ -61,7 +60,7 @@ const FriendListWidget = ({ userId }) => {
             }
         }
         else
-            dispatch(setFriends({ friends: data }));
+            setFriends(data);
     };
 
     // Get friends data on process start (ran only once)
@@ -76,21 +75,45 @@ const FriendListWidget = ({ userId }) => {
 
     return (
 
-            <div className="friendlistactual-container">
-                <div className="cont-header">
-                    <div className="heading">Follower List</div>
-                </div>
-                <div className="cont-body">
-                    {friends.map((friend) => (
-                        <div key={friend._id} className="user-row">
-                            <div className="user-info">
-                                <img src={friend.picturePath} alt={friend.username} />
-                                <span>{friend.username}</span>
-                            </div>
-                        </div>
-                    ))}
-                </div>
+        <div className="friendlistactual-container">
+
+            <div className="cont-header">
+                <div className="heading">Friend List</div>
             </div>
+
+            <div className="cont-body">
+
+                {(Array.isArray(friends) && friends.length > 0) ? (
+                    
+                    friends.map((friend) => (
+
+                        <div key={friend._id} className="friend-row">
+
+                            <UserImageName 
+                                picturePath={friend.picturePath}
+                                username={friend.username}
+                                userId={friend._id}
+                                fontSize="1.5rem"
+                                imageSize="35px"
+                            />
+
+                            <AddFriendBtn 
+                                friendId={friend._id}
+                            />
+
+                        </div>
+                    
+                    ))
+                ) : (
+
+                    <div className="friend-row" style={{"margin":"0px"}}>
+                        No friends found
+                    </div>
+                )}
+
+            </div>
+
+        </div>
 
     );
 };

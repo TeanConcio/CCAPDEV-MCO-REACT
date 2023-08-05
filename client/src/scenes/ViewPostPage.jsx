@@ -72,7 +72,7 @@ const ViewPostPage = () => {
     // Get post data on process start (ran only once)
     useEffect(() => {
         getPost();
-    }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    }, []);
 
 
     // If post is not found, return null (don't render)

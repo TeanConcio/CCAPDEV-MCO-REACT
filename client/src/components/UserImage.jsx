@@ -18,6 +18,15 @@ const UserImage = ({ picturePath, userId = "", size = "60px" }) => {
 
     const navigate = useNavigate();
 
+
+
+    function changeLocation(link){
+        navigate(link, { replace: true });
+        window.location.reload();
+    }
+
+
+
     return (
 
         <div className="user-image-box" width={size} height={size}>
@@ -37,7 +46,7 @@ const UserImage = ({ picturePath, userId = "", size = "60px" }) => {
                     height={size}
                     alt="user"
                     src={`${API_URL}/assets/${picturePath}`}
-                    onClick={() => navigate(`/profile/${userId}`)}
+                    onClick={() => changeLocation(`/profile/${userId}`)}
                 />
             )}
 

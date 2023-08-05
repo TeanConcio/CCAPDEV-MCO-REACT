@@ -108,23 +108,6 @@ body {
     font-weight: 100;
 }
 
-.userprofilefollow-btn {
-    display: inline-block;
-    text-decoration: none;
-    border: 1px solid #b60202
-;
-    color: #ffffff;
-    padding: 6px 35px;
-    margin: 25px 0;
-    transition: box-shadow 0.5s;
-}
-
-.userprofilefollow-btn:hover {
-    background-color: #ff2574;
-    transform: scale(1.1);
-    transition: all 0.3s;
-}
-
 .userprofilerow {
     display: flex;
     justify-content: space-around;

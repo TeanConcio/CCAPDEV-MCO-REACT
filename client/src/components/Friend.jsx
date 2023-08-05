@@ -46,20 +46,19 @@ const Friend = ({ friendId, username, userPicturePath }) => {
     /* CONTROLLER */
 
     const patchFriend = async () => {
-        const response = await fetch(
-        `${API_URL}/users/${_id}/${friendId}`,
+
+        const response = await fetch(`${API_URL}/users/${_id}/${friendId}`,
         {
             method: "PATCH",
             headers: {
                 Authorization: `Bearer ${token}`,
                 "Content-Type": "application/json",
             },
-        }
-        );
+        });
 
         const data = await response.json();
 
-        if(data.error === "no token"){
+        if (data.error === "no token"){
             alert("Token Expired");
 
             if (dispatch(setLogin({user: null, token: null}))) {
