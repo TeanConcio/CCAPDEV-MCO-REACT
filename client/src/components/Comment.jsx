@@ -198,7 +198,7 @@ const Comment = ({
 
         <div 
             className="comment-component" 
-            style={{width: "97%"}}
+            style={{width: "97%", marginBottom: "20px"}}
         >
 
             <div className="comment" style={{width: width, margin: margin, border: "var(--color-2) solid 1px"}}>
