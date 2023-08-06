@@ -27,5 +27,19 @@ port:3000 is used by the React.js server while port:4000 is used by the Express.
 
 
 
+
+
 Deployed Application Link:
 https://pokehub-ccapdev.onrender.com/
+
+
+
+Notes About the Deployed Application:
+
+1. Our application uses the Render hosting service to deploy online. As our application uses 2 servers, we had to make and configure 2 separate Render services to run our application. However, as the Render plans for these servers are both of the free tier, they are quite slow at communicating with each other then to the database. Due to this, some functionalities may seem a bit slow and we ask for the user to be patient when waiting for the application to load.
+
+2. We did not implement an Edit Profile feature due to the application needing to constantly interact with the database to track the user of each post and comment (posts and comments have the user's username built-in to reduce backend requests). To compensate for this, we implemented Adding Friends and Nested Comments features for users to keep in touch with each other and better express their opinions.
+
+3. As comments in our application can be nested, displaying all nested comments at once can take a while for our application to load. To compensate for this, the user will have to manually reveal each nested comment reply as to not bloat up the entire page.
+
+4. As uploading and storing pictures online requires either a premium database, constantly committing to Github, or using a 3rd party storage service, we found it not feasible to implement these due to the current constraints in time. To compensate, our application only stores new uploaded pictures into local storage. Thus, when clearing cookies or logging out, some images may fail to render. The only images available are those that were built into the application's public asset folder.
