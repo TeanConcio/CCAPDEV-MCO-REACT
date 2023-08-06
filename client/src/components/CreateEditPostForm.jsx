@@ -112,7 +112,7 @@ const CreateEditPostForm = ({ postId = "", postTitle = "", postBody = "",  EditM
             setBody("");
             setError(null);
 
-            //window.location.reload();
+            window.location.reload();
         }
         else 
             setError(posts.error)
@@ -161,7 +161,7 @@ const CreateEditPostForm = ({ postId = "", postTitle = "", postBody = "",  EditM
         else if (response.ok) {
             dispatch(setPost({ post: posts }));
 
-            //window.location.reload();
+            window.location.reload();
         }
         else 
             setError(posts.error)

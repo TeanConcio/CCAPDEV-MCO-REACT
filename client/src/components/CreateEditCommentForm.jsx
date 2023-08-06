@@ -145,7 +145,7 @@ const CreateEditCommentForm = ({  parentId, commentMessage = "",  EditMode = fal
         else if (response.ok) {
             dispatch(setComment({ comment: comments }));
 
-            //window.location.reload();
+            window.location.reload();
         }
         else 
             setError(comments.error)
