@@ -2,7 +2,7 @@
 
 // Modules
 import { useDispatch, useSelector } from "react-redux";
-import { setLogin, setFriends } from "state";
+import { setLogin, setUserFriends } from "state";
 
 import "../styles/components/AddFriendBtn.css";
 
@@ -25,7 +25,8 @@ const AddFriendBtn = ({ friendId }) => {
     const friends = useSelector((state) => state.user.friends);
 
     // Check if friend
-    const isFriend = Boolean(Array.isArray(friends) && friends.find((friend) => friend._id === friendId));
+    const isFriend = Boolean(Array.isArray(friends) && friends.includes(friendId));
+
 
 
 
@@ -57,7 +58,9 @@ const AddFriendBtn = ({ friendId }) => {
             }
         }
         else
-            dispatch(setFriends({ friends: data }));
+            dispatch(setUserFriends({ friends: data }));
+        
+        window.location.reload();
     };
 
 

@@ -69,7 +69,7 @@ const ProfilePage = () => {
     // Get user data on process start (ran only once)
     useEffect(() => {
         getUser();
-    });
+    }, []);
 
 
 

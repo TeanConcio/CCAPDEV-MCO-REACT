@@ -52,8 +52,8 @@ const Post = ({
     const loggedInUserId = useSelector((state) => state.user._id);
 
     // Get upvote and downvote data
-    const isUpvoted = Boolean(upvotes[loggedInUserId]);
-    const isDownvoted = Boolean(downvotes[loggedInUserId]);
+    const [isUpvoted, setIsUpvoted] = useState(Boolean(upvotes[loggedInUserId]));
+    const [isDownvoted, setIsDownvoted] = useState(Boolean(downvotes[loggedInUserId]));
     const baseUpvoteCount = Object.keys(upvotes).length;
     const baseDownvoteCount = Object.keys(downvotes).length;
     const [voteCount, setVoteCount] = useState(baseUpvoteCount - baseDownvoteCount)
@@ -105,6 +105,8 @@ const Post = ({
             dispatch(setPost({ post: updatedPost }));
             setError(null)
             setVoteCount(Object.keys(updatedPost.upvotes).length - Object.keys(updatedPost.downvotes).length)
+            setIsUpvoted(!isUpvoted)
+            setIsDownvoted(false)
         }
         else 
             setError(updatedPost.error)
@@ -146,6 +148,8 @@ const Post = ({
             dispatch(setPost({ post: updatedPost }));
             setError(null)
             setVoteCount(Object.keys(updatedPost.upvotes).length - Object.keys(updatedPost.downvotes).length)
+            setIsDownvoted(!isDownvoted)
+            setIsUpvoted(false)
         }
         else 
             setError(updatedPost.error)

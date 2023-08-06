@@ -48,8 +48,8 @@ const Comment = ({
     const loggedInUserId = useSelector((state) => state.user._id);
 
     // Get upvote and downvote data
-    const isUpvoted = Boolean(upvotes[loggedInUserId]);
-    const isDownvoted = Boolean(downvotes[loggedInUserId]);
+    const [isUpvoted, setIsUpvoted] = useState(Boolean(upvotes[loggedInUserId]));
+    const [isDownvoted, setIsDownvoted] = useState(Boolean(downvotes[loggedInUserId]));
     const baseUpvoteCount = Object.keys(upvotes).length;
     const baseDownvoteCount = Object.keys(downvotes).length;
     const [voteCount, setVoteCount] = useState(baseUpvoteCount - baseDownvoteCount)
@@ -103,6 +103,8 @@ const Comment = ({
             dispatch(setComment({ comment: updatedComment }));
             setError(null)
             setVoteCount(Object.keys(updatedComment.upvotes).length - Object.keys(updatedComment.downvotes).length)
+            setIsUpvoted(!isUpvoted)
+            setIsDownvoted(false)
         }
         else 
             setError(updatedComment.error)
@@ -145,6 +147,8 @@ const Comment = ({
             dispatch(setComment({ comment: updatedComment }));
             setError(null)
             setVoteCount(Object.keys(updatedComment.upvotes).length - Object.keys(updatedComment.downvotes).length)
+            setIsDownvoted(!isDownvoted)
+            setIsUpvoted(false)
         }
         else 
             setError(updatedComment.error)

@@ -3,6 +3,8 @@
 // Modules
 import { createSlice } from "@reduxjs/toolkit";
 
+import { API_URL } from "App";
+
 
 
 
@@ -12,7 +14,6 @@ import { createSlice } from "@reduxjs/toolkit";
     // Accessible from anywhere in the app
 
 const initialState = {
-    mode: "light",
     user: null,
     token: null,
     posts: [],
@@ -51,7 +52,7 @@ export const authSlice = createSlice({
 
 
         // Set friends
-        setFriends: (state, action) => {
+        setUserFriends: (state, action) => {
 
             if (state.user)
                 state.user.friends = action.payload.friends;
@@ -152,7 +153,7 @@ export const {
     setMode, 
     setLogin, 
     setLogout, 
-    setFriends, 
+    setUserFriends, 
     setPosts, 
     setPost,
     setUndeletedPosts,

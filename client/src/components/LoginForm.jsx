@@ -143,7 +143,7 @@ const LoginForm = () => {
             const passwordError = document.getElementById("passwordError");
             passwordError.removeAttribute("hidden");
             console.log("Failed to Log In");
-          }
+        }
     };
 
 

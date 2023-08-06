@@ -78,46 +78,29 @@ export const addRemoveFriend = async (req, res) => {
     try {
 
         // Get user id and friend id from request parameters and find in database
-        const { id, friendId } = req.params
-        const user = await User.findById(id)
+        const { userId, friendId } = req.params
+        const user = await User.findById(userId)
         const friend = await User.findById(friendId)
 
         // If friend is in user's friends: remove friend from user's friends and vice versa
         // Else: add friend to user's friends and vice versa
-        if (user.friends.includes(friendId)) {
+        if (user.friends.includes(friendId) && friend.friends.includes(userId)) {
 
             user.friends = user.friends.filter((id) => id !== friendId)
-            friend.friends = friend.friends.filter((id) => id !== id)
+            friend.friends = friend.friends.filter((id) => id !== userId)
         } 
         else {
 
             user.friends.push(friendId)
-            friend.friends.push(id)
+            friend.friends.push(userId)
         }
 
         // Update and save user and friend to database
         await user.save()
         await friend.save()
 
-        // Get array of user's friends from database and format it for response
-        const friends = await Promise.all(
-            user.friends.map((id) => User.findById(id))
-        )
-        const formattedFriends = friends.map(
-            ({
-                _id, 
-                username, 
-                picturePath
-            }) => {
-            return { 
-                _id, 
-                username, 
-                picturePath
-            }}
-        )
-
         // Respond with user's friends
-        res.status(200).json(formattedFriends)
+        res.status(200).json(user.friends)
     } 
     catch (err) {
 
