@@ -232,15 +232,12 @@ const Comment = ({
                                 <button className="downvote btn" onClick={patchDownvote}> ⬇ </button>
                             )}
                         </div>
-                        <div className="row">
-                        <div className="comment">
-                            <div className="count"> {commentCount} 
+                        <div className="comment-action">
+                            <div className="count"> {commentCount} </div>
                             <button 
                                 className="comment-btn" 
                                 onClick={() => setReplyMode(!replyMode)}
                             > 💭 </button>
-                            </div>
-                           </div> 
                         </div>
                     </div>
 

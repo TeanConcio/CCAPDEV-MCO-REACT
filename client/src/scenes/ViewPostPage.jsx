@@ -3,7 +3,7 @@
 // Modules
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { setLogin } from "state";
 
 // Components
@@ -27,13 +27,17 @@ const ViewPostPage = () => {
 
     /* HOOKS AND STATES */
 
-    // Get post id and token
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    // Get post id and token
     const { postId } = useParams();
     const token = useSelector((state) => state.token);
 
     // Set post state
     const [post, setPost] = useState(null);
+    const [nextPostId, setNextPostId] = useState(null);
+    const [prevPostId, setPrevPostId] = useState(null);
 
 
 
@@ -49,7 +53,7 @@ const ViewPostPage = () => {
             method: "GET",
             headers: { Authorization: `Bearer ${token}` },
         });
-       
+
         const data = await response.json();
 
         if (data.error === "no token"){
@@ -69,10 +73,49 @@ const ViewPostPage = () => {
     };
 
 
+
+    // Get next and previous post ids
+    const getNextPrevPostIds = async () => {
+
+        // Get post data from server
+        const response = await fetch(`${API_URL}/posts/${postId}/next-prev-ids`, {
+            method: "GET",
+            headers: { Authorization: `Bearer ${token}` },
+        });
+
+        const data = await response.json();
+
+        if (data.error === "no token"){
+            alert("Token Expired");
+
+            if (dispatch(setLogin({user: null, token: null}))) {
+
+                window.localStorage.clear();
+                
+                if (window.localStorage.length === 0)
+                    window.location = "/";
+            }
+        }
+        else{
+            setNextPostId(data.nextPostId);
+            setPrevPostId(data.prevPostId);
+        }
+    }
+
+
+
     // Get post data on process start (ran only once)
     useEffect(() => {
+        getNextPrevPostIds();
         getPost();
     }, []);
+
+
+
+    function changeLocation(link){
+        navigate(link, { replace: true });
+        window.location.reload();
+    }
 
 
     // If post is not found, return null (don't render)
@@ -97,10 +140,28 @@ const ViewPostPage = () => {
                     <div className="column">
 
                         <section class="post-container">
+
+                            {(prevPostId !== null) ? (
+
+                                <button 
+                                    class="go-prev"
+                                    onClick={() => changeLocation(`/post/${prevPostId}`)}
+                                >
+                                    <a>Prev</a>
+                                    <a>←</a>
+                                </button>
+
+                            ) : (
+
+                                <button 
+                                    class="go-prev"
+                                    onClick={() => navigate(`/home`)}
+                                >
+                                    <a>Home</a>
+                                </button>
+
+                            )}
                             
-                            <button class="go-prev">
-                                <a>←</a>
-                            </button>
 
                             <Post
                                 key={post._id}
@@ -119,9 +180,26 @@ const ViewPostPage = () => {
                                 ViewPost
                             />
 
-                            <button class="go-next">
-                                <a>→</a>
-                            </button>
+                            {(nextPostId !== null) ? (
+
+                                <button 
+                                    class="go-next"
+                                    onClick={() => changeLocation(`/post/${nextPostId}`)}
+                                >
+                                    <a>Next</a>
+                                    <a>→</a>
+                                </button>
+
+                            ) : (
+
+                                <button 
+                                    class="go-next"
+                                    onClick={() => navigate(`/home`)}
+                                >
+                                    <a>Home</a>
+                                </button>
+
+                            )}
                         
                         </section>
 

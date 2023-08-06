@@ -198,6 +198,37 @@ export const getUserPosts = async (req, res) => {
 
 
 
+/* GET NEXT AND PREVIOUS POST IDS */
+
+export const getNextPrevPostIds = async (req, res) => {
+
+    // Get user id from request parameters and find their posts in database
+    const currPostId = req.params.postId;
+    const currPost = await Post.findById(currPostId);
+    if (!currPost)
+        return res.status(404).json({error: "Post not found"})
+
+    // Get next and previous post ids
+    const nextPost = await Post.find({createdAt: {$lt: currPost.createdAt}})
+                                .sort({createdAt: -1})
+                                .limit(1)
+    const nextPostId = nextPost[0] ? String(nextPost[0]._id) : null
+
+    const prevPost = await Post.find({createdAt: {$gt: currPost.createdAt}})
+                                .sort({createdAt: 1})
+                                .limit(1)
+    const prevPostId = prevPost[0] ? String(prevPost[0]._id) : null
+
+    // Respond with next and previous post ids
+    res.status(200).json({nextPostId: nextPostId, prevPostId: prevPostId});
+}
+
+
+
+
+
+/* GET SEARCH POSTS RESULTS */
+
 export const getSearchPosts = async (req, res) => {
 
     try {

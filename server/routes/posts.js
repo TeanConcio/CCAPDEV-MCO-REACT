@@ -9,6 +9,7 @@ import {
     getPost,
     getFeedPosts,
     getUserPosts,
+    getNextPrevPostIds,
     getSearchPosts,
     upvotePost,
     downvotePost,
@@ -35,6 +36,7 @@ const router = express.Router();
 router.get("/view/:postId", verifyToken, validatePostId, getPost);
 router.get("/", verifyToken, getFeedPosts);
 router.get("/:userId/posts", verifyToken, getUserPosts);
+router.get("/:postId/next-prev-ids", verifyToken, getNextPrevPostIds)
 router.get("/search", verifyToken, getSearchPosts);
 
 // Update
