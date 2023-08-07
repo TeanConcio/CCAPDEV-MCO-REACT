@@ -36,7 +36,7 @@ https://pokehub-ccapdev.onrender.com/
 
 Notes About the Deployed Application:
 
-1. Our application uses the Render hosting service to deploy online. As our application uses 2 servers, we had to make and configure 2 separate Render services to run our application. However, as the Render plans for these servers are both of the free tier, they are quite slow at communicating with each other then to the database. Due to this, some functionalities may seem a bit slow and we ask for the user to be patient when waiting for the application to load.
+1. Our application uses the Render hosting service to deploy online. As our application uses 2 servers, we had to make and configure 2 separate Render services to run our application. However, as the Render plans for these servers are both of the free tier, they are quite slow at communicating with each other, then to the database. Due to this, some functionalities may seem a bit slow, and we ask for the user to be patient when waiting for the application to load.
 
 2. We did not implement an Edit Profile feature due to the application needing to constantly interact with the database to track the user of each post and comment (posts and comments have the user's username built-in to reduce backend requests). To compensate for this, we implemented Adding Friends and Nested Comments features for users to keep in touch with each other and better express their opinions.
 
