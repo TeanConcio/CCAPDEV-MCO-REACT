@@ -25,6 +25,14 @@ export const register = async (req, res) => {
             picturePath,
         } = req.body
 
+        // Check if email exists, respond with error if user exists
+        if ((await User.find({ email: email })).length > 0)
+            return res.status(400).json({ msg: "email taken", success: false })
+
+        // Check if username exists, respond with error if user exists
+        if ((await User.find({ username: username })).length > 0)
+            return res.status(400).json({ msg: "username taken", success: false })
+
         // Get random decryption key to Hash password
         const salt = await bcrypt.genSalt()
         const passwordHash = await bcrypt.hash(password, salt)

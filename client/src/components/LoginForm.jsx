@@ -26,16 +26,32 @@ import { API_URL } from "../App";
 
 // Register
 const registerSchema = yup.object().shape({
-    email: yup.string().email("invalid email").required("required"),
-    password: yup.string().required("required"),
-    username: yup.string().required("required"),
-    picture: yup.string()
+    username: 
+        yup.string()
+        .min(2, "Min 2 Characters")
+        .max(25, "Max 25 Characters")
+        .required("Required"),
+    email: 
+        yup.string()
+        .email("Please enter valid email")
+        .required("Required"),
+    password: 
+        yup.string()
+        .min(8, "Min 8 Characters")
+        .required("Required"),
+    picture: 
+        yup.string()
 });
 
 // Login
 const loginSchema = yup.object().shape({
-    email: yup.string().email("invalid username").required("required"),
-    password: yup.string().required("required"),
+    email: 
+        yup.string()
+        .email("Please enter valid email")
+        .required("Required"),
+    password: 
+        yup.string()
+        .required("Required"),
 });
 
 
@@ -76,10 +92,18 @@ const LoginForm = () => {
     const { palette } = useTheme();
     const [rememberMe, setrememberMe] = useState(false);
 
+    // Error handling
+    const [loginErrorMsg, setLoginErrorMsg] = useState("");
+    const [registerErrorMsg, setRegisterErrorMsg] = useState("");
+
     const handleFormSwitch = (type) => {
         setPageType(type);
       };
    
+
+
+
+
     /* CONTROLLERS */
 
     // Register
@@ -103,11 +127,29 @@ const LoginForm = () => {
         });
         const savedUser = await savedUserResponse.json();
 
-        // If user saved, set login state
-        onSubmitProps.resetForm();
-        if (savedUser) {
-            setPageType("login");
+        if (savedUser.msg === "email taken") {
+            setRegisterErrorMsg("Email already taken");
+            document.getElementById("registerError").removeAttribute("hidden"); 
         }
+        else if (savedUser.msg === "username taken") {
+            setRegisterErrorMsg("Username already taken");
+            document.getElementById("registerError").removeAttribute("hidden"); 
+        }
+        else if (savedUser.success) {
+            // If user saved, set login state
+            onSubmitProps.resetForm();
+            if (savedUser) {
+                setPageType("login");
+            }
+        }
+        else {
+
+            // If register failed, display the error message by removing hidden attribute in div
+            setRegisterErrorMsg("Can't register");
+            document.getElementById("registerError").removeAttribute("hidden"); 
+        }
+
+        
     };
 
 
@@ -140,9 +182,8 @@ const LoginForm = () => {
             navigate("/home");
         } else{
             // If login failed, display the error message by removing hidden attribute in div
-            const passwordError = document.getElementById("passwordError");
-            passwordError.removeAttribute("hidden");
-            console.log("Failed to Log In");
+            setLoginErrorMsg("Invalid email or password");
+            document.getElementById("loginError").removeAttribute("hidden"); 
         }
     };
 
@@ -189,15 +230,20 @@ const LoginForm = () => {
                     validationSchema={loginSchema}
                     onSubmit={handleFormSubmit}
                 > 
-                    {({ values, handleChange, handleSubmit}) => (
+                    {({ values, handleChange, handleSubmit, errors, touched}) => (
                         <Form className="input-group">
                             <Field
-                                type="text"
+                                type="email"
                                 className="input-field"
                                 placeholder="Email"
                                 name="email"
                                 required
                             />
+                            {errors.email && touched.email ? (
+                                <div className="passwordError" name="passwordError">
+                                    {errors.email}
+                                </div>
+                            ) : (null)}
                             <Field
                                 type="password"
                                 className="input-field"
@@ -205,9 +251,6 @@ const LoginForm = () => {
                                 name="password"
                                 required
                             />
-                            <div className="passwordError" name="passwordError" id="passwordError" hidden>
-                                Invalid Username or Password
-                            </div>
                             <Field
                                 type="checkbox"
                                 className="check-box"
@@ -221,9 +264,10 @@ const LoginForm = () => {
                                 }
                                 
                             />
-                        <label htmlFor="rememberMe">Keep Me Logged In</label>
-                           
-                            
+                            <label htmlFor="rememberMe">Keep Me Logged In</label>
+                            <div className="passwordError" name="passwordError" id="loginError" hidden>
+                                {loginErrorMsg}
+                            </div>
                             <button
                                 type="submit"
                                 className="submit-button"
@@ -245,7 +289,7 @@ const LoginForm = () => {
                     validationSchema={registerSchema}
                     onSubmit={handleFormSubmit}
                 >
-                    {({ values, handleChange, handleSubmit, setFieldValue}) => (
+                    {({ values, handleChange, handleSubmit, setFieldValue, errors, touched}) => (
                         <Form className="input-group">
                             <Field
                                 type="text"
@@ -254,6 +298,11 @@ const LoginForm = () => {
                                 name="username"
                                 required
                             />
+                            {errors.username && touched.username ? (
+                                <div className="passwordError" name="passwordError">
+                                    {errors.username}
+                                </div>
+                            ) : (null)}
                             <Field
                                 type="email"
                                 className="input-field"
@@ -261,6 +310,11 @@ const LoginForm = () => {
                                 name="email"
                                 required
                             />
+                            {errors.email && touched.email ? (
+                                <div className="passwordError" name="passwordError">
+                                    {errors.email}
+                                </div>
+                            ) : (null)}
                             <Field
                                 type="password"
                                 className="input-field"
@@ -268,6 +322,11 @@ const LoginForm = () => {
                                 name="password"
                                 required
                             />
+                            {errors.password && touched.password ? (
+                                <div className="passwordError" name="passwordError">
+                                    {errors.password}
+                                </div>
+                            ) : (null)}
                             <Dropzone
                                 acceptedFiles=".jpg,.jpeg,.png"
                                 multiple={false}
@@ -310,6 +369,9 @@ const LoginForm = () => {
                                 )}
                             </Dropzone>
                             <br></br>
+                            <div className="passwordError" name="passwordError" id="registerError" hidden>
+                                {registerErrorMsg}
+                            </div>
                             <button
                                 type="submit"
                                 className="submit-button"
